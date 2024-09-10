@@ -26,7 +26,12 @@
             <span>O</span>
             <div></div>
         </div>
-                    <p>¿Quieres?</p>
+                    <p>¿Quiéres registrarse?
+                        <a href="">Registrarse</a>
+                    </p>
+                    <p>¿Olvidaste tu contraeña?
+                        <a href="">Recuperar contraseña</a>
+                    </p>
 </form>
 </body>
 </html
