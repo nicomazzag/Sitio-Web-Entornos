@@ -1,9 +1,75 @@
-<footer >
-    <form action="/">
-        <label for="mail">Ingrese su mail</label>
-        <input type="email" name="mail" id="mail" required>
-        <label for="descripcion">Asunto</label>
-        <input type="text" name="descripcion" id="descripcion" required>       
-        <input type="submit" value="Enviar">
-    </form>
-</footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .text-white a {
+            color: white !important;
+        }
+        @media (max-width: 768px) {
+            .sacar_borde_derecho {
+                border-right: 1px solid white;
+            }
+            .sacar_borde_superior {
+                border-top: 1px solid white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="container-fluid" style="background-color: black;">
+            <div class="row" style="border: 1px solid white;"> 
+                <!--IMP! d-none d-md-block combinados estamos estableciendo 
+                un display-none para todos los tipos de pantalla pero un 
+                display-block apartir de tamaños >md-->
+                <div class="col-12 d-none d-md-block" style="background-color: black; color: white; border-bottom: 1px solid white;">Mapa...</div>
+                <div class="col-6 col-md-3 text-white sacar_borde_derecho">
+                    <h4>Página</h4>
+                    <ul>
+                        <li><a href="home_Page.php">Inicio</a></li>
+                        <li><a href="#nuestros-Locales">Nuestros Locales</a></li>
+                        <li><a href="Promociones.php">Promociones</a></li>
+                        <li><a href="Novedades.php">Novedades</a></li>
+                        <li><a href="Iniciar_sesion.php">Registrarse</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3 text-white">
+                    <h4>Información</h4>
+                    <ul> <!--Los iconos son usando Font awesome(página con miles de iconos)-->
+                        <li><i class="fas fa-phone"></i> 341-233-4037</li>
+                        <li><i class="fas fa-map-marker-alt"> Alto verde 512</i></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:nicomazzaglia2005@gmail.com.ar"></a>
+                            info.shop@gmail.com</li> <!--Cambiar a mail de la pagina-->
+                    </ul>
+                </div>
+                <div class="col-12 col-md-4 sacar_borde_superior">
+                    <h3 style="color: white;">Contáctanos</h3>
+                    <form action="send_mail.php" method="post">
+                        <label for="mail" style="color: white;">Ingrese su mail:</label> 
+                        <br>
+                        <input class="w-100" type="email" placeholder="Ingrese su mail" aria-placeholder="Ingrese su mail" name="mail" id="mail" required>
+                        <label for="descripcion" style="color: white; width: 100%;">De una descripción de su problema/asunto:</label>
+                        <br>
+                        <textarea class="w-100" type="text" name="descripcion" id="descripcion" 
+                        placeholder="Ingrese una breve descripción" aria-placeholder="Ingrese una breve descripción" 
+                        required style="height: 4em;"></textarea>
+                        <br>
+                        <br>
+                        <div class="text-center">
+                            <button class="btn btn-dark text-white w-100 w-md-50" style="border: 1px solid white;" type="submit" value="Enviar">Enviar</button>
+                        </div>   
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
