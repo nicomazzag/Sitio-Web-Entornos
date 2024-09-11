@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="iniciar_sesion.css">
-    <title>Logueo</title>
 </head>
 <body>
-    <button class="button">Iniciar Sesión</button>
-    <br>
     <form style="align-items: center; margin: auto; width: 25%;" action="" class="form">
         <p>
-            Bienvenido,<span>Iniciar sesión para continuar</span>
+            Bienvenido,<span>Vamos a cambiar la contraseña, ingrese los siguientes datos:</span>
         </p>
         <label for="email"></label>
         <input type="email" placeholder="Email" name="email" id="email" required>
         <label for="password"></label>
-        <input type="password" placeholder="Contraseña" name="password" id="password" required >
+        <input type="password" placeholder="Contraseña" name="password" id="password" required>
+        <label for="password"></label>
+        <input type="password" placeholder="Confirmar Contraseña" name="password" id="password">
 
         <button class="oauthButton">
-                        Iniciar Sesión
+                        Confirmar
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 17 5-5-5-5"></path><path d="m13 17 5-5-5-5"></path></svg>
                     </button>
-                    <div class="separator">
-            <div></div>
-            <span>O</span>
-            <div></div>
-        </div>
-                    <p>¿Quiéres registrarse?
-                        <a href="registrarse_nuevo_usuario.php">Registrarse</a>
-                    </p>
-                    <p>¿Olvidaste tu contraeña?
-                        <a href="recuperar_contra.php">Recuperar contraseña</a>
-                    </p>
 </form>
 </body>
-</html
+</html>
