@@ -56,15 +56,17 @@
 /* DEOXY Was Here */
 .form {
     --background: #d3d3d3;
-    --input-focus: #2d8cf0;
     --font-color: #323232;
     --font-color-sub: #666;
     --bg-color: #fff;
     --main-color: #323232;
-    padding: 20px;
+    padding: 30px;
+    margin: auto;
+    width: 30%;
     background: var(--background);
     display: flex;
     flex-direction: column;
+    text-align: center;
     align-items: flex-start;
     justify-content: center;
     gap: 20px;
@@ -97,7 +99,6 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
-      /* margin: 50px auto 0 auto; */
     padding: auto 15px 15px auto;
     width: 250px;
     height: 40px;
@@ -176,3 +177,15 @@
     font-family: var(--font-SpaceMono);
     font-weight: 600;
   }
+
+
+.logo_de_usuario{
+  height: 100px;
+  width: 100px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 20px auto;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+}

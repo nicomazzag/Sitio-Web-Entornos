@@ -7,12 +7,11 @@
     <title>Logueo</title>
 </head>
 <body>
-    <button class="button">Iniciar Sesión</button>
-    <br>
     <form style="align-items: center; margin: auto; width: 25%;" action="" class="form">
         <p>
             Bienvenido,<span>Iniciar sesión para continuar</span>
         </p>
+        <img src="https://thumbs.dreamstime.com/b/%C3%ADcone-de-usu%C3%A1rio-m%C3%ADdia-social-vetor-imagem-perfil-do-avatar-padr%C3%A3o-retrato-182347582.jpg" alt="Logo de usuario" class="logo_de_usuario"  title="Logo de usuario">
         <label for="email"></label>
         <input type="email" placeholder="Email" name="email" id="email" required>
         <label for="password"></label>
