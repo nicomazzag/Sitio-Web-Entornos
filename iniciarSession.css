@@ -6,8 +6,6 @@
     box-sizing: border-box;
 }
 
-
-
 body{
     font-family: "Protest Guerrilla", sans-serif;
     font-weight: 400;
@@ -22,7 +20,7 @@ body{
     max-width: 400px;
     padding: 4.5em 3em;
     border-radius: 10px;
-    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+    box-shadow: 0 0px 10px 3px rgb(0 0 0 / 30%);
     text-align: center;
 }
 
@@ -84,21 +82,18 @@ body{
     position: absolute;
     top :0;
     left: 5px;
-    transform: translateY(1opx);
+    transform: translateY(10px);
     transition: transform .5s, color .3s;
 }
 
-.boton{
-    background: #3866f2;
-    color: white;
-    font-family: "Protest Guerrilla", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 1rem;
-    padding: .8em 0;
-    border: none;
-    border-radius: .5em;
+.logito1{
+    width: 1.3em;
+    height: 1.3em;
+    right:10px;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    right: 10px;
 }
 
 .form_line{
@@ -113,6 +108,7 @@ body{
     transition: transform .4s;
 }
 
+
 .form_input:focus + .form_line, .form_input:not(:placeholder-shown) + .form_line{
     transform: scale(1);
 }
@@ -122,3 +118,45 @@ body{
         font-size: 1.8rem;
     }
 }
+
+button {
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #212121;
+    z-index: 1;
+    background: #e8e8e8;
+    position: relative;
+    font-weight: 1000;
+    font-size: 17px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #0A306D;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms
+}
+
+button:hover {
+    color: #e8e8e8;
+}
+button:hover::before {
+    width: 100%;
+}
+
