@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
 
+/*CSS de los login*/
 *{
     margin: 0;
     padding: 0;
@@ -12,6 +13,11 @@ body{
     font-style: normal;
     display: flex; 
     min-height: 100vh;
+    background-color: #000000;
+    opacity: 0.9;
+    background-image:  linear-gradient(30deg, #2c2828 12%, transparent 12.5%, transparent 87%, #2c2828 87.5%, #2c2828), linear-gradient(150deg, #2c2828 12%, transparent 12.5%, transparent 87%, #2c2828 87.5%, #2c2828), linear-gradient(30deg, #2c2828 12%, transparent 12.5%, transparent 87%, #2c2828 87.5%, #2c2828), linear-gradient(150deg, #2c2828 12%, transparent 12.5%, transparent 87%, #2c2828 87.5%, #2c2828), linear-gradient(60deg, #2c282877 25%, transparent 25.5%, transparent 75%, #2c282877 75%, #2c282877), linear-gradient(60deg, #2c282877 25%, transparent 25.5%, transparent 75%, #2c282877 75%, #2c282877);
+    background-size: 64px 112px;
+    background-position: 0 0, 0 0, 32px 56px, 32px 56px, 0 0, 32px 56px;
 }
 .form{
     background-color: white;
@@ -32,12 +38,9 @@ body{
 .form_parrafo{
     font-weight: 300;
     gap: 1em;
+    margin-top:10px;
 }
 
-.form_link{
-    font-weight: 400;
-    color:#000;
-}
 
 .form_contenedor{
     margin-top: 3em;
@@ -138,6 +141,7 @@ button {
     overflow: hidden;
 }
 
+
 button::before {
     content: "";
     position: absolute;
@@ -160,3 +164,54 @@ button:hover::before {
     width: 100%;
 }
 
+.separador {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.separador > span{
+    font-family: "Protest Guerrilla", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.separador > div {
+    width: 100px;
+    height: 3px;
+    border-radius: 5px;
+    background-color: #666;
+}
+
+/*Estilo de los links*/
+
+a {
+    text-decoration: none;
+}
+
+.form_link{
+    font-weight: 400;
+    color:#000;
+    line-height: 2;
+    position: relative;
+}
+
+.form_link::before{
+    content: '';
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #212121;
+    position: absolute;
+    bottom: -.25rem;
+    left: 0;
+    transition: width .4s;
+}
+
+.form_link:hover::before{
+    width: 100%;
+}
