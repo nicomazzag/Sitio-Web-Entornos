@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="iniciarSession.css">
     <title>Logueo</title>
+    <style>
+        button{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <form action="" class="form">
@@ -26,7 +32,7 @@
                     <label for="contraseña" class="form_label">Contraseña:</label>
                     <span class="form_line"></span>
                 </div>
-                <button type="submit">
+                <button class="iniciar" type="submit">
                     Iniciar Sesion
                 </button>
             </div>
@@ -38,7 +44,7 @@
         <div>
             <p class="form_parrafo">¿Quiéres registrarse?</p>
                 <a href="registrarse_nuevo_usuario.php" class="form_link" aria-label="Registrarse como un nuevo usuario">Registrarse</a>
-            <p class="form_parrafo" aria-label="Cambiar contraseña">¿Olvidaste tu contraeña?</p>
+            <p class="form_parrafo" aria-label="Cambiar contraseña">¿Olvidaste tu contraseña?</p>
                 <a href="recuperar_contra.php" class="form_link">Recuperar contraseña</a>
         </div>
     </form>
