@@ -1,0 +1,32 @@
+.numero1{
+    margin-top: 1.5em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+.numero2{
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+.numero3{
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+.introduccion {
+    border-radius: 50px;
+    background-color: aquamarine;
+    padding: 1.5em;
+}
+.separadorVertical {
+    border-right: 2px solid black;
+    height: 50%;
+}
+.img-fluid{
+    border-radius: 50px;
+}
+
+.centrar{
+    align-items: center;
+}
+
+
