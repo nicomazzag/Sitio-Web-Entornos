@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="iniciarSession.css">
+    <link rel="icon" href="Logo_shopping.ico" type="image/x-icon">
 </head>
 <body>
     <form action="" class="form">
