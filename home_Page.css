@@ -3,13 +3,69 @@
     margin-left: 1.5em;
     margin-right: 1.5em;
 }
+
 .numero2{
     margin-left: 1.5em;
     margin-right: 1.5em;
 }
+
 .numero3{
     margin-left: 1.5em;
     margin-right: 1.5em;
+}
+
+.reducir {
+    font-size: 32px; 
+}
+.reducir_horarios {
+    font-size: 15px; 
+}
+
+@media (max-width: 1200px) { 
+    .reducir {
+        font-size: 25px; 
+    }
+}
+
+@media (max-width: 1060px) { 
+    .reducir {
+        font-size: 23px; 
+    }
+    .reducir_horarios {
+        font-size: 13px; 
+    }
+
+}
+
+@media (max-width: 970px) { 
+    .reducir {
+        font-size: 20px; 
+    }
+    .reducir_horarios {
+        font-size: 11px; 
+    }
+}
+
+@media (max-width: 860px) { 
+    .reducir {
+        font-size: 17px; 
+    }
+    .reducir_horarios {
+        font-size: 8px; 
+    }
+}
+
+@media (max-width: 768px) { 
+    .reducir {
+        font-size: 23px; 
+    }
+    .reducir_horarios {
+        font-size: 13px; 
+    }
+}
+
+.titulo{
+    font-family: "Protest Guerrilla", sans-serif;
 }
 
 .introduccion {
@@ -17,16 +73,20 @@
     background-color: aquamarine;
     padding: 1.5em;
 }
+
 .separadorVertical {
-    border-right: 2px solid black;
-    height: 50%;
+    border-left: 2px solid black;
+
 }
+
 .img-fluid{
     border-radius: 50px;
 }
 
 .centrar{
     align-items: center;
+    margin:auto;
 }
+
 
 
