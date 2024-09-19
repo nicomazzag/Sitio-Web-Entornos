@@ -13,9 +13,9 @@
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="home_Page.css">
     <!-- Conexion con el icono de la pagina -->
-    <link rel="icon" href="Logo_shopping.ico" type="image/x-icon">
+    <link rel="icon" href="Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con el google font -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
     <title>Principal</title>
