@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <form action="" class="form">
+    <form action="" class="form" method="$_POST">
         <h2 class="form_titulo">Iniciar Sesion</h2>     
             <div class="form_contenedor">
                 <div class="form_grupo">
@@ -30,11 +30,11 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logito1" viewBox="0 0 16 16" aria-hidden="true">
                         <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
                     </svg>
-                    <input type="password"  name="password" id="contraseña" class="form_input" placeholder=" " class="form_input">
-                    <label for="contraseña" class="form_label">Contraseña:</label>
+                    <input type="password"  name="contraseña" id="contraseña" class="form_input" placeholder=" " class="form_input">
+                    <label for="contra" class="form_label">Contraseña:</label>
                     <span class="form_line"></span>
                 </div>
-                <button class="iniciar" type="submit">
+                <button class="iniciar" name="Iniciar_Sesion" type="submit">
                     Iniciar Sesion
                 </button>
             </div>
@@ -52,3 +52,20 @@
     </form>
 </body>
 </html
+
+<?php
+session_start();
+//conexion a la base de datos
+    $conn = new mysqli('localhost','usuario','contraseña','base_de_datos');           
+    if ($conn->connect_error) {
+        die("Conexion fallida: " . $conn->connect_error);
+    }
+
+    if (isset($_POST['Iniciar_Sesion']) && !empty($_POST['email']) && !empty($_POST['contra'])){
+        $email = $_POST['email'];
+        $contra = $_POST['contra'];
+        if (filter_var($email,FILTER_VALIDATE_EMAIL)){
+        }
+    }
+
+?>
