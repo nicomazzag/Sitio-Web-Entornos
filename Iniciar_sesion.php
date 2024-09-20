@@ -1,3 +1,19 @@
+<?php
+   $db_server = "localhost";  // Servidor
+   $user = "root";            // Usuario
+   $password = "";            // Contraseña vacía
+   $database = "logeo";       // Nombre de la base de datos
+
+   // Conectar a la base de datos
+    $conn = mysqli_connect($db_server, $user, $password, $database);
+
+   // Verificar la conexión
+    if (!$conn) {
+        die("Error en la conexión: " . mysqli_connect_error());
+    } else {
+        echo "Conexión exitosa";
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +23,7 @@
     <link rel="stylesheet" href="iniciarSession.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="Logo_Shopping_Blanco.ico" type="image/x-icon">
-    <title>Logueo</title>
+    <title>Logeo</title>
     <style>
         button{
             cursor: pointer;
@@ -15,14 +31,14 @@
     </style>
 </head>
 <body>
-    <form action="" class="form" method="$_POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form" method="post">
         <h2 class="form_titulo">Iniciar Sesion</h2>     
             <div class="form_contenedor">
                 <div class="form_grupo">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logito1" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
                     </svg>
-                    <input type="email" class="form_input"  name="email" id="email" placeholder=" " required >
+                    <input type="email" class="form_input"  name="usuario" id="email" placeholder=" " required >
                     <label for="email" class="form_label">Email:</label>
                     <span class="form_line"></span>
                 </div>    
@@ -54,18 +70,19 @@
 </html
 
 <?php
-session_start();
-//conexion a la base de datos
-    $conn = new mysqli('localhost','usuario','contraseña','base_de_datos');           
-    if ($conn->connect_error) {
-        die("Conexion fallida: " . $conn->connect_error);
-    }
-
-    if (isset($_POST['Iniciar_Sesion']) && !empty($_POST['email']) && !empty($_POST['contra'])){
-        $email = $_POST['email'];
-        $contra = $_POST['contra'];
-        if (filter_var($email,FILTER_VALIDATE_EMAIL)){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $usuario= filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL);
+        $contra= filter_input(INPUT_POST,'contraseña',FILTER_SANITIZE_STRING);
+        
+        if(empty($usuario) || empty($contra)){
+            echo "Por favor llene todos los campos";
         }
+        else {
+        $hash = password_hash($contra, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
+        mysqli_query($conn, $sql);
+        echo "Usuario registrado correctamente";
     }
-
+}
+    mysqli_close($conn);
 ?>
