@@ -122,7 +122,7 @@
 </body>
 </html>
 <?php 
-    include("footer.html");
+    include("footer.php");
 ?>
 
 <!-- <nav aria-label="Page navigation example">

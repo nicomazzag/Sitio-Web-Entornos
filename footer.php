@@ -65,9 +65,9 @@
                         <!--Cambiar a link de instagram-->
                     </div>
                 </div>
-                <div class="col-12 col-md-3 sacar_borde_superior" style="width: 100%;">
+                <div class="col-12 col-md-3 sacar_borde_superior">
                     <h4 id="contactanos" style="color: white;">Contáctanos</h4>
-                    <form action="send_mail.php" method="post">
+                    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
                         <label aria-labelledby="contactanos" for="mail" style="color: white;">Ingrese su mail:</label> 
                         <br>
                         <input class="w-100" type="email" placeholder="Ingrese su mail" 
@@ -81,9 +81,12 @@
                         <br>
                         <br>
                         <div class="text-center">
-                            <button class="btn btn-dark text-white w-100 w-md-50" style="border: 1px solid white;" type="submit" value="Enviar" aria-label="Enviar Formulario">Enviar</button>
+                            <button class="btn btn-dark text-white w-100 w-md-50" style="border: 1px solid white;" type="submit" value="Enviar" name="enviar" aria-label="Enviar Formulario">Enviar</button>
                         </div>   
                     </form>
+                    <?php
+                        include("correo.php");
+                    ?>
                 </div>
                 <div class="container text-center text-white" style="margin-top: 5px;">
                     <hr class="separator" style="border: 1px solid white; width: 95%; margin: 0 auto;">
@@ -94,6 +97,7 @@
     </footer>
 </body>
 </html>
+
 
 
 
