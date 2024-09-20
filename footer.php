@@ -9,7 +9,7 @@
         .text-white a {
             color: white !important;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             .sacar_borde_derecho {
                 border-right: 1px solid white;
             }
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 col-md-3 text-white sacar_borde_derecho">
+                <div class="col-12 col-sm-6 col-md-3 text-white sacar_borde_derecho sacar_borde_superior">
                     <h4>Página</h4>
                     <ul>
                         <li><a aria-label="Link hacia inicio" href="home_Page.php">Inicio</a></li>
@@ -49,14 +49,14 @@
                         <li><a aria-label="Link hacia resgistrarse" href="Iniciar_sesion.php">Registrarse</a></li>
                     </ul>
                 </div>
-                <div class="col-6 col-md-3 text-white">
+                <div class="col-12 col-sm-6 col-md-3 text-white sacar_borde_superior">
                     <h4>Sobre nosotros</h4>
                     <ul> <!--Los iconos son usando Font awesome(página con miles de iconos)-->
                         <li><i class="fas fa-phone"></i> (+54) 341-233-4037</li>
                         <li><i class="fas fa-map-marker-alt"></i> Junín 501</li>
                         <li><i class="fas fa-envelope"></i>
                             <a aria-label="Correo electrónico" href="mailto:nicomazzaglia2005@gmail.com.ar"></a>
-                            info.shop@gmail.com
+                             info.shop@gmail.com
                         </li> <!--Cambiar a mail de la pagina-->
                     </ul>
                     <div style="margin-bottom: 5px;">

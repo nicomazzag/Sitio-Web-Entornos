@@ -55,13 +55,14 @@
     }
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 767px) { 
     .reducir {
         font-size: 23px; 
     }
     .reducir_horarios {
         font-size: 13px; 
     }
+
 }
 
 .titulo{
@@ -76,7 +77,6 @@
 
 .separadorVertical {
     border-left: 2px solid black;
-
 }
 
 .img-fluid{
