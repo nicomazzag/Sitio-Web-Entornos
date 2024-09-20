@@ -1,5 +1,5 @@
 <?php 
-    include("header.html");
+    include("../Include/header.html");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="home_Page.css">
     <!-- Conexion con el icono de la pagina -->
-    <link rel="icon" href="Logo_Shopping_Blanco.ico" type="image/x-icon">
+    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con el google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,13 +74,13 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                         <div class="carousel-item"> <!--Cambiar imagenes -->
-                            <img src="Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                         <div class="carousel-item"> <!--Cambiar imagenes -->
-                            <img src="Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -102,7 +102,7 @@
         </div>
     </div>
     <!-- Nuestros locales -->
-    <div class="conteiner numero3" style="background-color: gray;" > <!--eliminar style -->
+    <div id="locales" class="conteiner numero3" style="background-color: gray;" > <!--eliminar style -->
         <div class="row">
             <div class="col-4">Filtro <i class="fas fa-dove fa-2x"></i></div>    
             <div class="col-8">
@@ -122,7 +122,7 @@
 </body>
 </html>
 <?php 
-    include("footer.php");
+    include("../Include/footer.php");
 ?>
 
 <!-- <nav aria-label="Page navigation example">

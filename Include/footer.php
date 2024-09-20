@@ -42,11 +42,11 @@
                 <div class="col-12 col-sm-6 col-md-3 text-white sacar_borde_derecho sacar_borde_superior">
                     <h4>Página</h4>
                     <ul>
-                        <li><a aria-label="Link hacia inicio" href="home_Page.php">Inicio</a></li>
-                        <li><a aria-label="Link hacia nuestros locales" href="#nuestros-Locales">Nuestros Locales</a></li>
-                        <li><a aria-label="Link hacia promociones" href="Promociones.php">Promociones</a></li>
-                        <li><a aria-label="Link hacia novedades" href="Novedades.php">Novedades</a></li>
-                        <li><a aria-label="Link hacia resgistrarse" href="Iniciar_sesion.php">Registrarse</a></li>
+                        <li><a aria-label="Link hacia inicio" href="../PaginaGeneral/home_Page.php">Inicio</a></li>
+                        <li><a aria-label="Link hacia nuestros locales" href="#nuestrosLocales">Nuestros Locales</a></li>
+                        <li><a aria-label="Link hacia promociones" href="../PaginaGeneral/Promociones.php">Promociones</a></li>
+                        <li><a aria-label="Link hacia novedades" href="../PaginaGeneral/Novedades.php">Novedades</a></li>
+                        <li><a aria-label="Link hacia resgistrarse" href="../Logeo/Iniciar_sesion.php">Registrarse</a></li>
                     </ul>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 text-white sacar_borde_superior">

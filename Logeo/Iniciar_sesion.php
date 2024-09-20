@@ -13,7 +13,8 @@
     } else {
         echo "Conexión exitosa";
     }
-?>
+    
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="iniciarSession.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="icon" href="Logo_Shopping_Blanco.ico" type="image/x-icon">
+    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <title>Logeo</title>
     <style>
         button{
@@ -85,4 +86,5 @@
     }
 }
     mysqli_close($conn);
+    
 ?>
