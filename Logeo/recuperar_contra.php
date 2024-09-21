@@ -5,11 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="iniciarSession.css">
-    <link rel="icon" href="../Iconos/Logo_shopping.ico" type="image/x-icon">
+    <link rel="icon" href="../Iconos/Logo_shopping_blanco.ico" type="image/x-icon">
+    <style>
+        button{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <form action="" class="form">
         <h2 class="form_titulo">Cambiar Contraseña</h2>
+        <a href="Iniciar_sesion.php" class="volver"> 
+                <img src="../Imagenes/Flecha_de_salida.png" style="height: 50px; " alt="Flecha volver" title="Flecha Volver"> 
+            </a>  
         <div class="form_contenedor">
                 <div class="form_grupo">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logito1" viewBox="0 0 16 16" aria-hidden="true">
