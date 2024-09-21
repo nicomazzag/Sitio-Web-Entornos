@@ -1,6 +1,3 @@
-<?php 
-    include("../Include/header.html");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Conexion con bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Conexion con font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Conexion con hoja de estilo -->
@@ -18,9 +16,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    
     <title>Principal</title>
 </head>
 <body>
+    <?php 
+        include("../Include/header.php");
+    ?>
     <div class="conteiner numero1">
     <div class="row">
     <div class="col-md-8 col-12">
@@ -102,43 +104,123 @@
         </div>
     </div>
     <!-- Nuestros locales -->
-    <div id="locales" class="conteiner numero3" style="background-color: gray;" > <!--eliminar style -->
+    <div id="locales" class="conteiner numero3" style="background-color: white;" > 
         <div class="row">
-            <div class="col-4">Filtro <i class="fas fa-dove fa-2x"></i></div>    
-            <div class="col-8">
-                <div class="card mb-3" style="width: 200px;" > <!--eliminar style -->
-                    
-                    <img style="height: 300px;" src="https://th.bing.com/th/id/OIP.gBcVrZheZDhus8BGgSKg8wHaHa?w=166&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" class="card-img-top" alt="Imagen utn">
-                    <div class="card-body">
-                        <h5 class="card-title">Logo de la UTN</h5>
-                        <p class="card-text">Universidad Tecnológica Nacional</p>
-                        <a class="btn btn-primary" href="#" role="button">Link</a>  
+            <div class="col-12 col-md-3" style="background-color: blue;">Filtro <i class="fas fa-dove fa-2x"></i></div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-6 col-md-4">
+                        <div class="card mb-3 presentacionLocal">
+                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Local Predeterminado</h5>
+                                <div class="text-center">
+                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="card mb-3 presentacionLocal">
+                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Local Predeterminado</h5>
+                                <div class="text-center">
+                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 ">
+                        <div class="card mb-3 presentacionLocal">
+                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Local Predeterminado</h5>
+                                <div class="text-center">
+                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="card mb-3 presentacionLocal">
+                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Local Predeterminado</h5>
+                                <div class="text-center">
+                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="card mb-3 presentacionLocal">
+                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Local Predeterminado</h5>
+                                <div class="text-center">
+                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <div class="card mb-3 presentacionLocal">
+                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Local Predeterminado</h5>
+                                <div class="text-center">
+                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                </div> 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <?php 
+        include("../Include/footer.php");
+    ?>
 </body>
 </html>
-<?php 
-    include("../Include/footer.php");
-?>
 
-<!-- <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav> -->
+        <!-- <div class="row">
+            <div class="col-12 col-md-2" style="background-color: blue;">Filtro <i class="fas fa-dove fa-2x"></i></div>    
+            <div class="col-12 col-md-10">
+                <div class="conteiner">
+                    <div class="row">
+                        <div class="col-6 col-sm-4">
+                            <div class="card mb-3 presentacionLocal"> 
+                                <img style="height: 300px;" src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                                <div class="card-body">
+                                    <h5 class="card-title">Local Predeterminado</h5>
+                                    <p class="card-text">Breve descripcion local predeterminado</p>
+                                    <a class="btn btn-primary" href="#" role="button">Conocer más</a>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4">
+                            <div class="card mb-3 presentacionLocal"> 
+                                <img style="height: 300px;" src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                                <div class="card-body">
+                                    <h5 class="card-title">Local Predeterminado</h5>
+                                    <p class="card-text">Breve descripcion local predeterminado</p>
+                                    <a class="btn btn-primary" href="#" role="button">Conocer más</a>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-4">
+                            <div class="card mb-3 presentacionLocal"> 
+                                <img style="height: 300px;" src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
+                                <div class="card-body">
+                                    <h5 class="card-title">Local Predeterminado</h5>
+                                    <p class="card-text">Breve descripcion local predeterminado</p>
+                                    <a class="btn btn-primary" href="#" role="button">Conocer más</a>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
