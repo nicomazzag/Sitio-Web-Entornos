@@ -19,6 +19,30 @@ body{
 }
 
 /* Parte Introducion*/
+.img-fluid{
+    border-radius: 50px;
+}
+
+#imagenesShopping{
+    height: 180px;
+}
+
+@media (max-width: 765px) { 
+    #imagenesShopping{
+        height: 400px;
+        width: 600px;
+    }
+    #carouselExampleFade{
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.centrar{
+    align-items: center;
+    margin:auto;
+}
+
 .reducir {
     font-size: 32px; 
 }
@@ -245,14 +269,6 @@ body{
     border-left: 2px solid black;
 }
 
-.img-fluid{
-    border-radius: 50px;
-}
-
-.centrar{
-    align-items: center;
-    margin:auto;
-}
 
 /*Hoja de estilo del footer(En caso de usar el footer en otras paginas (agregar los estilos en la hoja de estilos correspondiente)*/
 .text-white a {

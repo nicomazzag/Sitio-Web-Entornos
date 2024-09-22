@@ -77,13 +77,13 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                         <div class="carousel-item"> <!--Cambiar imagenes -->
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" class="Iimg-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                         <div class="carousel-item"> <!--Cambiar imagenes -->
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" class="img-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

@@ -93,7 +93,7 @@
 
             if(mysqli_num_rows($resultado) > 0){
                 while($fila = mysqli_fetch_assoc($resultado)){
-                    if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña']))) {
+                    if(($fila['usuario'] == $usuario) && ($fila['contraseña'] == $contra)) {
                         $iniciar=true;
                         header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
                         exit();
@@ -105,7 +105,6 @@
                 exit();
         } 
     }
-
     mysqli_close($conn);
             /* PARA REGISTRAR NUEVO USUARIO if ($iniciar) {
                 $hash = password_hash($contra, PASSWORD_DEFAULT);
