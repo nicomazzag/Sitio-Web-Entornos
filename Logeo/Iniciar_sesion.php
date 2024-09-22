@@ -1,18 +1,6 @@
 <?php 
-   $db_server = "localhost";  // Servidor
-   $user = "root";            // Usuario
-   $password = "";            // Contraseña vacía
-   $database = "logeo";       // Nombre de la base de datos
-
-   // Conectar a la base de datos
-    $conn = mysqli_connect($db_server, $user, $password, $database);
-
-   // Verificar la conexión
-    if (!$conn) {
-        die("Error en la conexión: " . mysqli_connect_error());
-    }
-    
-?> 
+include('BaseDeDatos_Usuario.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,6 +17,19 @@
         </style>
     </head>
     <body>
+    <?php
+        if (isset($_GET['iniciarsesion']) && $_GET['iniciarsesion'] == 'exito') {
+                    echo '<a href="../PaginaGeneral/home_Page.php" id="linkExito" style="display:none;"></a>';
+                    echo '<script>
+                    document.getElementById("linkExito").click();
+                    </script>';
+                } elseif (isset($_GET['iniciarsesion']) && $_GET['iniciarsesion'] == 'faltante') {
+                    echo '<a href="Alertas/alerta_de_faltante.php" id="linkError" style="display:none;"></a>';
+                    echo '<script>
+                    document.getElementById("linkError").click();
+                    </script>';
+                }
+    ?>
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form" method="post">
             <h2 class="form_titulo">Iniciar Sesion</h2>
                 <a href="../PaginaGeneral/home_Page.php">
@@ -67,26 +68,30 @@
                     <a href="recuperar_contra.php" class="form_link">Recuperar contraseña</a>
             </div>
         </form>
+        <!-- JavaScript de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-
 </html
 
 <?php
+    $iniciar=false;
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            $usuario= filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL);
+            $contra= filter_input(INPUT_POST,'contraseña',FILTER_SANITIZE_STRING);
+            
+            if(empty($usuario) || empty($contra)){
+                header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=faltante");
+            } else {
+                $iniciar=true;
+            }
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $usuario= filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL);
-        $contra= filter_input(INPUT_POST,'contraseña',FILTER_SANITIZE_STRING);
-        
-        if(empty($usuario) || empty($contra)){
-            echo "Por favor llene todos los campos";
-        }
-        else {
-        $hash = password_hash($contra, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
-        mysqli_query($conn, $sql);
-        echo "Usuario registrado correctamente";
-        }
-}
-    mysqli_close($conn);
-    
+            if ($iniciar) {
+                $hash = password_hash($contra, PASSWORD_DEFAULT);
+                $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
+                mysqli_query($conn, $sql);
+                header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
+                exit();
+            }
+    } 
+        mysqli_close($conn);
 ?>
