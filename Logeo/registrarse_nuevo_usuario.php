@@ -1,5 +1,5 @@
 <?php 
-    /*include('BaseDeDatos_Usuario.php');*/
+    include('BaseDeDatos_Usuario.php');
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,16 @@
 <?php
     if (isset($_GET['registro']) && $_GET['registro'] == 'exito') {
                 echo '<a href="Alertas/alerta_login_exitoso.html" id="linkExito" style="display:none;"></a>';
+                echo '<script>
+                document.getElementById("linkExito").click();
+                </script>';
+            } elseif (isset($_GET['registro']) && $_GET['registro'] == 'faltante') {
+                echo '<a href="Alertas/alerta_de_faltante.html" id="linkExito" style="display:none;"></a>';
+                echo '<script>
+                document.getElementById("linkExito").click();
+                </script>';
+            } elseif (isset($_GET['registro']) && $_GET['registro'] == 'error') {
+                echo '<a href="Alertas/alerta_de_error.html" id="linkExito" style="display:none;"></a>';
                 echo '<script>
                 document.getElementById("linkExito").click();
                 </script>';
@@ -57,19 +67,38 @@
 </html>
 
 <?php
+
 $registro_exitoso = false;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Aquí iría la lógica de procesamiento del registro
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
+    // Filtrar la entrada del formulario
+    $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL); 
+    $contra = filter_input(INPUT_POST, 'contraseña', FILTER_SANITIZE_STRING);
 
-    // Simulamos un registro exitoso (lógica para el registro aquí)
-    $registro_exitoso = true; // Cambiar a true si el registro fue exitoso
-
-    if ($registro_exitoso) {
-        // Redirigir al usuario a la misma página con el parámetro ?registro=exito
-        header("Location: ".$_SERVER['PHP_SELF']."?registro=exito");
+    // Validar que no estén vacíos los campos
+    if(empty($usuario) || empty($contra)) {
+        header("Location: ".$_SERVER['PHP_SELF']."?registro=faltante");
         exit();
+    } 
+
+    $sql = "SELECT * FROM registracion";
+    $resultado = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($resultado) > 0) {
+        while($fila = mysqli_fetch_assoc($resultado)) {
+            if($fila['usuario'] == $usuario && (password_verify($contra, $fila['contraseña']))) {
+                header("Location: ".$_SERVER['PHP_SELF']."?registro=error");
+                exit();
+            }
+        };
+    }
+    if (!$registro_exitoso) {
+        $hash = password_hash($contra, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
+        mysqli_query($conn, $sql);
+        header("Location: ".$_SERVER['PHP_SELF']."?registro=exito"); 
+        exit();  
     }
 }
+mysqli_close($conn);
 ?>
