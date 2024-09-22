@@ -24,11 +24,16 @@ include('BaseDeDatos_Usuario.php');
                     document.getElementById("linkExito").click();
                     </script>';
                 } elseif (isset($_GET['iniciarsesion']) && $_GET['iniciarsesion'] == 'faltante') {
-                    echo '<a href="Alertas/alerta_de_faltante.php" id="linkError" style="display:none;"></a>';
+                    echo '<a href="../Alertas/alerta_de_faltante.php" id="linkFaltante" style="display:none;"></a>';
+                    echo '<script>
+                    document.getElementById("linkFaltante").click();
+                    </script>';
+                } /*else {
+                    echo '<a href=../Alertas/alerta_de_error.php" id="linkError" style="display:none;"></a>';
                     echo '<script>
                     document.getElementById("linkError").click();
                     </script>';
-                }
+                }*/
     ?>
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form" method="post">
             <h2 class="form_titulo">Iniciar Sesion</h2>
@@ -81,10 +86,11 @@ include('BaseDeDatos_Usuario.php');
             
             if(empty($usuario) || empty($contra)){
                 header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=faltante");
-            } else {
-                $iniciar=true;
-            }
-
+                exit();
+            } 
+            /*$sql = "SELECT * FROM registracion";
+            $resultado= mysqli_query($conn, $sql);*/
+            $iniciar=true;
             if ($iniciar) {
                 $hash = password_hash($contra, PASSWORD_DEFAULT);
                 $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
@@ -92,6 +98,6 @@ include('BaseDeDatos_Usuario.php');
                 header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
                 exit();
             }
-    } 
+        }
         mysqli_close($conn);
 ?>

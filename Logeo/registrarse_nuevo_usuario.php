@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="iniciarSession.css">
     <link rel="icon" href="../Iconos/Logo_shopping_blanco.ico" type="image/x-icon">
-    <!-- JavaScript de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <title>Registrarse</title>
     <style>
         button{
@@ -20,13 +18,13 @@
 <body>
 <?php
     if (isset($_GET['registro']) && $_GET['registro'] == 'exito') {
-                echo '<a href="../Alertas/alerta_login_exitoso.php" id="linkExito" style="display:none;"></a>';
+                echo '<a href="/Alertas/alerta_login_exitoso.html" id="linkExito" style="display:none;"></a>';
                 echo '<script>
                 document.getElementById("linkExito").click();
                 </script>';
             }
 ?>
-    <form action="<?php htmlentities($_SERVER['PHP_SELF']) ?>" method="post" class="form">
+    <form action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post" class="form">
         <h2 class="form_titulo">Registrarse</h2>
             <a href="Iniciar_sesion.php" class="volver"> 
                 <img src="../Imagenes/Flecha_de_salida.png" style="height: 50px; " alt="Flecha volver" title="Flecha Volver"> 
@@ -53,13 +51,13 @@
             </button>
         </div>
     </form>
+        <!-- JavaScript de Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
 <?php
 $registro_exitoso = false;
-
-// Verificar si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Aquí iría la lógica de procesamiento del registro
     $nombre = $_POST['nombre'];
