@@ -104,18 +104,74 @@
         </div>
     </div>
     <!-- Nuestros locales -->
-    <div id="locales" class="conteiner numero3" style="background-color: white;" > 
+    <div id="locales" class="conteiner numero3"> 
         <div class="row">
-            <div class="col-12 col-md-3" style="background-color: blue;">Filtro <i class="fas fa-dove fa-2x"></i></div>
-            <div class="col-md-9">
+            <div class="col-12">
+                <div class="inputContainer">
+                    <form action="home_Page.php" class="buscarNombre">
+                        <button class="botonLupa" aria-labelledby="Ingrese nombre del local" 
+                        for="buscarLocal"><i class="fas fa-search iconoLupa"></i></button> 
+                        <input class="inputGrande" type="text" placeholder="Ingrese nombre del local" 
+                        aria-placeholder="Ingrese nombre del local" 
+                        name="buscarLocal" id="buscarLocal" required>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" 
+                                        type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
+                                        aria-expanded="false" aria-controls="collapseOne">Filtrar por...</button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <form action="home_Page.php" method="post">
+                                                <div class="form-check form-switch">
+                                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                                  <label class="form-check-label reducirCategorias" for="flexSwitchCheckChecked">Todos</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Indumentaria</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Gastronomia</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Deportivo</label>
+                                                </div>
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Otros</label>
+                                                </div>
+                                                <div class="text-center espacio">
+                                                    <button class="btn btn-dark text-white w-100 w-md-50" type="submit" value="Filtro" name="Filtro" aria-label="Aplicar Filtro">Filtrar</button>
+                                                </div> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 espacio">
                 <div class="row">
                     <div class="col-6 col-md-4">
                         <div class="card mb-3 presentacionLocal">
                             <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center">
-                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                <div class="text-center espacio">
+                                    <button class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>
@@ -125,8 +181,8 @@
                             <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center">
-                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                <div class="text-center espacio">
+                                    <button class="botonLocales" type="submit">Conocer más</button>
                                 </div>   
                             </div>
                         </div>
@@ -136,8 +192,8 @@
                             <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center">
-                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                <div class="text-center espacio">
+                                    <button class="botonLocales" type="submit">Conocer más</button>
                                 </div>   
                             </div>
                         </div>
@@ -147,8 +203,8 @@
                             <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center">
-                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                <div class="text-center espacio">
+                                    <button class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>
@@ -158,8 +214,8 @@
                             <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center">
-                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                <div class="text-center espacio">
+                                    <button class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>
@@ -169,8 +225,8 @@
                             <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center">
-                                    <button class="btn btn-dark text-white" style="border: 1px solid black;" type="submit">Conocer más</button>
+                                <div class="text-center espacio">
+                                    <button class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>
@@ -184,43 +240,3 @@
     ?>
 </body>
 </html>
-
-        <!-- <div class="row">
-            <div class="col-12 col-md-2" style="background-color: blue;">Filtro <i class="fas fa-dove fa-2x"></i></div>    
-            <div class="col-12 col-md-10">
-                <div class="conteiner">
-                    <div class="row">
-                        <div class="col-6 col-sm-4">
-                            <div class="card mb-3 presentacionLocal"> 
-                                <img style="height: 300px;" src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                                <div class="card-body">
-                                    <h5 class="card-title">Local Predeterminado</h5>
-                                    <p class="card-text">Breve descripcion local predeterminado</p>
-                                    <a class="btn btn-primary" href="#" role="button">Conocer más</a>  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-sm-4">
-                            <div class="card mb-3 presentacionLocal"> 
-                                <img style="height: 300px;" src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                                <div class="card-body">
-                                    <h5 class="card-title">Local Predeterminado</h5>
-                                    <p class="card-text">Breve descripcion local predeterminado</p>
-                                    <a class="btn btn-primary" href="#" role="button">Conocer más</a>  
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-sm-4">
-                            <div class="card mb-3 presentacionLocal"> 
-                                <img style="height: 300px;" src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                                <div class="card-body">
-                                    <h5 class="card-title">Local Predeterminado</h5>
-                                    <p class="card-text">Breve descripcion local predeterminado</p>
-                                    <a class="btn btn-primary" href="#" role="button">Conocer más</a>  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
