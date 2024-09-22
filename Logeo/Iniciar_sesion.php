@@ -1,5 +1,5 @@
 <?php 
-include('BaseDeDatos_Usuario.php');
+    include('BaseDeDatos_Usuario.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,16 +24,16 @@ include('BaseDeDatos_Usuario.php');
                     document.getElementById("linkExito").click();
                     </script>';
                 } elseif (isset($_GET['iniciarsesion']) && $_GET['iniciarsesion'] == 'faltante') {
-                    echo '<a href="../Alertas/alerta_de_faltante.php" id="linkFaltante" style="display:none;"></a>';
+                    echo '<a href="Alertas/alerta_de_faltante.html" id="linkExito" style="display:none;"></a>';
                     echo '<script>
-                    document.getElementById("linkFaltante").click();
+                    document.getElementById("linkExito").click();
                     </script>';
-                } /*else {
-                    echo '<a href=../Alertas/alerta_de_error.php" id="linkError" style="display:none;"></a>';
+                } elseif (isset($_GET['iniciarsesion']) && $_GET['iniciarsesion'] == 'error') {
+                    echo '<a href="Alertas/alerta_de_error.html" id="linkExito" style="display:none;"></a>';
                     echo '<script>
-                    document.getElementById("linkError").click();
+                    document.getElementById("linkExito").click();
                     </script>';
-                }*/
+                }
     ?>
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form" method="post">
             <h2 class="form_titulo">Iniciar Sesion</h2>
@@ -88,16 +88,29 @@ include('BaseDeDatos_Usuario.php');
                 header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=faltante");
                 exit();
             } 
-            /*$sql = "SELECT * FROM registracion";
-            $resultado= mysqli_query($conn, $sql);*/
-            $iniciar=true;
-            if ($iniciar) {
+            $sql = "SELECT * FROM registracion";
+            $resultado= mysqli_query($conn, $sql);
+
+            if(mysqli_num_rows($resultado) > 0){
+                while($fila = mysqli_fetch_assoc($resultado)){
+                    if(($fila['usuario'] == $usuario) && ($fila['contraseña'] == $contra)) {
+                        $iniciar=true;
+                        header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
+                        exit();
+                    } 
+                };    
+            }
+            if(!$iniciar){
+                header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=error");
+                exit();
+        } 
+    }
+    mysqli_close($conn);
+            /* PARA REGISTRAR NUEVO USUARIO if ($iniciar) {
                 $hash = password_hash($contra, PASSWORD_DEFAULT);
                 $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
                 mysqli_query($conn, $sql);
                 header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
                 exit();
-            }
-        }
-        mysqli_close($conn);
+            } */ 
 ?>

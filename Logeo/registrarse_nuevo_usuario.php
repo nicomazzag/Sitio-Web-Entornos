@@ -18,7 +18,7 @@
 <body>
 <?php
     if (isset($_GET['registro']) && $_GET['registro'] == 'exito') {
-                echo '<a href="/Alertas/alerta_login_exitoso.html" id="linkExito" style="display:none;"></a>';
+                echo '<a href="Alertas/alerta_login_exitoso.html" id="linkExito" style="display:none;"></a>';
                 echo '<script>
                 document.getElementById("linkExito").click();
                 </script>';
