@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,10 +79,10 @@
                         <div class="carousel-item active">
                             <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
-                        <div class="carousel-item"> <!--Cambiar imagenes -->
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping" class="imagen2">
+                        <div class="carousel-item">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
-                        <div class="carousel-item"> <!--Cambiar imagenes -->
+                        <div class="carousel-item">
                             <img src="../Imagenes/Zorzal_Imagen_Home_Page_3.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                     </div>
@@ -176,7 +176,7 @@
             <div class="col-12">
                 <div class="inputContainer">
                     <form action="home_Page.php" class="buscarNombre">
-                        <button class="botonLupa" aria-labelledby="Ingrese nombre del local" 
+                        <button class="botonLupa" aria-label="Buscar locales" 
                         for="buscarLocal"><i class="fas fa-search iconoLupa"></i></button> 
                         <input class="inputGrande" type="text" placeholder="Ingrese nombre del local" 
                         aria-placeholder="Ingrese nombre del local" 
@@ -193,30 +193,30 @@
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" 
                                         type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" 
-                                        aria-expanded="false" aria-controls="collapseOne">Filtrar por...</button>
+                                        aria-expanded="false" aria-controls="collapseOne">Filtrar por categoria</button>
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             <form action="home_Page.php" method="post">
                                                 <div class="form-check form-switch">
-                                                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                                  <label class="form-check-label reducirCategorias" for="flexSwitchCheckChecked">Todos</label>
+                                                  <input class="form-check-input" type="checkbox" role="switch" id="Categorias" checked>
+                                                  <label class="form-check-label reducirCategorias" for="Categorias">Todos</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Indumentaria</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria1">
+                                                    <label class="form-check-label reducirCategorias" for="Categoria1">Indumentaria</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Gastronomia</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria2">
+                                                    <label class="form-check-label reducirCategorias" for="Categoria2">Gastronomía</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Deportivo</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria3">
+                                                    <label class="form-check-label reducirCategorias" for="Categoria3">Deportivo</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                                                    <label class="form-check-label reducirCategorias" for="flexSwitchCheckDefault">Otros</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria4">
+                                                    <label class="form-check-label reducirCategorias" for="Categoria4">Otros</label>
                                                 </div>
                                                 <div class="text-center espacio">
                                                     <button class="btn btn-dark text-white w-100 w-md-50" type="submit" value="Filtro" name="Filtro" aria-label="Aplicar Filtro">Filtrar</button>
@@ -238,7 +238,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
                                 <div class="text-center espacio">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
+                                    <button aria-label="Conocer más Local1" class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>
@@ -249,7 +249,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
                                 <div class="text-center espacio">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
+                                    <button aria-label="Conocer más Local2" class="botonLocales" type="submit">Conocer más</button>
                                 </div>   
                             </div>
                         </div>
@@ -260,7 +260,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
                                 <div class="text-center espacio">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
+                                    <button aria-label="Conocer más Local3" class="botonLocales" type="submit">Conocer más</button>
                                 </div>   
                             </div>
                         </div>
@@ -271,7 +271,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
                                 <div class="text-center espacio">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
+                                    <button aria-label="Conocer más Local4" class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>
@@ -282,7 +282,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
                                 <div class="text-center espacio">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
+                                    <button aria-label="Conocer más Local5" class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>
@@ -293,7 +293,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Local Predeterminado</h5>
                                 <div class="text-center espacio">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
+                                    <button aria-label="Conocer más Local6" class="botonLocales" type="submit">Conocer más</button>
                                 </div> 
                             </div>
                         </div>

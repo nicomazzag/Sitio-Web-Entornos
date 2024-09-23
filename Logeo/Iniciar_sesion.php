@@ -2,7 +2,7 @@
     include('BaseDeDatos_Usuario.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,8 +37,8 @@
     ?>
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form" method="post">
             <h2 class="form_titulo">Iniciar Sesion</h2>
-                <a href="../PaginaGeneral/home_Page.php">
-                    <img src="../Imagenes/Logo_shopping.png" style="height: 50px;" alt="Logo" title="Logo" >
+                <a aria-label="Volver a página principal" href="../PaginaGeneral/home_Page.php">
+                    <img src="../Imagenes/Logo_shopping.png" style="height: 50px;" alt="Logo" title="Logo">
                 </a> 
                 <div class="form_contenedor">
                     <div class="form_grupo">
@@ -54,7 +54,7 @@
                             <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
                         </svg>
                         <input type="password"  name="contraseña" id="contraseña" class="form_input" placeholder=" " class="form_input">
-                        <label for="contra" class="form_label">Contraseña:</label>
+                        <label for="contraseña" class="form_label">Contraseña:</label>
                         <span class="form_line"></span>
                     </div>
                     <button class="iniciar" name="Iniciar_Sesion" type="submit">

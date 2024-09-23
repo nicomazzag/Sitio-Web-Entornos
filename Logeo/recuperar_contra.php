@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,8 +61,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logito1" viewBox="0 0 16 16" aria-hidden="true">
                     <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
                 </svg>
-                <input type="password" class="form_input" placeholder=" " name="contraseña2" id="password">
-                <label for="password" class="form_label">Confirmar Contraseña:</label>
+                <input type="password" class="form_input" placeholder=" " name="contraseña2" id="confirmarPassword" required>
+                <label for="confirmarPassword" class="form_label">Confirmar Contraseña:</label>
                 <span class="form_line"></span>
             </div>
                 <button type="submit">
