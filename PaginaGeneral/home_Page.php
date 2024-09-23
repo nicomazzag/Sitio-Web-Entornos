@@ -80,10 +80,10 @@
                             <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                         <div class="carousel-item"> <!--Cambiar imagenes -->
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping" class="imagen2">
                         </div>
                         <div class="carousel-item"> <!--Cambiar imagenes -->
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_3.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

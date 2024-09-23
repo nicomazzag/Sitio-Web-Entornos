@@ -24,17 +24,13 @@ body{
 }
 
 #imagenesShopping{
-    height: 180px;
+    height: 200px;
+    width: 600px;
 }
-
-@media (max-width: 765px) { 
+@media(max-width: 767px) {
     #imagenesShopping{
-        height: 400px;
-        width: 600px;
-    }
-    #carouselExampleFade{
-        align-items: center;
-        justify-content: center;
+        width: 100%;
+        height: 300px;
     }
 }
 
