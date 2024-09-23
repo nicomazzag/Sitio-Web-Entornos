@@ -1,0 +1,280 @@
+.numero1{
+    margin-top: 1.5em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+.numero2{
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+.numero3{
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+body{
+    background-color: #f1f2f4;
+}
+
+/* Parte Introducion*/
+.img-fluid{
+    border-radius: 50px;
+}
+
+#imagenesShopping{
+    height: 200px;
+    width: 600px;
+}
+@media(max-width: 767px) {
+    #imagenesShopping{
+        width: 100%;
+        height: 300px;
+    }
+}
+
+.centrar{
+    align-items: center;
+    margin:auto;
+}
+
+.reducir {
+    font-size: 32px; 
+}
+
+.reducir_horarios {
+    font-size: 15px; 
+}
+
+@media (max-width: 1220px) { 
+    .reducir {
+        font-size: 25px; 
+    }
+}
+
+@media (max-width: 1070px) { 
+    .reducir {
+        font-size: 23px; 
+    }
+    .reducir_horarios {
+        font-size: 13px; 
+    }
+
+}
+
+@media (max-width: 975px) { 
+    .reducir {
+        font-size: 20px; 
+    }
+    .reducir_horarios {
+        font-size: 11px; 
+    }
+}
+
+@media (max-width: 870px) { 
+    .reducir {
+        font-size: 17px; 
+    }
+    .reducir_horarios {
+        font-size: 8px; 
+    }
+}
+
+@media (max-width: 767px) { 
+    .reducir {
+        font-size: 23px; 
+    }
+    .reducir_horarios {
+        font-size: 13px; 
+    }
+}
+
+.titulo{
+    font-family: "Protest Guerrilla", sans-serif;
+}
+
+.introduccion {
+    border-radius: 50px;
+    background-color: aquamarine;
+    padding: 1.5em;
+}
+
+/*Promociones*/
+.promociones{
+    background-color: gray;
+    border-radius: 50px;
+    padding: 1.5em;
+}
+
+.imgPromos{
+    display: flex;
+    height: 300px;
+}
+
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-arrow-right{
+    font-size: 50px;
+    color: black;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+
+/*Nuestros locales*/
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.botonLupa {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0A306D;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: transform 0.3s ease-in;
+}	
+
+.iconoLupa {
+    font-size: 25px;
+    color: white;
+}
+
+.buscarNombre{
+    display: flex;
+    width: 100%;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid gray;
+}
+
+.inputGrande {
+    background-color: #f1f2f4;
+    margin-left: 10px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    font-size: 35px;
+    border-radius: 10px;
+    border: none;
+    transition: border 0.3s;
+    transition: background-color 1s ease-in;
+}
+
+.inputGrande:focus {
+    border: 1px solid black;
+    outline: none;
+}
+
+.inputGrande:hover {
+    background-color: #0A306D;
+    color: white;
+}
+
+.botonLupa:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0.5em 0.5em -0.4em #0A306D;
+}
+.botonLupa:active .iconoLupa {
+    color: gray;
+}
+
+@media (max-width: 515px) { 
+    .inputGrande{
+        font-size: 25px;
+    }
+}
+@media (max-width: 390px) { 
+    .inputGrande {
+        font-size: 20px; 
+    }
+    .iconoLupa {
+        font-size: 21px;
+    }
+    .botonLupa {
+        width: 35px;
+        height: 35px;
+    }	
+}
+@media (max-width: 330px) { 
+    .iconoLupa {
+        font-size: 18px;
+    }
+    .botonLupa {
+        width: 30px;
+        height: 30px;
+    }	
+}
+
+@media (min-width: 768px) and (max-width: 870px) {
+    .reducirCategorias{
+        font-size: 12px;
+    }
+}
+
+.card-body{
+    border-top: 1px solid black;
+}
+
+.presentacionLocal{
+    border: 2px solid black;
+}
+
+@media (max-width: 375px) { 
+    .col-6.col-md-4 {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.botonLocales{
+    background: none;
+    color: #000;
+    border: 2px solid black;
+    padding: 1em 2em;
+    font-size: 1em;
+    transition: all 0.5s;
+    border-radius: 10px;
+}
+
+.botonLocales:hover{
+    border-color: blue;
+    color: blue;
+    box-shadow: 0 0.5em 0.5em -0.4em black;
+    transform: translateY(-0.5em);
+}
+
+.espacio{
+    margin-top: 1em;
+}	
+
+
+
+.separadorVertical {
+    border-left: 2px solid black;
+}
+
+
+/*Hoja de estilo del footer(En caso de usar el footer en otras paginas (agregar los estilos en la hoja de estilos correspondiente)*/
+.text-white a {
+    color: white !important;
+}
+@media (max-width: 767px) {
+    .sacar_borde_derecho {
+        border-right: 1px solid white;
+    }
+    .sacar_borde_superior {
+        border-top: 1px solid white;
+    }
+}
