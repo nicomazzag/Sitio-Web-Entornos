@@ -1,13 +1,33 @@
-
 .conteiner{
     display: flex;
-    width: 50%;
     margin:auto;
     margin-top: 2em;
     margin-bottom: 2em;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     flex-direction: column;
+}
+
+.container.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+@media (max-width: 650px) {
+    .conteiner {
+        justify-content: flex-start;
+    }
+
+    .table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .table th, .table td {
+        white-space: nowrap;
+    }
 }
 
 #sinMargen{
@@ -26,7 +46,7 @@
 
 #botonCesto{
     transition: transform 0.5s ease-in;
-    transition: background-color 0.3s ease-in;
+    transition: background-color 0.5s ease-in;
 }
 
 #botonCesto:hover {
@@ -34,9 +54,20 @@
     background-color: #cb5353;
 }
 
+#botonLupa{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonLupa:hover {
+    transform: scale(1.1);
+    background-color: #4abeb9;
+}
+
 .contenedorBoton {
     display: flex;
     margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 #botonPlus{
