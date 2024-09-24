@@ -1,0 +1,50 @@
+
+.conteiner{
+    display: flex;
+    width: 50%;
+    margin:auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#sinMargen{
+    margin-bottom: 0;
+}
+
+#botonLapiz{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonLapiz:hover {
+    transform: scale(1.1);
+    background-color: #f3f369;
+}
+
+#botonCesto{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.3s ease-in;
+}
+
+#botonCesto:hover {
+    transform: scale(1.1);
+    background-color: #cb5353;
+}
+
+.contenedorBoton {
+    display: flex;
+    margin-top: 1em;
+}
+
+#botonPlus{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonPlus:hover {
+    transform: scale(1.1);
+    background-color: #6dc45d;
+}
