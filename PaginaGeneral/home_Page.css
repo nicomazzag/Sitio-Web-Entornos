@@ -111,6 +111,10 @@ body{
     display: flex;
     height: 300px;
 }
+#imgPromos{
+    border-radius: 50px;
+}
+
 
 .centrar{
     display: flex;
@@ -278,3 +282,4 @@ body{
         border-top: 1px solid white;
     }
 }
+

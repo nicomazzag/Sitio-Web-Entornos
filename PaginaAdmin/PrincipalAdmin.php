@@ -22,7 +22,7 @@
 </head>
 <body>
     <?php 
-        include("../Include/header.php");
+        include("headerAdmin.php");
     ?>
     <!-- Introduccion -->
     <div class="conteiner numero1">
