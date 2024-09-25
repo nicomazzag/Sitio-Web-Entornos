@@ -36,7 +36,7 @@
               <td>Nike</td>
               <td>2do piso</td>
               <td>Indumentaria</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt iconoAmarillo"></i> Editar</button></td>
+              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt iconoAmarillo"></i><a id="link" href="EditarLocales.php"> Editar</a></button></td>
               <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
               <td>Calvin Klein</td>
               <td>2do piso</td>
               <td>Indumentaria</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i> Editar</button></td>
+              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i><a id="link" href="EditarLocales.php"> Editar</a></button></td>
               <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
             </tr>
             <tr>
@@ -52,13 +52,13 @@
               <td>Mc Donalds</td>
               <td>5to piso</td>
               <td>comida</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i> Editar</button></td>
+              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i><a id="link" href="EditarLocales.php"> Editar</a></button></td>
               <td><button id="botonCesto" class="btn botonCesto"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
             </tr>
           </tbody>
         </table>
         <div class="contenedorBoton">
-          <button id="botonPlus" class="btn"><i class="fas fa-plus iconoVerde"></i> Agregar</button>
+          <button id="botonPlus" class="btn"><i class="fas fa-plus iconoVerde"></i><a id="link" href="CrearLocales.php">Agregar</a></button>
         </div>
     </div>
 </body>

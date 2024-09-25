@@ -8,6 +8,11 @@
     flex-direction: column;
 }
 
+#link{
+    text-decoration: none;
+    color: black;
+}
+
 .container.table-responsive {
     overflow-x: auto;
     width: 100%;
