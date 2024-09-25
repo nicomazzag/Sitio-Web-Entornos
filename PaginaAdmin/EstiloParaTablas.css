@@ -79,3 +79,14 @@
     transform: scale(1.1);
     background-color: #6dc45d;
 }
+
+#botonTick{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonTick:hover {
+    transform: scale(1.1);
+    background-color: #22ac42;
+}
+

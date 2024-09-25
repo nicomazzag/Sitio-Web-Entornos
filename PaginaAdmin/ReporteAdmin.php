@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Conexion con el icono de la pagina -->
+    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="EstiloParaTablas.css">
     <!-- Conexion con bootstrap -->
