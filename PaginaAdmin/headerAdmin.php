@@ -16,16 +16,16 @@
                         <a class="nav-link" href="LocalesAdmin.php">Locales</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Dueños</a>
+                        <a class="nav-link" href="#locales">Dueños</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Descuentos</a>
+                        <a class="nav-link" href="../PaginaGeneral/Promociones.php">Descuentos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="NovedadesAdmin.php">Novedades</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="ReporteAdmin.php">Reporte</a>
+                        <a class="nav-link" href="../Logeo/Iniciar_sesion.php">Reporte</a>
                     </li>
                 </ul>
             </div>
