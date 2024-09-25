@@ -1,28 +1,43 @@
 <header>
     <style>
-#botonCerraSesion {
-            margin-left: 5px;
-            background-color: #212529; 
-            color: #ffffff; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            transition: transform 0.5s ease-in, background-color 0.5s ease-in;
-            display: flex; /* Flex para alinear el ícono y texto */
-            align-items: center; /* Centrar verticalmente */
-        }
+            #botonCerraSesion {
+                margin-left: 5px;
+                background-color: #212529; 
+                color: #ffffff; 
+                border: none; 
+                border-radius: 5px; 
+                cursor: pointer; 
+                transition: transform 0.5s ease-in, background-color 0.5s ease-in;
+                align-items: center; /* Centrar verticalmente */
+                }
 
-        #botonCerraSesion:hover {
-            transform: scale(1.1); 
-            background-color: #ff0000;
-        }
-        i {
-            padding-left: 5px;
-        }
-        #botonCerraSesion i {
-            margin-right: 8px;
-        }
-        </style>
+                #botonCerraSesion .text {
+                    display: inline-block;
+                }
+
+            #botonCerraSesion:hover {
+                transform: scale(1.1); 
+                background-color: #ff0000;
+                }   
+            i {
+                padding-left: 5px;
+                }
+            #botonCerraSesion i {
+                margin-right: 8px;
+                }
+            
+            @media(max-width:767px){
+                #botonCerraSesion .text {
+                    display: none;
+                }
+                #botonCerraSesion  {
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+            }
+
+
+    </style>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="PrincipalAdmin.php">
@@ -53,7 +68,7 @@
                     </li>
                 </ul>
                 <a class="nav-link" href="/Logeo/Iniciar_sesion.php">
-                    <button class="btn" id="botonCerraSesion" type="button">Cerrar Sesión
+                    <button class="btn" id="botonCerraSesion" type="button" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
                 </a>
