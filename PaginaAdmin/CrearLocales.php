@@ -8,6 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="EstiloParaTablas.css">
+    <!-- Conexion con font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Crear locales</title>
 </head>
 <body>
@@ -43,9 +45,15 @@
                     <input class="form-control" type="text" id="codUsuario" name="codUsuarioLocal" placeholder="Ingrese el código">
                 </div>
             </div>
-            <div class="mt-3">
-                <button id="botonPlus" class="btn" type="submit" style="border: 1px solid gray;">Crear Local</button>
+            <div class="mt-3 espaciarBotones">
+                <button id="botonPlus" class="btn" type="submit" style="border: 1px solid gray; height: 38px">Crear Local</button>
+                <div class="conteiner m-0">
+                    <a href="LocalesAdmin.php"> 
+                        <i class="fas fa-arrow-left" style="font-size: 30px;" title="Volver"></i>
+                    </a>
+                </div>
             </div>
+            
         </form>
     </div>
 </body>

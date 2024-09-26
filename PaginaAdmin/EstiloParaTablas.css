@@ -8,6 +8,14 @@
     flex-direction: column;
 }
 
+.espaciarBotones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
 #link{
     text-decoration: none;
     color: black;
