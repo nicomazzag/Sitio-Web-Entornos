@@ -57,5 +57,14 @@
           </tbody>
         </table>
     </div>
+    <nav aria-label="Page navigation example" id="paginacion">
+        <ul class="pagination" id="enlaces">
+          <li class="page-item active" id="items"><a class="page-link" href="#">Anterior</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+        </ul>
+    </nav>
 </body>
 </html>
