@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Conexion con el icono de la pagina -->
+    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="EstiloParaTablas.css">
+    <!-- Conexion con font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Crear locales</title>
 </head>
 <body>
@@ -43,8 +47,13 @@
                     <input class="form-control" type="text" id="codUsuario" name="codUsuarioLocal" placeholder="Ingrese el código" value="Código antes de editar">
                 </div>
             </div>
-            <div class="mt-3">
+            <div class="mt-3 espaciarBotones">
                 <button id="botonLapiz" class="btn" type="submit" style="border: 1px solid gray;">Editar Local</button>
+                <div class="conteiner m-0">
+                    <a href="LocalesAdmin.php"> 
+                        <i class="fas fa-arrow-left" style="font-size: 30px;" title="Volver"></i>
+                    </a>
+                </div>
             </div>
         </form>
     </div>

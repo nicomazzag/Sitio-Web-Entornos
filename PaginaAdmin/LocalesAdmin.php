@@ -58,7 +58,7 @@
           </tbody>
         </table>
         <div class="contenedorBoton">
-          <button id="botonPlus" class="btn"><i class="fas fa-plus iconoVerde"></i><a id="link" href="CrearLocales.php">Agregar</a></button>
+          <button id="botonPlus" class="btn"><i class="fas fa-plus iconoVerde"></i><a id="link" href="CrearLocales.php"> Agregar</a></button>
         </div>
     </div>
 </body>

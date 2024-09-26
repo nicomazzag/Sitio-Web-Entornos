@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Conexion con font awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <title>Locales</title>
+    <title>Novedades</title>
 </head>
 <body>
     <?php 
@@ -38,7 +38,7 @@
               <td>24/07/2024</td>
               <td>24/09/2024</td>
               <td class="text-center">Inicial</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt iconoAmarillo"></i> Editar</button></td>
+              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt iconoAmarillo"></i><a id="link" href="EditarNovedades.php"> Editar</a></button></td>
               <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
               <td>24/09/2024</td>
               <td>25/09/2024</td>
               <td class="text-center">Inicial</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i> Editar</button></td>
+              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i><a id="link" href="EditarNovedades.php"> Editar</a></button></td>
               <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
             </tr>
             <tr>
@@ -56,13 +56,13 @@
               <td>23/09/2024</td>
               <td>30/09/2024</td>
               <td class="text-center">Premium</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i> Editar</button></td>
+              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i><a id="link" href="EditarNovedades.php"> Editar</a></button></td>
               <td><button id="botonCesto" class="btn botonCesto"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
             </tr>
           </tbody>
         </table>
         <div class="contenedorBoton">
-          <button id="botonPlus" class="btn"><i class="fas fa-plus iconoVerde"></i> Agregar</button>
+          <button id="botonPlus" class="btn"><i class="fas fa-plus iconoVerde"></i><a id="link" href="CrearNovedades.php"> Agregar</a></button>
         </div>
     </div>
 </body>
