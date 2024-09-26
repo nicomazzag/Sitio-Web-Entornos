@@ -102,6 +102,19 @@
     transform: scale(1.1);
     background-color: #22ac42;
 }
+/*Modal*/
+
+#BotonCerrar{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+    border: #cb5353 solid 1px;
+}
+
+#BotonCerrar:hover {
+    transform: scale(1.1);
+    background-color: #cb5353;
+}
+
 
 
 /*Paginación*/
@@ -116,4 +129,11 @@
 #enlaces{
     margin-left: 1em;
     margin-right: 1em;
+}
+#item{
+    color: black;
+}
+
+#item:hover{
+    background-color: #4b86e6;
 }
