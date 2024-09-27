@@ -96,23 +96,18 @@ body{
 
 .introduccion {
     border-radius: 50px;
-    background-color: aquamarine;
+    background-color: #c2c2c2;
     padding: 1.5em;
+    color: black;
 }
 
 /*Promociones*/
-.promociones{
-    background-color: gray;
-    border-radius: 50px;
-    padding: 1.5em;
-}
-
-.imgPromos{
-    display: flex;
-    height: 300px;
-}
-#imgPromos{
-    border-radius: 50px;
+.contenedorEspecial{
+    background-color: #c2c2c2;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 
@@ -259,14 +254,9 @@ body{
     transform: translateY(-0.5em);
 }
 
-.espacio{
-    margin-top: 1em;
-}	
-
-
 
 .separadorVertical {
-    border-left: 2px solid black;
+    border-left: 2px solid white;
 }
 
 
