@@ -1,0 +1,229 @@
+.conteiner{
+    display: flex;
+    margin:auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    align-items: center;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.espaciarBotones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+#link{
+    text-decoration: none;
+    color: black;
+}
+
+.container.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+@media (max-width: 650px) {
+    .conteiner {
+        justify-content: flex-start;
+    }
+
+    .table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .table th, .table td {
+        white-space: nowrap;
+    }
+}
+
+#sinMargen{
+    margin-bottom: 0;
+}
+
+#botonLapiz{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonLapiz:hover {
+    transform: scale(1.1);
+    background-color: #f3f369;
+}
+
+#botonCesto{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonCesto:hover {
+    transform: scale(1.1);
+    background-color: #cb5353;
+}
+
+#botonLupa{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonLupa:hover {
+    transform: scale(1.1);
+    background-color: #4abeb9;
+}
+
+.contenedorBoton {
+    display: flex;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#botonPlus{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonPlus:hover {
+    transform: scale(1.1);
+    background-color: #6dc45d;
+}
+
+#botonTick{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonTick:hover {
+    transform: scale(1.1);
+    background-color: #22ac42;
+}
+/*Modal*/
+
+#BotonCerrar{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+    border: #cb5353 solid 1px;
+}
+
+#BotonCerrar:hover {
+    transform: scale(1.1);
+    background-color: #cb5353;
+}
+
+#BotonCancelar {
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+    border: #22ac42 solid 1px;
+}
+
+#BotonCancelar:hover {
+    transform: scale(1.1);
+    background-color: #22ac42;
+}
+
+
+/*Paginación*/
+
+#paginacion{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#enlaces{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+#item{
+    color: black;
+}
+
+#item:hover{
+    background-color: #4b86e6;
+}
+
+/*Crear Descuentos*/
+form{
+    background-color: transparent;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 55px rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    margin-top: 1em;
+}
+
+fieldset {
+    border: 2px solid rgb(114, 110, 110);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+}
+
+legend {
+    color: black;
+    padding: 0 10px;
+    font-size: 1.2em;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: black;
+}
+
+input[type="text"], input[type="date"],input[list="TipoUsuario"]{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    border: none;
+    border: 1px solid #666;
+    box-shadow: 0px 0px 15px #0003;
+    border-radius: 4px;
+    color: black;
+    margin: 6px 0;
+}
+
+.conteiner-espaciar{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+#BotonCrearDescuentos{
+    border-radius: 5px;
+    padding: 10px;
+    border:#22ac42 solid 1px;
+    transition: transform 0.5s ease-in, background-color 0.5s ease-in;
+    color: black;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#BotonCrearDescuentos:hover{
+    background-color: #22ac42;
+    color: black;
+    transform: scale(1.1);
+}
+
+#BotonVolver{
+    border-radius: 5px;
+    padding: 10px;
+    border:#cb5353 solid 1px;
+    transition: transform 0.5s ease-in, background-color 0.5s ease-in;
+    color: black;
+}
+
+#BotonVolver:hover{
+    background-color: #ea5858;
+    color: black;
+    transform: scale(1.1);
+}
