@@ -107,49 +107,69 @@
                 <h2 class="titulo">No te pierdas de lo mejor!!!</h2>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://static.vecteezy.com/system/resources/previews/000/263/397/original/vector-black-friday-sale-banner.jpg" class="card-img-top" alt="imagen promoción">
+                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
                         </div>
                         <div class="card-footer">
-                          <small class="text-body-secondary"><b>Actualizado hace 3 minutos</b></small>
+                            <small class="text-body-secondary">
+                                <b>Actualizado hace 3 minutos</b>
+                                <form action="..." method="get">
+                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
+                                </form>
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://static.vecteezy.com/system/resources/previews/000/263/397/original/vector-black-friday-sale-banner.jpg" class="card-img-top" alt="imagen promoción">
+                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
                         </div>
                         <div class="card-footer">
-                          <small class="text-body-secondary"><b>Actualizado hace 3 minutos</b></small>
+                            <small class="text-body-secondary">
+                                <b>Actualizado hace 3 minutos</b>
+                                <form action="..." method="get">
+                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
+                                </form>
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://static.vecteezy.com/system/resources/previews/000/263/397/original/vector-black-friday-sale-banner.jpg" class="card-img-top" alt="imagen promoción">
+                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
                         </div>
                         <div class="card-footer">
-                          <small class="text-body-secondary"><b>Actualizado hace 3 minutos</b></small>
+                            <small class="text-body-secondary">
+                                <b>Actualizado hace 3 minutos</b>
+                                <form action="..." method="get">
+                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
+                                </form>
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://static.vecteezy.com/system/resources/previews/000/263/397/original/vector-black-friday-sale-banner.jpg" class="card-img-top" alt="imagen promoción">
+                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
                         </div>
                         <div class="card-footer">
-                          <small class="text-body-secondary"><b>Actualizado hace 3 minutos</b></small>
+                            <small class="text-body-secondary">
+                                <b>Actualizado hace 3 minutos</b>
+                                <form action="..." method="get">
+                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
+                                </form>
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -162,7 +182,7 @@
             <div class="col-12">
                 <div class="inputContainer">
                     <form action="home_Page.php" class="buscarNombre">
-                        <button class="botonLupa" aria-labelledby="Ingrese nombre del local" 
+                        <button class="botonLupa" aria-label="Buscar local por nombre" 
                         for="buscarLocal"><i class="fas fa-search iconoLupa"></i></button> 
                         <input class="inputGrande" type="text" placeholder="Ingrese nombre del local" 
                         aria-placeholder="Ingrese nombre del local" 

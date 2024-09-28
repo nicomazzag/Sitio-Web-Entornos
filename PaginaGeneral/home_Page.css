@@ -96,20 +96,49 @@ body{
 
 .introduccion {
     border-radius: 50px;
-    background-color: #c2c2c2;
+    background-color: #84bcea;
     padding: 1.5em;
     color: black;
 }
 
 /*Promociones*/
 .contenedorEspecial{
-    background-color: #c2c2c2;
+    background-color: #84bcea;
     padding-top: 1em;
     padding-bottom: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
+.botonPromo{
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6efd;
+    border-radius: 50%;
+    border: 1px solid black;
+    transition: transform 0.3s ease-in;
+}
+
+.botonPromo .iconoPromo {
+    font-size: 1em;
+    color: white;
+}
+
+.botonPromo:hover {
+    transform: scale(1.1);
+}
+
+.text-body-secondary{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card{
+    border: 3px solid black;
+}
 
 .centrar{
     display: flex;
@@ -139,7 +168,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0A306D;
+    background-color: #0d6efd;
     border-radius: 50%;
     border: 1px solid black;
     transition: transform 0.3s ease-in;
@@ -149,6 +178,8 @@ body{
     font-size: 25px;
     color: white;
 }
+
+
 
 .buscarNombre{
     display: flex;
@@ -176,13 +207,13 @@ body{
 }
 
 .inputGrande:hover {
-    background-color: #0A306D;
+    background-color: #0d6efd;
     color: white;
 }
 
 .botonLupa:hover {
     transform: scale(1.1);
-    box-shadow: 0 0.5em 0.5em -0.4em #0A306D;
+    box-shadow: 0 0.5em 0.5em -0.4em #0d6efd;
 }
 .botonLupa:active .iconoLupa {
     color: gray;
