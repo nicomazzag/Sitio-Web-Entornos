@@ -8,7 +8,7 @@
                 border-radius: 5px; 
                 cursor: pointer; 
                 transition: transform 0.5s ease-in, background-color 0.5s ease-in;
-                align-items: center; /* Centrar verticalmente */
+                align-items: center; 
                 }
 
                 #botonCerraSesion .text {
@@ -38,7 +38,7 @@
     </style>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="PrincipalAdmin.php">
+            <a class="navbar-brand" href="PrincipalDueños.php">
                 <img src="../Imagenes/Logo_Shopping_Blanco.png"  style="height: 50px; width: 50px;" alt="Logo" title="Logo de la empresa">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir barra navegación">
@@ -53,7 +53,7 @@
                         <a class="nav-link" href="CrearDescuentos.php">Crear Descuentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="LocalesdeDueño.php">Mis Locales</a>
+                        <a class="nav-link" href="SolicitudesDescuento.php">Solicitudes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="ReporteDueño.php">Reporte</a>
