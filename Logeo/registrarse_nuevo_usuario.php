@@ -56,7 +56,7 @@
                 <input type="password"  name="contraseña" id="contraseña" class="form_input" placeholder=" ">
                 <label for="contraseña" class="form_label">Contraseña:</label>
                 <span class="form_line"></span>
-                <img src="../Imagenes/Ocultar.png" class="logitoOjo" id="togglePassword">
+                <img src="../Imagenes/Ocultar.png" class="logitoOjo" id="togglePassword" alt="Mostrar contraseña" title="Mostrar contraseña">
                 </svg>  
                     <!-- Efecto de mostrar y ocultar contraseña -->
                 <script>

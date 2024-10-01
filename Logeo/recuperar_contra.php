@@ -53,9 +53,9 @@
                 <input type="password" class="form_input" placeholder=" " name="contraseña1" id="contraseña" required>
                 <label for="password" class="form_label" >Contraseña: </label>
                 <span class="form_line"></span>
-                <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Mostrar contraseña" id="togglePassword">
+                <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Mostrar contraseña" id="togglePassword1">
                 <script>
-                            document.getElementById('togglePassword').addEventListener('click', function () {
+                            document.getElementById('togglePassword1').addEventListener('click', function () {
                                 const passwordField = document.getElementById('contraseña');
                                 const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
                                 passwordField.setAttribute('type', type);
@@ -71,9 +71,9 @@
                     <input type="password" class="form_input" placeholder=" " name="contraseña2" id="confirmarPassword" required>
                     <label for="confirmarPassword" class="form_label">Confirmar Contraseña:</label>
                     <span class="form_line"></span>
-                    <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Mostrar contraseña" id="togglePassword">
+                    <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Mostrar contraseña" id="togglePassword2">
                         <script>
-                            document.getElementById('togglePassword').addEventListener('click', function () {
+                            document.getElementById('togglePassword2').addEventListener('click', function () {
                                 const passwordField = document.getElementById('confirmarPassword');
                                 const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
                                 passwordField.setAttribute('type', type);
