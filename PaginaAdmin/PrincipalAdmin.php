@@ -9,7 +9,7 @@
     <!-- Conexion con font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Conexion con hoja de estilo -->
-    <link rel="stylesheet" href="PrincipalAdmin.css">
+    <link rel="stylesheet" href="../PaginaGeneral/home_Page.css">
     <!-- Conexion con el icono de la pagina -->
     <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con el google font -->

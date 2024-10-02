@@ -2,7 +2,7 @@
     include('BaseDeDatos_Usuario.php');
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,8 +37,8 @@
     ?>
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form" method="post">
             <h2 class="form_titulo">Iniciar Sesion</h2>
-                <a aria-label="Volver a página principal" href="../PaginaGeneral/home_Page.php">
-                    <img src="../Imagenes/Logo_shopping.png" style="height: 50px;" alt="Logo" title="Logo">
+                <a href="../PaginaGeneral/home_Page.php">
+                    <img src="../Imagenes/Logo_shopping.png" style="height: 50px;" alt="Logo" title="Logo" >
                 </a> 
                 <div class="form_contenedor">
                     <div class="form_grupo">
@@ -50,23 +50,12 @@
                         <span class="form_line"></span>
                     </div>    
                     <div class="form_grupo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logito1" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                        </svg>
                         <input type="password"  name="contraseña" id="contraseña" class="form_input" placeholder=" " class="form_input">
-                        <label for="contraseña" class="form_label">Contraseña:</label>
+                        <label for="contra" class="form_label">Contraseña:</label>
                         <span class="form_line"></span>
-                        <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Mostrar contraseña" id="togglePassword">
-                        <!-- Efecto de mostrar y ocultar contraseña -->
-                        <script>
-                            document.getElementById('togglePassword').addEventListener('click', function () {
-                                const passwordField = document.getElementById('contraseña');
-                                const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                                passwordField.setAttribute('type', type);
-                                if (type === 'text') {
-                                    this.src = '../Imagenes/Mostrar.png'
-                                } else {
-                                    this.src = '../Imagenes/Ocultar.png'
-                                }
-                            });
-                            </script> 
                     </div>
                     <button class="iniciar" name="Iniciar_Sesion" type="submit">
                         Iniciar Sesion
