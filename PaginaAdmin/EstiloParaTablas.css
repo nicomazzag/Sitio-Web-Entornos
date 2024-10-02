@@ -1,0 +1,139 @@
+.conteiner{
+    display: flex;
+    margin:auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    align-items: center;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.espaciarBotones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+#link{
+    text-decoration: none;
+    color: black;
+}
+
+.container.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+@media (max-width: 650px) {
+    .conteiner {
+        justify-content: flex-start;
+    }
+
+    .table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .table th, .table td {
+        white-space: nowrap;
+    }
+}
+
+#sinMargen{
+    margin-bottom: 0;
+}
+
+#botonLapiz{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonLapiz:hover {
+    transform: scale(1.1);
+    background-color: #f3f369;
+}
+
+#botonCesto{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonCesto:hover {
+    transform: scale(1.1);
+    background-color: #cb5353;
+}
+
+#botonLupa{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonLupa:hover {
+    transform: scale(1.1);
+    background-color: #4abeb9;
+}
+
+.contenedorBoton {
+    display: flex;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#botonPlus{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonPlus:hover {
+    transform: scale(1.1);
+    background-color: #6dc45d;
+}
+
+#botonTick{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonTick:hover {
+    transform: scale(1.1);
+    background-color: #22ac42;
+}
+/*Modal*/
+
+#BotonCerrar{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+    border: #cb5353 solid 1px;
+}
+
+#BotonCerrar:hover {
+    transform: scale(1.1);
+    background-color: #cb5353;
+}
+
+
+
+/*Paginación*/
+
+#paginacion{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#enlaces{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+#item{
+    color: black;
+}
+
+#item:hover{
+    background-color: #4b86e6;
+}

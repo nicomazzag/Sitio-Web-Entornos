@@ -104,7 +104,7 @@
 
             if(mysqli_num_rows($resultado) > 0){
                 while($fila = mysqli_fetch_assoc($resultado)){
-                    if(($fila['usuario'] == $usuario) && password_verify($contra, $fila['contraseña'])){ 
+                    if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña']))){ 
                         $iniciar=true;
                         header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
                         exit();
