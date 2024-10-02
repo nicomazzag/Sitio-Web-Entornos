@@ -1,0 +1,42 @@
+/* Css dedicado al estilo de cargar las imagenes */
+.cargaImagenes{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#imagenLocal{
+    height: 131px;
+    width: 146px;
+    border: 1px solid black;
+    border-radius: 1em;
+    background-color: #f2f2f2;
+}
+#labelArchivo{
+    font-weight: 600;
+    text-align: center;
+    align-items: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: auto;
+    height: 50px;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: background-color 1s ease-in;
+}
+@media (max-width: 375px){
+    #labelArchivo{
+        font-size: 12px;
+    }
+    .cargaImagenes{
+        justify-content: space-between;
+    }
+}
+#labelArchivo:hover{
+    background-color: #4b86e6;
+    box-shadow: 0px 0px 10px 0px #4b86e6;
+}
+#inputArchivo{
+    display: none;
+}

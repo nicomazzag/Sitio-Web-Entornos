@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="EstiloParaTablas.css">
+    <link rel="stylesheet" href="CrearLocales.css">
     <!-- Conexion con font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Crear locales</title>
@@ -47,6 +48,13 @@
                     <input class="form-control" type="text" id="codUsuario" name="codUsuarioLocal" placeholder="Ingrese el código">
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 cargaImagenes">
+                    <img src="../Imagenes/Logo_shopping.png" alt="Imagen del local" id="imagenLocal">
+                    <label for="inputArchivo" id="labelArchivo">Subir imagen del local</label>
+                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputArchivo">
+                </div>
+            </div>
             <div class="mt-3 espaciarBotones">
                 <button id="botonPlus" class="btn" type="submit" style="border: 1px solid gray; height: 38px">Crear Local</button>
                 <div class="conteiner m-0">
@@ -58,5 +66,18 @@
             
         </form>
     </div>
+    <script>
+        let inputArchivo = document.getElementById("inputArchivo");
+        let imagenLocal = document.getElementById("imagenLocal");
+
+        inputArchivo.addEventListener("change", function(){
+            let file = this.files[0];
+            let reader = new FileReader();
+            reader.onload = function(){
+                imagenLocal.src = reader.result;
+            }
+            reader.readAsDataURL(file);
+        });
+    </script>
 </body>
 </html>

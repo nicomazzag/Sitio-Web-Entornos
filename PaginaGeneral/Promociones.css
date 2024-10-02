@@ -1,3 +1,21 @@
+/* Editando titulo y opción de volver a la página principal */
+.conteiner{
+    background-color: #f8f9fa;
+}
+.contenedor1{
+    background-color: #f8f9fa;
+    padding-top: 1em;
+    padding-right: 3em;
+    padding-left: 3em;
+}
+#Home{
+    margin-bottom: 0px;
+}
+#linkHome{
+    text-decoration: underline black;
+    color: black;
+}
+/* Promocion css */
 .posicionar {
     width: 80%;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Conexion con bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -36,10 +36,14 @@
         include("../Include/header.php");
     ?>
     <div class="conteiner">
+        <div class="contenedor1">
+            <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> /Promociones</p>
+            <h1 id="titulo">Nuestras Promociones</h1>
+        </div>
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid posicionar  mt-3 mb-3">
                 <form id="agrandar" class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <input class="form-control me-2" type="search" placeholder="Buscar por nombre o código del local" aria-label="Buscar">
                     <button id="espaciar" class="btn btn-outline-primary" type="submit">Search</button>
                     <div class="dropdown">
                         <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,8 +63,7 @@
         <div class="conteiner numero2"> 
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -76,8 +79,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
+                    
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -93,8 +96,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
+                    
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -110,8 +113,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
+                    
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -133,8 +136,8 @@
         <div class="conteiner numero2"> 
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
+                    
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -150,8 +153,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
+                    
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -167,8 +170,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
+                    
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -184,8 +187,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
+                    <div class="card">
+                    
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>

@@ -107,7 +107,6 @@
                 <h2 class="titulo">No te pierdas de lo mejor!!!</h2>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -124,7 +123,6 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -141,7 +139,6 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
@@ -158,7 +155,6 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-3 mt-2">
                     <div class="card h-100">
-                        <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="imagen promoción">
                         <div class="card-body">
                           <h5 class="card-title">Promoción xxx</h5>
                           <p class="card-text">Descripción breve de la promoción</p>
