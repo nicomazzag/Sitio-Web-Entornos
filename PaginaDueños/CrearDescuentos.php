@@ -18,6 +18,7 @@
     <?php 
         include("headerDueños.php");
     ?>
+    <h1 class="text-center" id="Titulos">Crear Descuentos</h1>
     <div class="conteiner">
         <table id="sinMargen" class="table">
             <thead>
@@ -35,38 +36,38 @@
                     <td>2x1 en panchos</td>
                     <td>Premium</td>
                     <td>L-M-J</td>
-                    <td><button id="botonCesto" class="btn" data-bs-target="#Eliminar" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
+                    <td><a href="#" class="links"><button id="botonCesto" class="btn" data-bs-target="#Eliminar" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo" ></i> Eliminar</button></a></td>
                 </tr>
                 <tr>
                     <th scope="row" class="text-center">2</th>
                     <td>2x1 en tangas</td>
                     <td>Inicial</td>
                     <td>L-M-Mi-V</td>
-                    <td><button id="botonCesto" class="btn" data-bs-target="#Eliminar" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo" ></i> Eliminar</button></td>
+                    <td><a href="#" class="links"><button id="botonCesto" class="btn" data-bs-target="#Eliminar" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo" ></i> Eliminar</button></a></td>
                 </tr>
                 <tr>
                     <th scope="row" class="text-center">3</th>
                     <td>Todo Free</td>
                     <td>Premium</td>
                     <td>S</td>
-                    <td><button id="botonCesto" data-bs-target="#Eliminar" data-bs-toggle="modal" class="btn botonCesto"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
+                    <td><a href="#" class="links"><button id="botonCesto" class="btn" data-bs-target="#Eliminar" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo" ></i> Eliminar</button></a></td>
                 </tr>
             </tbody>
         </table>
         <div class="contenedorBoton">
-            <button id="botonPlus" class="btn"><i class="fas fa-plus iconoVerde"></i><a id="link" href="AgregarDescuentos.php"> Agregar</a></button>    
+            <a href="AgregarDescuentos.php" class="links"><button id="botonPlus" class="btn" ><i class="fas fa-plus iconoVerde"></i> Agregar</button></a>  
         </div>
     </div>
         <!-- Modal -->
-    <div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="Eliminar" tabindex="-1" aria-labelledby="Modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">¿Seguro deseas eliminar esta promoción?</h1>
+                    <h1 class="modal-title fs-5" id="Modal">¿Seguro deseas eliminar esta promoción?</h1>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="BotonCerrar" class="btn">Si</button>
-                    <button type="button" id="BotonCancelar" class="btn" data-bs-dismiss="modal">No</button>
+                    <a href="#" class="links"><button type="button" id="BotonCerrar" class="btn">Si</button></a>
+                    <a href="#" class="links"><button type="button" id="BotonCancelar" class="btn" data-bs-dismiss="modal">No</button></a>
                 </div>
             </div>
         </div>

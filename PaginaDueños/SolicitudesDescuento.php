@@ -17,48 +17,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
-    
     <title>Solicitudes</title>
 </head>
 <body>
     <?php
         include ('headerDueños.php');
     ?>
+    <h1 class="text-center" id="Titulos">Solicitudes de Descuentos</h1>  
     <div class="conteiner">
         <table id="sinMargen" class="table">
-            <thead>
-                <tr>
-                    <th scope="col" class="text-center">Código Descuento</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Tipo de Usuario</th>
-                    <th scope="col">Disponible</th>
-                    <th scope="col">&nbsp;</th>
+            <tbody class="table-group-divider" >
+                <tr style="text-align: center;">
+                    <td>El usuario quiere adquirir la promocion</td>
+                    <td><a href="#" class="links"><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></a></td>
+                    <td> <a href="#" class="links"><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></a></td>
                 </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                <tr>
-                    <th scope="row" class="text-center">1</th>
-                    <td>2x1 en panchos</td>
-                    <td>Premium</td>
-                    <td>L-M-J</td>
-                    <td><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></td>
-                    <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></td>
+                <tr style="text-align: center;">
+                    <td>El usuario quiere adquirir la promocion</td>
+                    <td><a href="#" class="links"><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></a></td>
+                    <td> <a href="#" class="links"><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></a></td>
                 </tr>
-                <tr>
-                    <th scope="row" class="text-center">2</th>
-                    <td>2x1 en tangas</td>
-                    <td>Inicial</td>
-                    <td>L-M-Mi-V</td>
-                    <td><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></td>
-                    <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo" ></i> Rechazar</button></td>
-                </tr>
-                <tr>
-                    <th scope="row" class="text-center">3</th>
-                    <td>Todo Free</td>
-                    <td>Premium</td>
-                    <td>S</td>
-                    <td><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></td>
-                    <td><button class="btn" id="botonCesto"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></td>
+                <tr style="text-align: center;">
+                    <td>El usuario quiere adquirir la promocion</td>
+                    <td><a href="#" class="links"><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></a></td>
+                    <td> <a href="#" class="links"><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></a></td>
                 </tr>
             </tbody>
         </table>

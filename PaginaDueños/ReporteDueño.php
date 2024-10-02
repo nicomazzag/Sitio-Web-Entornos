@@ -23,6 +23,7 @@
     <?php
         include ('headerDueños.php');
     ?>
+    <h1 class="text-center" id="Titulos" >Reporte de Descuentos</h1>
     <div class="conteiner">
         <table id="sinMargen" class="table">
             <thead>
@@ -59,5 +60,14 @@
             </tbody>
         </table>
     </div>
+        <nav aria-label="Page navigation example" id="paginacion">
+        <ul class="pagination" id="enlaces">
+            <li class="page-item "><a class="page-link" id="item" href="#">Anterior</a></li>
+            <li class="page-item" ><a class="page-link" id="item" href="#">1</a></li>
+            <li class="page-item" ><a class="page-link" id="item" href="#">2</a></li>
+            <li class="page-item" ><a class="page-link" id="item" href="#">3</a></li>
+            <li class="page-item" ><a class="page-link" id="item" href="#">Siguiente</a></li>
+        </ul>
+    </nav>
 </body>
 </html>
