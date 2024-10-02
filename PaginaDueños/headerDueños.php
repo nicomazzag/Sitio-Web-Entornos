@@ -1,4 +1,4 @@
-<header>
+<head>
     <style>
             #botonCerraSesion {
                 margin-left: 5px;
@@ -36,6 +36,8 @@
                 }
             }
     </style>
+</head>
+<header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="PrincipalDueños.php">

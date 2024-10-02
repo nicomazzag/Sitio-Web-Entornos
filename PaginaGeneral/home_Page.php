@@ -27,80 +27,82 @@
     ?>
     <!-- Introduccion -->
     <div class="conteiner numero1">
-    <div class="row">
-    <div class="col-md-8 col-12">
-        <div class="conteiner introduccion">
-            <div class="row">
-                <h1 class="titulo">Zorzal Centro Comercial!!</h1>
-            </div>
-            <div class="row">    
-                <div class="col-12 col-md-6 centrar">
-                    <p class="reducir"><b>Descubre lo mejor en Zorzal:</b> estilo, tendencia y experiencias únicas te esperan.</p>
-                </div>
-                <div class="col-12 col-md-6">
-                    <div class="container separadorVertical reducir_horarios">
-                        <div class="row">
-                            <h3 class="reducir">Horarios de Apertura:</h3>
+        <div class="row">
+            <div class="col-md-8 col-12">
+                <div class="conteiner introduccion">
+                    <div class="row">
+                        <h1 class="titulo">Zorzal Centro Comercial!!</h1>
+                    </div>
+                    <div class="row">    
+                        <div class="col-12 col-md-6 centrar">
+                            <p class="reducir"><b>Descubre lo mejor en Zorzal:</b> estilo, tendencia y experiencias únicas te esperan.</p>
                         </div>
-                        <div class="row">
-                            <div class="col">Lunes</div>
-                            <div class="col">8:00 AM-18:00 PM</div>
-                        </div>
-                        <div class="row">
-                            <div class="col">Martes</div>
+                        <div class="col-12 col-md-6">
+                            <div class="container separadorVertical reducir_horarios">
+                                <div class="row">
+                                    <h3 class="reducir">Horarios de Apertura:</h3>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Lunes</div>
                                     <div class="col">8:00 AM-18:00 PM</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">Miércoles</div>
-                                    <div class="col">8:00 AM-18:00 PM</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Jueves</div>
-                                    <div class="col">8:00 AM-18:00 PM</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Viernes</div>
-                                    <div class="col">8:00 AM-18:00 PM</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Sábado</div>
-                                    <div class="col">9:00 AM-17:00 PM</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Domingo</div>
-                                    <div class="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerrado</div>
+                                    <div class="col">Martes</div>
+                                            <div class="col">8:00 AM-18:00 PM</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">Miércoles</div>
+                                            <div class="col">8:00 AM-18:00 PM</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">Jueves</div>
+                                            <div class="col">8:00 AM-18:00 PM</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">Viernes</div>
+                                            <div class="col">8:00 AM-18:00 PM</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">Sábado</div>
+                                            <div class="col">9:00 AM-17:00 PM</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">Domingo</div>
+                                            <div class="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerrado</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-12">
-                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping" class="imagen2">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_3.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
+                    <div class="col-md-4 col-12">
+                        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping" class="imagen2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../Imagenes/Zorzal_Imagen_Home_Page_3.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid" title="Imagen del shopping">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Promociones -->
+    <!--Promociones -->
     <div class="contenedorEspecial">
         <div class="conteiner numero2"> 
             <div class="row">
