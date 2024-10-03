@@ -8,7 +8,7 @@
 <body>
     <?php
     // Redirect to another webpage
-    header('Location: /PaginaGeneral/home_Page.php');
+    header('Location: https://zorzal.azurewebsites.net/PaginaGeneral/home_Page.php');
     exit();
 ?>
 </body>
