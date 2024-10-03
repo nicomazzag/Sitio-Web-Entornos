@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="../PaginaGeneral/home_Page.php #locales">Nuestros Locales</a>
+                        <a class="nav-link text-white" href="../PaginaGeneral/home_Page.php#locales">Nuestros Locales</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="../PaginaGeneral/Novedades.php">Novedades</a>
