@@ -6,6 +6,10 @@
     <title>Pagina Web</title>
 </head>
 <body>
-    <a href="PaginaGeneral/home_Page.php">Ir</a>
+    <?php
+    // Redirect to another webpage
+    header('Location: /PaginaGeneral/home_Page.php');
+    exit();
+?>
 </body>
 </html>
