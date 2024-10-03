@@ -7,6 +7,7 @@
     <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="EstiloParaTablas.css">
+    <link rel="stylesheet" href="EstiloParaTitulos.css">
     <!-- Conexion con bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -18,6 +19,10 @@
     <?php 
         include("headerAdmin.php");
     ?>
+    <div class="contenedor1">
+      <p id="Home"><a id="linkHome" href="PrincipalAdmin.php">Principal</a> /Descuentos</p>
+      <h1 id="titulo">Descuentos</h1>
+    </div>
     <div class="conteiner">
         <table id="sinMargen" class="table">
             <thead>
