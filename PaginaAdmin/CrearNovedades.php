@@ -1,3 +1,6 @@
+<?php 
+    include('../BasesDeDatos/BaseDeDatos_Novedades.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
