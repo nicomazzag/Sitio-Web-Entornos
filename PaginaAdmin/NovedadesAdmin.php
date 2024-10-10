@@ -1,3 +1,6 @@
+<?php
+  include("../BasesDeDatos/BaseDeDatos_Novedades.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,6 +16,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Conexion con font awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Para modificar las alertas y no usar el estilo predeterminado -->
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Novedades</title>
 </head>
 <body>
@@ -37,33 +45,27 @@
             </tr>
           </thead>
           <tbody class="table-group-divider">
+            <?php
+              $consulta = "SELECT * FROM novedades";
+              $resultado = mysqli_query($conn, $consulta);
+              while ($fila = mysqli_fetch_assoc($resultado)) {?>
             <tr>
-              <th scope="row" class="text-center">1</th>
-              <td>10% OFF en calzados</td>
-              <td>24/07/2024</td>
-              <td>24/09/2024</td>
-              <td class="text-center">Inicial</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt iconoAmarillo"></i><a id="link" href="EditarNovedades.php"> Editar</a></button></td>
-              <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
+              <th scope="row" class="text-center"><?php echo $fila['codigo']?></th>
+              <td><?php echo $fila['texto']?></td>
+              <td><?php echo $fila['fechaDesde']?></td>
+              <td><?php echo $fila['fechaHasta']?></td>
+              <td class="text-center"><?php echo $fila['tipoCliente']?></td>
+              <td>
+                <form action="EditarNovedades.php" method="get">
+                  <button id="botonLapiz" class="btn" type="submit" name= "editar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-pencil-alt iconoAmarillo"></i> Editar</button></td>
+                </form>
+              <td> 
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
+                  <button id="botonCesto" class="btn" type="submit" name="eliminar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button>
+                </form>
+              </td>
             </tr>
-            <tr>
-              <th scope="row" class="text-center">2</th>
-              <td>Domingo cerrado por reformas</td>
-              <td>24/09/2024</td>
-              <td>25/09/2024</td>
-              <td class="text-center">Inicial</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i><a id="link" href="EditarNovedades.php"> Editar</a></button></td>
-              <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
-            </tr>
-            <tr>
-              <th scope="row" class="text-center">3</th>
-              <td>semana black friday</td>
-              <td>23/09/2024</td>
-              <td>30/09/2024</td>
-              <td class="text-center">Premium</td>
-              <td><button id="botonLapiz" class="btn"><i class="fas fa-pencil-alt icono-rojo"></i><a id="link" href="EditarNovedades.php"> Editar</a></button></td>
-              <td><button id="botonCesto" class="btn botonCesto"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
-            </tr>
+            <?php } ?>
           </tbody>
         </table>
         <div class="contenedorBoton">
@@ -72,3 +74,34 @@
     </div>
 </body>
 </html>
+<?php
+  if (isset($_GET['eliminar'])) {
+    $eliminar = $_GET['eliminar'];
+    $sql = "DELETE FROM novedades WHERE codigo = $eliminar";
+    if(mysqli_query($conn, $sql)){
+      echo "
+      <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: 'Novedad eliminada correctamente'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'NovedadesAdmin.php';
+            }
+        });
+      </script>";
+      mysqli_close($conn);
+    }
+    else{
+      echo "
+      <script>
+      Swal.fire({
+          icon: 'warning',
+          title: 'Advertencia',
+          text: 'Hubo un problema al eliminar la novedad'
+      });
+      </script>";
+    }
+  }
+?>
