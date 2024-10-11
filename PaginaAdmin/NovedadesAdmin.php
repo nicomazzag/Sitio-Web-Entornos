@@ -1,5 +1,5 @@
 <?php
-  include("../BasesDeDatos/BaseDeDatos_Novedades.php");
+  include("../BasesDeDatos/BaseDeDatos_Admin.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
