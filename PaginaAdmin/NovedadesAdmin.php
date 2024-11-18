@@ -50,20 +50,37 @@
               $resultado = mysqli_query($conn, $consulta);
               while ($fila = mysqli_fetch_assoc($resultado)) {?>
             <tr>
-              <th scope="row" class="text-center"><?php echo $fila['codigo']?></th>
+              <th scope="row" class="text-center">
+              <?php 
+              if( $fila['estado'] == false){
+                echo "<div style='color: red'>{$fila['codigo']}</div>";
+              }else{
+                echo $fila['codigo'];
+              }
+              ?></th>
               <td><?php echo $fila['texto']?></td>
               <td><?php echo $fila['fechaDesde']?></td>
               <td><?php echo $fila['fechaHasta']?></td>
               <td class="text-center"><?php echo $fila['tipoCliente']?></td>
               <td>
                 <form action="EditarNovedades.php" method="get">
-                  <button id="botonLapiz" class="btn" type="submit" name= "editar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-pencil-alt iconoAmarillo"></i> Editar</button></td>
+                  <button id="botonLapiz" class="btn" type="submit" name= "editar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-pencil-alt "></i> Editar</button></td>
                 </form>
               <td> 
+              <?php 
+              if($fila['estado'] == 1){?>
+                <td>
+                  <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
+                    <button id="botonCesto" class="btn" type="submit" name="eliminar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-trash-alt"></i> Eliminar</button>
+                  </form>
+                </td>
+              <?php }else { ?>
+              <td> 
                 <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
-                  <button id="botonCesto" class="btn" type="submit" name="eliminar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button>
+                  <button id="botonReactivar" class="btn" type="submit" name="reactivar" value="<?php echo $fila['codigo'] ?>"> <i class="fa-solid fa-check "></i>  Reactivar</button>
                 </form>
               </td>
+              <?php }?>
             </tr>
             <?php } ?>
           </tbody>
@@ -77,7 +94,8 @@
 <?php
   if (isset($_GET['eliminar'])) {
     $eliminar = $_GET['eliminar'];
-    $sql = "DELETE FROM novedades WHERE codigo = $eliminar";
+    $estado = 0;
+    $sql = "UPDATE novedades SET estado = '$estado' WHERE codigo = $eliminar";
     if(mysqli_query($conn, $sql)){
       echo "
       <script>
@@ -100,6 +118,36 @@
           icon: 'warning',
           title: 'Advertencia',
           text: 'Hubo un problema al eliminar la novedad'
+      });
+      </script>";
+    }
+  }
+  if (isset($_GET['reactivar'])) {
+    $reactivar = $_GET['reactivar'];
+    $estado = 1;
+    $sql = "UPDATE novedades SET estado = '$estado' WHERE codigo = $reactivar";
+    if(mysqli_query($conn, $sql)){
+      echo "
+      <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Exito',
+            text: 'Novedad dada de alta nuevamente'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'NovedadesAdmin.php';
+            }
+        });
+      </script>";
+      mysqli_close($conn);
+    }
+    else{
+      echo "
+      <script>
+      Swal.fire({
+          icon: 'warning',
+          title: 'Advertencia',
+          text: 'Hubo un problema al dar de alta la novedad'
       });
       </script>";
     }
