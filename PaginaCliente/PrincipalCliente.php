@@ -236,72 +236,33 @@
             </div>
             <div class="col-md-9 mt-3">
                 <div class="row">
-                    <div class="col-6 col-md-4">
-                        <div class="card mb-3 presentacionLocal">
-                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center mt-3">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
+                <!-- Abrir base de datos -->
+                <?php
+                include("../BasesDeDatos/BaseDeDatos_Locales.php");
+                $sql = "SELECT nombre, imagen_url, descripcion FROM locales";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '
+                        <div class="col-6 col-md-4"> 
+                            <div class="card mb-3 presentacionLocal"> 
+                                <img src="' . $row["imagen_url"] . '" class="card-img-top" alt="' . $row["nombre"] . '">
+                                <div class="card-body"> 
+                                    <h5 class="card-title text-center">' . $row["nombre"] . '</h5> 
+                                    <p class="text-center">' . $row["descripcion"] . '</p> 
+                                    <div class="text-center mt-3"> 
+                                        <button class="botonLocales" type="submit">Conocer más</button> 
+                                    </div> 
                                 </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card mb-3 presentacionLocal">
-                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center mt-3">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 ">
-                        <div class="card mb-3 presentacionLocal">
-                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center mt-3">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
-                                </div>   
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card mb-3 presentacionLocal">
-                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center mt-3">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card mb-3 presentacionLocal">
-                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center mt-3">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card mb-3 presentacionLocal">
-                            <img src="https://prd-contents.smsupermalls.com/data/2024/09/66de52a53ac991725846181.jpg" class="card-img-top" alt="Imagen utn">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Local Predeterminado</h5>
-                                <div class="text-center mt-3">
-                                    <button class="botonLocales" type="submit">Conocer más</button>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
+                            </div> 
+                        </div>';
+                    } 
+                } else { 
+                    echo "No hay locales disponibles.";
+                    } 
+                $conn->close();
+                ?>
                 </div>
             </div>
         </div>
