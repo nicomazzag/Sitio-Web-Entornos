@@ -1,4 +1,5 @@
 <?php 
+    include("../Include/Sesion.php");
     include('../BasesDeDatos/BaseDeDatos_Admin.php');
 ?>
 <!DOCTYPE html>
@@ -52,6 +53,7 @@
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
+                                    <!-- Ver si el action funciona correctamente -->
                                     <form action="home_Page.php" method="post">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" role="switch" id="Premium" name="tipoClienteP" value="Premium">

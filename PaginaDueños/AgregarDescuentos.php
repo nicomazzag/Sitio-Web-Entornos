@@ -1,3 +1,6 @@
+<?php 
+    include("../Include/Sesion.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
     <title>Agregar Descuentos</title>
 </head>
 <body id="bodyAgregar">
-    <form>
+    <form class="agregarDescuentoForm">
         <fieldset>
             <legend>Agregar Descuentos</legend>
             <label for="Usuario">Tipo de Usuario:</label>

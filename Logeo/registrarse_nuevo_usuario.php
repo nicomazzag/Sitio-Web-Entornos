@@ -74,11 +74,11 @@
             </div>
                 <div class="conteiner">
                     <div class="box">
-                        <input  class="form-check-input" type="radio" id="Dueño" name="rol" value="Dueño" required> 
+                        <input  class="form-check-input" type="radio" id="Dueño" name="rol" value="dueño" required> 
                         <label class="form-check-label" for="Dueño">Dueño</label>
                     </div>
                     <div class="box">
-                        <input class="form-check-input" type="radio" id="Usuario" name="rol" value="Usuario" required > 
+                        <input class="form-check-input" type="radio" id="Usuario" name="rol" value="usuario" required > 
                         <label class="form-check-label" for="Usuario">Usuario</label>
                     </div>
                 </div>
@@ -100,9 +100,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Filtrar la entrada del formulario
     $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL); 
     $contra = filter_input(INPUT_POST, 'contraseña', FILTER_SANITIZE_STRING);
+    $tipo = isset($_POST['rol']) ? filter_input(INPUT_POST, 'rol', FILTER_SANITIZE_STRING) : null;
 
     // Validar que no estén vacíos los campos
-    if(empty($usuario) || empty($contra)) {
+    if(empty($usuario) || empty($contra) || empty($tipo)) {
         header("Location: ".$_SERVER['PHP_SELF']."?registro=faltante");
         exit();
     } 
@@ -112,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(mysqli_num_rows($resultado) > 0) {
         while($fila = mysqli_fetch_assoc($resultado)) {
-            if($fila['usuario'] == $usuario && (password_verify($contra, $fila['contraseña']))) {
+            if($fila['usuario'] == $usuario) {
                 header("Location: ".$_SERVER['PHP_SELF']."?registro=error");
                 exit();
             }
@@ -120,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (!$registro_exitoso) {
         $hash = password_hash($contra, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
+        $sql = "INSERT INTO registracion (usuario, contraseña, tipoUsuario) VALUES ('$usuario', '$hash', '$tipo')";
         mysqli_query($conn, $sql);
         header("Location: ".$_SERVER['PHP_SELF']."?registro=exito"); 
         exit();  
