@@ -101,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL); 
     $contra = filter_input(INPUT_POST, 'contraseña', FILTER_SANITIZE_STRING);
     $tipo = isset($_POST['rol']) ? filter_input(INPUT_POST, 'rol', FILTER_SANITIZE_STRING) : null;
+    
 
     // Validar que no estén vacíos los campos
     if(empty($usuario) || empty($contra) || empty($tipo)) {
@@ -120,8 +121,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         };
     }
     if (!$registro_exitoso) {
+        if ($tipo == 'dueño') {
+            $tipoCliente = -1;
+        } else {
+            //Asignando cliente del tipo inicial
+            $tipoCliente = 0;
+        }
         $hash = password_hash($contra, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO registracion (usuario, contraseña, tipoUsuario) VALUES ('$usuario', '$hash', '$tipo')";
+        $sql = "INSERT INTO registracion (usuario, contraseña, tipoUsuario, tipoCliente) VALUES ('$usuario', '$hash', '$tipo', '$tipoCliente')";
         mysqli_query($conn, $sql);
         header("Location: ".$_SERVER['PHP_SELF']."?registro=exito"); 
         exit();  
