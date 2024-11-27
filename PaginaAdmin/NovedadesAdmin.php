@@ -65,9 +65,9 @@
               <td class="text-center"><?php echo $fila['tipoCliente']?></td>
               <td>
                 <form action="EditarNovedades.php" method="get">
-                  <button id="botonLapiz" class="btn" type="submit" name= "editar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-pencil-alt "></i> Editar</button></td>
+                  <button id="botonLapiz" class="btn" type="submit" name= "editar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-pencil-alt "></i> Editar</button>
                 </form>
-              <td> 
+              </td> 
               <?php 
               if($fila['estado'] == 1){?>
                 <td>
