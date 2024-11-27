@@ -37,7 +37,7 @@
     ?>
     <div class="conteiner">
         <div class="contenedor1">
-            <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> /Promociones</p>
+            <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> / Promociones</p>
             <h1 id="titulo">Nuestras Promociones</h1>
         </div>
         <nav class="navbar bg-body-tertiary">
@@ -62,151 +62,85 @@
     <div class="contenedorEspecial">
         <div class="conteiner numero2"> 
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
+                <!-- Abrir base de datos -->
+                <?php
+                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
                     
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
+                    // Obtener el ID del cliente y la categoría 
+                    $cliente_cod = '3'; // Ejemplo!
+                    $sql = "SELECT categoria FROM clientes WHERE cod = $cliente_cod"; //tendremos q conectar a la otra base de datos
+                    $res = $conn->query($sql);
+                    $arr = $res->fetch_assoc();
+                    $categoria_cliente = $arr['categoria'];
+
+                    $dia_actual = date('w');
+                    $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, locales.nombre AS local_nombre FROM promociones 
+                    JOIN locales ON promociones.localid = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
+                    fechaDesde <= CURDATE() AND fechaHasta >= CURDATE()";
+
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '
+                        <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                <h5 class="card-title">' . $row["nombre"] . '</h5>
+                                <p class="card-text">' . $row["descripcion"] . '</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-body-secondary">
+                                        <b> De: ' . $row["local_nombre"] .'</b>
+                                            <button class="botonPromo" aria-label="Solicitar uso promoción" onclick="openModal(' . $row["id"] . ')">
+                                                <i class="fas fa-arrow-right iconoPromo"></i>
+                                            </button>
+                                    </small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
+                            ';
+                        } 
+                    } else { 
+                        echo "No hay promociones disponibles.";
+                        } 
+                    $conn->close();
+                    ?>
             </div>
         </div>
     </div>
-    <div class="contenedorEspecial">
-        <div class="conteiner numero2"> 
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="promoModalLabel">Usar Promoción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    ¿Quieres solicitar esta promocion?
                 </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <form id="promoForm" action="usarPromocion.php" method="post">
+                        <input type="hidden" name="id" id="promoId" value="">
+                        <button type="submit" class="btn btn-success">Aceptar</button>
+                    </form> 
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById('promoId').value = id;
+            var myModal = new bootstrap.Modal(document.getElementById('promoModal'), {});
+            myModal.show();
+        }
+    </script>
+
     <?php 
+        //$conn->close();
         include("../Include/footer.php");
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
