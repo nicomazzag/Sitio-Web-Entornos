@@ -1,3 +1,6 @@
+<?php 
+    include("../Include/Sesion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,8 +70,10 @@
                     include("../BasesDeDatos/BaseDeDatos_Locales.php");
                     
                     // Obtener el ID del cliente y la categoría 
-                    $cliente_cod = '3'; // Ejemplo!
-                    $sql = "SELECT categoria FROM clientes WHERE cod = $cliente_cod"; //tendremos q conectar a la otra base de datos
+                    //$cliente_cod = '3'; // Ejemplo!
+                    $cliente_cod = $_SESSION['cod'];
+
+                    $sql = "SELECT tipoCLiente FROM registracion WHERE codigo = $cliente_cod"; //tendremos q conectar a la otra base de datos
                     $res = $conn->query($sql);
                     $arr = $res->fetch_assoc();
                     $categoria_cliente = $arr['categoria'];
