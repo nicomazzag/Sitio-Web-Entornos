@@ -1,3 +1,6 @@
+<?php 
+    include("../Include/Sesion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -236,10 +239,10 @@
             </div>
             <div class="col-md-9 mt-3">
                 <div class="row">
-                    <!-- Abrir base de datos -->
                     <?php
+                    //<!-- Abrir base de datos -->
                     include("../BasesDeDatos/BaseDeDatos_Locales.php");
-                    $sql = "SELECT nombre, imagen_url, descripcion FROM locales";
+                    $sql = "SELECT id,nombre, imagen_url, descripcion FROM locales";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -253,9 +256,12 @@
                                         <div class="flex-grow-1">
                                             <p class="text-center">' . $row["descripcion"] . '</p> 
                                         </div>
+                                        <form action="detallesLocal.php" method="get">
                                         <div class="text-center mt-3"> 
-                                            <button class="btn btn-primary botonLocales" type="submit">Conocer más</button> 
+                                                <input type="hidden" name="id" value="' . $row["id"] . '">
+                                                <button class="btn btn-primary botonLocales" type="submit" aria-label="Inspeccionar local">Conocer más</button> 
                                         </div> 
+                                        </form>
                                     </div> 
                                 </div> 
                             </div>';

@@ -1,3 +1,6 @@
+<?php 
+    include("../Include/Sesion.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -43,7 +46,8 @@
             
             <?php
                 // Obtener el ID del cliente
-                $cliente_cod = '3'; // Ejemplo!
+                //$cliente_cod = '3'; // Ejemplo!
+                $cliente_cod = $_SESSION['cod'];
 
                 $promocion_id = isset($_POST['id']) ? intval($_POST['id']) : 0;
 
