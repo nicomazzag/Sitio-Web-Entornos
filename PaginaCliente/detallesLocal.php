@@ -36,7 +36,10 @@
 </head>
 <body>
     <?php 
-        include("../Include/header.php");
+        if (!defined('NO_HEADER')) {
+            include "headerClientes.php";
+        }
+
 
         include("../BasesDeDatos/BaseDeDatos_Locales.php");
 
@@ -51,16 +54,23 @@
         if ($result->num_rows > 0) {
             $local = $result->fetch_assoc();
             echo 
-                '<div class="container my-3">
+                '<div class="container mt-3">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 mb-3">
                             <img src="' . $local['imagen_url'] . '" alt="Logo del local ' . $local['nombre'] .'" class="img-fluid">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 mb-3">
                             <h1>' . $local['nombre'] .'</h1>
                             <i> Categoria: ' . $local['rubroLocal'] . '<br>
                                 Ubicacion: ' . $local['ubicacionLocal'] . '</i><br><br>
-                            <p>' . $local['descripcion'] .'</p>
+                            <p>' . $local['descripcion'] .'</p>                            
+                            <div class = "ms-2">
+                                <form action="PrincipalCliente.php #locales" method="get">
+                                    <button class="btn btn-primary">
+                                        Volver
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>';
