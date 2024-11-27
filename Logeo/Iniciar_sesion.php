@@ -1,5 +1,6 @@
 <?php 
     include('BaseDeDatos_Usuario.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,12 +91,22 @@
             } 
             $sql = "SELECT * FROM registracion";
             $resultado= mysqli_query($conn, $sql);
-
+            
             if(mysqli_num_rows($resultado) > 0){
                 while($fila = mysqli_fetch_assoc($resultado)){
                     if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña']))){ 
                         $iniciar=true;
-                        header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
+                        $_SESSION['tipo'] = $fila['tipoUsuario'];
+                        $_SESSION['cod'] = $fila['codigo'];
+                        if($_SESSION['tipo'] == "administrador"){
+                            header("Location: ../PaginaAdmin/PrincipalAdmin.php");
+                        }
+                        elseif($_SESSION['tipo'] == "dueño"){
+                            header("Location: ../PaginaDueños/PrincipalDueños.php");
+                        }
+                        else{
+                            header("Location: ../PaginaCliente/PrincipalCliente.php");
+                        }
                         exit();
                     } 
                 };    
