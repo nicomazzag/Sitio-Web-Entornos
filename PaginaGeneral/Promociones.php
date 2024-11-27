@@ -62,147 +62,38 @@
     <div class="contenedorEspecial">
         <div class="conteiner numero2"> 
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
+                <!-- Abrir base de datos -->
+                <?php
+                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
+                    $sql = "SELECT id, nombre, descripcion, fechaDesde, fechaHasta, categoriaMin FROM promociones";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '
+                        <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                <h5 class="card-title">' . $row["nombre"] . '</h5>
+                                <p class="card-text">' . $row["descripcion"] . '</p>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-body-secondary">
+                                        <b>Actualizado hace 3 minutos</b>
+                                        <form action="../Logeo/Iniciar_sesion.php" method="get">
+                                            <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
+                                        </form>
+                                    </small>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="contenedorEspecial">
-        <div class="conteiner numero2"> 
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card">
-                    
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
+                            ';
+                        } 
+                    } else { 
+                        echo "No hay promociones disponibles.";
+                        } 
+                    $conn->close();
+                    ?>
             </div>
         </div>
     </div>
