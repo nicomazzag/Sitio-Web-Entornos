@@ -1,4 +1,5 @@
 <?php 
+    include("../Include/Sesion.php");
     include('../BasesDeDatos/BaseDeDatos_Admin.php');
 ?>
 <!DOCTYPE html>

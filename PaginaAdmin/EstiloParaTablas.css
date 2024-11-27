@@ -67,6 +67,16 @@
     background-color: #cb5353;
 }
 
+#botonReactivar{
+    transition: transform 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
+}
+
+#botonReactivar:hover {
+    transform: scale(1.1);
+    background-color: #4f7cf7;
+}
+
 #botonLupa{
     transition: transform 0.5s ease-in;
     transition: background-color 0.5s ease-in;

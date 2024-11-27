@@ -1,4 +1,5 @@
 <?php 
+    include("../Include/Sesion.php");
     include('../BasesDeDatos/BaseDeDatos_Admin.php');
 ?>
 <!DOCTYPE html>
@@ -52,6 +53,7 @@
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
+                                    <!-- Ver si el action funciona correctamente -->
                                     <form action="home_Page.php" method="post">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" role="switch" id="Premium" name="tipoClienteP" value="Premium">
@@ -93,6 +95,7 @@
         $tipoClienteP = isset($_POST['tipoClienteP']) ? filter_input(INPUT_POST, 'tipoClienteP', FILTER_SANITIZE_STRING) : null;
         $tipoClienteM = isset($_POST['tipoClienteM']) ? filter_input(INPUT_POST, 'tipoClienteM', FILTER_SANITIZE_STRING) : null;
         $tipoClienteI = isset($_POST['tipoClienteI']) ? filter_input(INPUT_POST, 'tipoClienteI', FILTER_SANITIZE_STRING) : null;
+        $estado = 1;
 
         if(empty($tipoClienteP) && empty($tipoClienteM) && empty($tipoClienteI)){
             echo "
@@ -114,6 +117,16 @@
             });
             </script>";
         }
+        elseif($fechaDesde > $fechaHasta){
+            echo "
+            <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La fecha de inicio no puede ser mayor a la fecha de fin'
+            });
+            </script>";
+        }
         else{
             if(isset($tipoClienteI)){
                 $tipoCliente = "Premium Medium Inicial";
@@ -122,7 +135,7 @@
             }elseif(isset($tipoClienteP)){
                 $tipoCliente = "Premium";
             }
-            $sql = "INSERT INTO novedades (texto, fechaDesde, fechaHasta, tipoCliente) VALUES ('$textoNovedad', '$fechaDesde', '$fechaHasta', '$tipoCliente')";
+            $sql = "INSERT INTO novedades (texto, fechaDesde, fechaHasta, tipoCliente, estado) VALUES ('$textoNovedad', '$fechaDesde', '$fechaHasta', '$tipoCliente', '$estado')";
             if(mysqli_query($conn, $sql)){
                 echo "
                 <script>

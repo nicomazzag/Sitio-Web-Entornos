@@ -1,3 +1,33 @@
+<?php 
+    include("../Include/Sesion.php");
+    include("../BasesDeDatos/BaseDeDatosPromos.php"); // Conexión con la base de datos del uso de las promociones
+    // Conectando con la base de datos de Usuarios
+    $db_server = "localhost";  
+    $user = "root";            
+    $password = "";            
+    $database = "logeo";       // Nombre de la base de datos de los Usuarios 
+
+    // Conectar a la base de datos
+    $connUsuario = mysqli_connect($db_server, $user, $password, $database);
+
+    // Verificar la conexión
+    if (!$connUsuario) {
+        die("Error en la conexión: " . mysqli_connect_error());
+    }
+    // Conectando con la base de datos de Promociones
+    $db_server = "localhost";  
+    $user = "root";            
+    $password = "";            
+    $database = "dueños";       // Nombre de la base de datos de las promociones
+
+    // Conectar a la base de datos
+    $connPromociones = mysqli_connect($db_server, $user, $password, $database);
+
+    // Verificar la conexión
+    if (!$connPromociones) {
+        die("Error en la conexión: " . mysqli_connect_error());
+    }
+?>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,6 +47,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    <!-- Para modificar las alertas y no usar el estilo predeterminado -->
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Solicitudes</title>
 </head>
 <body>
@@ -26,24 +61,108 @@
     <h1 class="text-center" id="Titulos">Solicitudes de Descuentos</h1>  
     <div class="conteiner">
         <table id="sinMargen" class="table">
-            <tbody class="table-group-divider" >
+            <tbody class="table-group-divider">
+                <?php
+                $consulta = "SELECT * FROM usoPromociones WHERE estado = 'enviada'";
+                $resultado = mysqli_query($conn, $consulta);
+                while ($fila = mysqli_fetch_assoc($resultado)) {
+                    $codUsuario = $fila['codCliente'];
+                    $codPromo = $fila['codPromo'];
+                    //Obteniendo el nombre del usuario  
+                    $consultaUsuario = "SELECT usuario FROM registracion WHERE codigo = '$codUsuario'";
+                    $resultadoUsuario = mysqli_query($connUsuario, $consultaUsuario);
+                    $usuario = mysqli_fetch_assoc($resultadoUsuario);
+                    //Obteniendo la descripción de la promoción
+                    $consultaPromo = "SELECT descripcion FROM promociones WHERE id = '$codPromo'";
+                    $resultadoPromo = mysqli_query($connPromociones, $consultaPromo);
+                    $promo = mysqli_fetch_assoc($resultadoPromo);
+                ?>
                 <tr style="text-align: center;">
-                    <td>El usuario quiere adquirir la promocion</td>
-                    <td><a href="#" class="links"><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></a></td>
-                    <td> <a href="#" class="links"><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></a></td>
+                    <td><?php echo $usuario['usuario']?> quiere adquirir <?php echo $promo['descripcion']?></td>
+                    <td>
+                        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
+                            <button id="botonTick" class="btn" type="submit" name="aceptar" value="<?php echo $fila['codCliente'] . '-' . $fila['codPromo'];?>"><i class="fa-regular fa-circle-check"></i> Aceptar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
+                            <button id="botonCesto" class="btn" type="submit" name="rechazar" value="<?php echo $fila['codCliente'] . '-' . $fila['codPromo'];?>"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button>
+                        </form>
+                    </td>
                 </tr>
-                <tr style="text-align: center;">
-                    <td>El usuario quiere adquirir la promocion</td>
-                    <td><a href="#" class="links"><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></a></td>
-                    <td> <a href="#" class="links"><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></a></td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td>El usuario quiere adquirir la promocion</td>
-                    <td><a href="#" class="links"><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></a></td>
-                    <td> <a href="#" class="links"><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></a></td>
-                </tr>
+                <?php }?>
             </tbody>
         </table>
     </div>
 </body>
 </html>
+<?php
+    if (isset($_GET['aceptar'])) {
+        $valorConcatenado = $_GET['aceptar'];
+    
+        list($usuarioEsp, $promoEsp) = explode('-', $valorConcatenado); 
+
+        $estado = "aceptada";
+        $sql = "UPDATE usoPromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
+        if(mysqli_query($conn, $sql)){
+            echo "
+            <script>
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Exito',
+                  text: 'Promoción usada correctamente'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = 'SolicitudesDescuento.php';
+                  }
+              });
+            </script>";
+            mysqli_close($conn);
+          }
+          else{
+            echo "
+            <script>
+            Swal.fire({
+                icon: 'warning',
+                title: 'Advertencia',
+                text: 'Hubo un problema al aceptar la promoción'
+            });
+            </script>";
+          }
+    }
+    if (isset($_GET['rechazar'])) {
+        $valorConcatenado = $_GET['rechazar'];
+    
+        list($usuarioEsp, $promoEsp) = explode('-', $valorConcatenado); 
+
+        $estado = "rechazada";
+        $sql = "UPDATE usoPromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
+        if(mysqli_query($conn, $sql)){
+            echo "
+            <script>
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Exito',
+                  text: 'Promoción rechazada correctamente'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      window.location.href = 'SolicitudesDescuento.php';
+                  }
+              });
+            </script>";
+            mysqli_close($conn);
+        }
+        else{
+        echo "
+        <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Advertencia',
+            text: 'Hubo un problema al rechazar la promoción'
+        });
+        </script>";
+        }
+    }
+    mysqli_close($connUsuario);
+    mysqli_close($connPromociones);
+?>

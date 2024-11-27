@@ -1,5 +1,16 @@
-<head>
+<?php
+if(isset($_POST['cerrarSession'])){
+    session_unset();
+    session_destroy();
+    header("Location: ../Logeo/Iniciar_sesion.php");
+    exit();
+}
+?>
+<header>
     <style>
+            .sinMargen {
+                margin: 0;
+            }
             #botonCerraSesion {
                 margin-left: 5px;
                 background-color: #212529; 
@@ -36,8 +47,6 @@
                 }
             }
     </style>
-</head>
-<header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="PrincipalDueños.php">
@@ -61,11 +70,11 @@
                         <a class="nav-link" href="ReporteDueño.php">Reporte</a>
                     </li>
                 </ul>
-                <a class="nav-link" href="/Logeo/Iniciar_sesion.php">
-                    <button class="btn" id="botonCerraSesion" type="button" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="sinMargen" method="post">
+                    <button class="btn" id="botonCerraSesion" name="cerrarSession" type="submit" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
                     <i class="fas fa-sign-out-alt"></i>
-                </button>
-                </a>
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
