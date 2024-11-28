@@ -110,70 +110,55 @@
         <div class="conteiner numero2"> 
             <div class="row">
                 <h2 class="titulo">No te pierdas de lo mejor!!!</h2>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
+
+                <?php
+                include("../BasesDeDatos/BaseDeDatos_Locales.php");
+                    
+                // Obtener el ID del cliente y la categoría 
+                //$cliente_cod = '3'; // Ejemplo!
+                $cliente_cod = $_SESSION['cod'];
+
+                $sql = "SELECT tipoCliente FROM registracion WHERE codigo = $cliente_cod"; //tendremos q conectar a la otra base de datos
+                $res = $conn->query($sql);
+                $arr = $res->fetch_assoc();
+                $categoria_cliente = $arr['tipoCliente'];
+
+                $dia_actual = date('w');
+                $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, locales.nombre AS local_nombre FROM promociones 
+                JOIN locales ON promociones.localid = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
+                fechaDesde <= CURDATE() AND fechaHasta >= CURDATE()
+                ORDER BY promociones.id DESC LIMIT 4";
+
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '
+                    <div class="col-12 col-sm-6 col-md-3 mt-2">
+                        <div class="card h-100">
+                            <div class="card-body">
+                            <h5 class="card-title">' . $row["nombre"] . '</h5>
+                            <p class="card-text">' . $row["descripcion"] . '</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">
+                                    <b> De: ' . $row["local_nombre"] .'</b>
+                                        <form action="Promociones.php" method=get>
+                                            <button class="botonPromo" aria-label="Ir a promociones">
+                                                <i class="fas fa-arrow-right iconoPromo"></i>
+                                            </button>
+                                        </form>
+                                </small>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mt-2">
-                    <div class="card h-100">
-                        <div class="card-body">
-                          <h5 class="card-title">Promoción xxx</h5>
-                          <p class="card-text">Descripción breve de la promoción</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-body-secondary">
-                                <b>Actualizado hace 3 minutos</b>
-                                <form action="..." method="get">
-                                    <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
-                                </form>
-                            </small>
-                        </div>
-                    </div>
-                </div>
+                        ';
+                    } 
+                } else { 
+                    echo "Error en mostrar las promociones.";
+                    } 
+                $conn->close();
+                ?>
             </div>
         </div>
     </div>
