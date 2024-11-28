@@ -31,46 +31,54 @@
         }
     </style>
 </head>
-<body>
-    <?php 
-        include("../Include/header.php");
-    ?>
-    <div class="conteiner">
-        <div class="contenedor1">
-            <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> /Promociones</p>
-            <h1 id="titulo">Nuestras Promociones</h1>
-        </div>
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid posicionar  mt-3 mb-3">
-                <form id="agrandar" class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar por nombre o código del local" aria-label="Buscar">
-                    <button id="espaciar" class="btn btn-outline-primary" type="submit">Search</button>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filtrar por
-                        </button>
-                      <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Premium</a></li>
-                            <li><a class="dropdown-item" href="#">Medium</a></li>
-                            <li><a class="dropdown-item" href="#">Inicial</a></li>
-                      </ul>
-                    </div>
-                </form>
-            </div>
-        </nav>
-    </div>
-    <div class="contenedorEspecial">
-        <div class="conteiner numero2"> 
-            <div class="row">
-                <!-- Abrir base de datos -->
-                <?php
-                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
-                    $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
-                    JOIN locales ON promociones.localid = locales.id";
-                    $result = $conn->query($sql);
+    <body>
+        <?php 
+            include("../Include/header.php");
 
+            include("../BasesDeDatos/BaseDeDatos_Locales.php");
+
+        // Obtener el id del local desde la URL
+        $local_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+        if ($local_id > 0) {
+            // Consultar los detalles del local
+            $sql = "SELECT nombre, descripcion, imagen_url, rubroLocal, ubicacionLocal FROM locales WHERE id = " . $local_id;
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $local = $result->fetch_assoc();
+                echo 
+                    '<div class="container mt-3">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <img src="' . $local['imagen_url'] . '" alt="Logo del local ' . $local['nombre'] .'" class="img-fluid">
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <h1>' . $local['nombre'] .'</h1>
+                                <i> Categoria: ' . $local['rubroLocal'] . '<br>
+                                    Ubicacion: ' . $local['ubicacionLocal'] . '</i><br><br>
+                                <p>' . $local['descripcion'] .'</p>
+                                <div class = "ms-2">
+                                    <form action="home_Page.php#locales" method="get">
+                                        <button class="btn btn-primary">
+                                            Volver
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div class="container mb-3">
+                <div class="row">';
+                
+                include("../BasesDeDatos/BaseDeDatos_Locales.php");
+                $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
+                JOIN locales ON promociones.localid = locales.id WHERE locales.id = $local_id";
+
+                $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
+
                             switch ($row['categoriaMin']) {
                                 case '0':
                                     $cat = 'Inicial';
@@ -82,6 +90,7 @@
                                     $cat = 'Premium';
                                     break;                        
                             }
+
                             echo '
                         <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
                             <div class="card h-100">
@@ -94,7 +103,7 @@
                                     <small class="text-body-secondary">
                                         <b> De: ' . $row["local_nombre"] .'</b>
                                         <form action="../Logeo/Iniciar_sesion.php" method="get">
-                                            <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
+                                            <button class="botonPromo" aria-label="Inspeccionar promocion"><i class="fas fa-arrow-right iconoPromo"></i></button>
                                         </form>
                                     </small>
                                 </div>
@@ -103,16 +112,23 @@
                             ';
                         } 
                     } else { 
-                        echo "No hay promociones disponibles.";
-                        } 
-                    $conn->close();
-                    ?>
-            </div>
-        </div>
-    </div>
-    <?php 
+                        echo "No hay promociones disponibles para este local.";
+                        } ;
+                echo '  </div>
+                    </div>';
+                    
+            } else {
+                echo "Local no encontrado.";
+            }
+
+        } else {
+            echo "ID de local no válido.";
+        }
+
+        $conn->close();
+        
         include("../Include/footer.php");
-    ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+        ?>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
 </html>
