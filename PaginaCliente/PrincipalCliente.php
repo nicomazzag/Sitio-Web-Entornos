@@ -124,7 +124,7 @@
                 $categoria_cliente = $arr['tipoCliente'];
 
                 $dia_actual = date('w');
-                $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, locales.nombre AS local_nombre FROM promociones 
+                $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
                 JOIN locales ON promociones.localid = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                 fechaDesde <= CURDATE() AND fechaHasta >= CURDATE()
                 ORDER BY promociones.id DESC LIMIT 4";
@@ -133,11 +133,23 @@
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        switch ($row['categoriaMin']) {
+                            case '0':
+                                $cat = 'Inicial';
+                                break;
+                            case '1':
+                                $cat = 'Medium';
+                                break;
+                            case '2':
+                                $cat = 'Premium';
+                                break;                        
+                        }
                         echo '
                     <div class="col-12 col-sm-6 col-md-3 mt-2">
                         <div class="card h-100">
                             <div class="card-body">
                             <h5 class="card-title">' . $row["nombre"] . '</h5>
+                            <strong><i>'. $cat . '</i></strong>
                             <p class="card-text">' . $row["descripcion"] . '</p>
                             </div>
                             <div class="card-footer">
