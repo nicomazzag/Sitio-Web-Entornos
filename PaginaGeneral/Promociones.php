@@ -65,7 +65,8 @@
                 <!-- Abrir base de datos -->
                 <?php
                     include("../BasesDeDatos/BaseDeDatos_Locales.php");
-                    $sql = "SELECT id, nombre, descripcion, fechaDesde, fechaHasta, categoriaMin FROM promociones";
+                    $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, locales.nombre AS local_nombre FROM promociones 
+                    JOIN locales ON promociones.localid = locales.id";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -79,7 +80,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-body-secondary">
-                                        <b>Actualizado hace 3 minutos</b>
+                                        <b> De: ' . $row["local_nombre"] .'</b>
                                         <form action="../Logeo/Iniciar_sesion.php" method="get">
                                             <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
                                         </form>
