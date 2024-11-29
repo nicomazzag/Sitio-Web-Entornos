@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
-    <title>Promociones</title>
+    <title>Detalles de Local</title>
     <style>
         /*Hoja de estilo del footer(En caso de usar el footer en otras paginas (agregar los estilos en la hoja de estilos correspondiente)*/
         .text-white a {
@@ -36,41 +36,47 @@
 </head>
 <body>
     <?php 
-        include("headerClientes.php");
-    ?>
-    <div class="conteiner">
-        <div class="contenedor1">
-            <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> / Promociones</p>
-            <h1 id="titulo">Nuestras Promociones</h1>
-        </div>
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid posicionar  mt-3 mb-3">
-                <form id="agrandar" class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar por nombre o código del local" aria-label="Buscar">
-                    <button id="espaciar" class="btn btn-outline-primary" type="submit">Search</button>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filtrar por
-                        </button>
-                      <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Premium</a></li>
-                            <li><a class="dropdown-item" href="#">Medium</a></li>
-                            <li><a class="dropdown-item" href="#">Inicial</a></li>
-                      </ul>
+        if (!defined('NO_HEADER')) {
+            include "headerClientes.php";
+        }
+
+
+        include("../BasesDeDatos/BaseDeDatos_Locales.php");
+
+    // Obtener el id del local desde la URL
+    $local_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+    if ($local_id > 0) {
+        // Consultar los detalles del local
+        $sql = "SELECT nombre, descripcion, imagen_url, rubroLocal, ubicacionLocal FROM locales WHERE id = " . $local_id;
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $local = $result->fetch_assoc();
+            echo 
+                '<div class="container mt-3">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <img src="' . $local['imagen_url'] . '" alt="Logo del local ' . $local['nombre'] .'" class="img-fluid">
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <h1>' . $local['nombre'] .'</h1>
+                            <i> Categoria: ' . $local['rubroLocal'] . '<br>
+                                Ubicacion: ' . $local['ubicacionLocal'] . '</i><br><br>
+                            <p>' . $local['descripcion'] .'</p>                            
+                            <div class = "ms-2">
+                                <form action="PrincipalCliente.php #locales" method="get">
+                                    <button class="btn btn-primary">
+                                        Volver
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
-        </nav>
-    </div>
-    <div class="contenedorEspecial">
-        <div class="conteiner numero2"> 
-            <div class="row">
-                <!-- Abrir base de datos -->
-                <?php
-                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
-                    
-                    // Obtener el ID del cliente y la categoría 
-                    //$cliente_cod = '3'; // Ejemplo!
+                </div>
+            <div class="container mb-3">
+                <div class="row">';
+                
                     $cliente_cod = $_SESSION['cod'];
 
                     $sql = "SELECT tipoCliente FROM registracion WHERE codigo = $cliente_cod"; //tendremos q conectar a la otra base de datos
@@ -81,7 +87,7 @@
                     $dia_actual = date('w');
                     $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
                     JOIN locales ON promociones.localid = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
-                    fechaDesde <= CURDATE() AND fechaHasta >= CURDATE()";
+                    fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND locales.id = $local_id";
 
                     $result = $conn->query($sql);
 
@@ -121,13 +127,21 @@
                             ';
                         } 
                     } else { 
-                        echo "No hay promociones disponibles.";
-                        } 
-                    $conn->close();
-                    ?>
-            </div>
-        </div>
-    </div>
+                        echo "No hay promociones disponibles para este local.";
+                        } ;
+                echo '  </div>
+                    </div>';
+                
+        } else {
+            echo "Local no encontrado.";
+        }
+
+    } else {
+        echo "ID de local no válido.";
+    }
+
+    $conn->close();
+    ?>
     <!-- Modal -->
     <div class="modal fade" id="promoModal" tabindex="-1" aria-labelledby="promoModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -158,10 +172,9 @@
         }
     </script>
 
-    <?php 
-        //$conn->close();
-        include("../Include/footer.php");
-    ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <?php 
+            include("../Include/footer.php");
+        ?>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

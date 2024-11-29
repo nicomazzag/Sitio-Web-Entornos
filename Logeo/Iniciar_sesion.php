@@ -97,6 +97,7 @@
                     if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña']))){ 
                         $iniciar=true;
                         $_SESSION['tipo'] = $fila['tipoUsuario'];
+                        $_SESSION['cod'] = $fila['codigo'];
                         if($_SESSION['tipo'] == "administrador"){
                             header("Location: ../PaginaAdmin/PrincipalAdmin.php");
                         }

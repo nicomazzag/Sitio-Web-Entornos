@@ -65,34 +65,21 @@
                 <!-- Abrir base de datos -->
                 <?php
                     include("../BasesDeDatos/BaseDeDatos_Locales.php");
-                    $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
-                    JOIN locales ON promociones.localid = locales.id";
+                    $sql = "SELECT id, nombre, descripcion, fechaDesde, fechaHasta, categoriaMin FROM promociones";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            switch ($row['categoriaMin']) {
-                                case '0':
-                                    $cat = 'Inicial';
-                                    break;
-                                case '1':
-                                    $cat = 'Medium';
-                                    break;
-                                case '2':
-                                    $cat = 'Premium';
-                                    break;                        
-                            }
                             echo '
                         <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
                             <div class="card h-100">
                                 <div class="card-body">
                                 <h5 class="card-title">' . $row["nombre"] . '</h5>
-                                <strong><i>'. $cat . '</i></strong>
                                 <p class="card-text">' . $row["descripcion"] . '</p>
                                 </div>
                                 <div class="card-footer">
                                     <small class="text-body-secondary">
-                                        <b> De: ' . $row["local_nombre"] .'</b>
+                                        <b>Actualizado hace 3 minutos</b>
                                         <form action="../Logeo/Iniciar_sesion.php" method="get">
                                             <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
                                         </form>
