@@ -1,5 +1,5 @@
 <?php 
-    include('BaseDeDatos_Usuario.php');
+    include('../BasesDeDatos/UnicaBaseDeDatos.php');
     session_start();
 ?>
 <!DOCTYPE html>
@@ -51,9 +51,21 @@
                         <span class="form_line"></span>
                     </div>    
                     <div class="form_grupo">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="logito1" viewBox="0 0 16 16" aria-hidden="true">
-                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
-                        </svg>
+                    <img src="../Imagenes/Ocultar.png" class="logitoOjo" id="togglePassword" alt="Mostrar contraseña" title="Mostrar contraseña">
+                </svg>  
+                    <!-- Efecto de mostrar y ocultar contraseña -->
+                <script>
+                    document.getElementById('togglePassword').addEventListener('click', function () {
+                    const passwordField = document.getElementById('contraseña');
+                    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordField.setAttribute('type', type);
+                    if (type === 'text') {
+                                this.src = '../Imagenes/Mostrar.png'
+                    } else {
+                            this.src = '../Imagenes/Ocultar.png'
+                            }
+                    });
+                </script> 
                         <input type="password"  name="contraseña" id="contraseña" class="form_input" placeholder=" " class="form_input">
                         <label for="contra" class="form_label">Contraseña:</label>
                         <span class="form_line"></span>
