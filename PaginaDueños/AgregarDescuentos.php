@@ -1,5 +1,5 @@
 <?php 
-    include("../Logeo/BaseDeDatos_Usuario.php");
+    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,31 +23,34 @@
 <body id="bodyAgregar">
     <form class="agregarDescuentoForm" action="<?php htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
         <fieldset>
+            <label for="nombre">Nombre de Promocion:</label>
+            <input type="text" id="nombre" name="nombre" required>
             <legend>Agregar Descuentos</legend>
-            <label for="Usuario">Tipo de Usuario:</label>
-            <select class="form-select" aria-label=" Default select example">
-                <option selected >Seleccione una opción</option>
-                <option value="Inicial" name="Inicial">Inicial</option>
-                <option value="Medium" name="Medium" >Medium</option>
-                <option value="Premium" name="Premium">Premium</option>
+            <label for="TipoUsuario">Tipo de Usuario:</label>
+            <select class="form-select" name="TipoUsuario" aria-label=" Default select example">
+                <option value="Inicial">Inicial</option>
+                <option value="Medium">Medium</option>
+                <option value="Premium">Premium</option>
             </select>
             <label for="SusLocales">Sus Locales:</label>
-            <select class="form-select" aria-label=" Default select example">
-                <option selected >Seleccione un local</option>
-                <option value="Nike" name="Nike">Nike</option>
-                <option value="Adidas" name="Adidas">Adidas</option>
-                <option value="Puma" name="Puma">Puma</option>
+            <select class="form-select" name="Suslocales" aria-label=" Default select example">
+                <?php 
+                    $consulta = "SELECT * FROM locales";
+                    $resultado = mysqli_query($conn, $consulta);
+                    while ($fila = mysqli_fetch_assoc($resultado)) {
+                        echo '<option value="'.$fila['nombre'].'">'.$fila['nombre'].'</option>';
+                    } ?>
             </select>
             <div class="select-checkbox">
                 <label for="DiasDisponibles">Días Disponibles:</label>
                 <div class="checkbox-list">
-                    <label for="Lunes"><input type="checkbox" name="DiasDisponibles[]" value="Lunes"> Lunes</label>
-                    <label for="Martes"><input type="checkbox" name="DiasDisponibles[]" value="Martes"> Martes</label>
-                    <label for="Miercoles"><input type="checkbox" name="DiasDisponibles[]" value="Miercoles"> Miércoles</label>
-                    <label for="Jueves"><input type="checkbox" name="DiasDisponibles[]" value="Jueves"> Jueves</label>
-                    <label for="Viernes"><input type="checkbox" name="DiasDisponibles[]" value="Viernes"> Viernes</label>
-                    <label for="Sabado"><input type="checkbox" name="DiasDisponibles[]" value="Sabado"> Sábado</label>
-                    <label for="Domingo"><input type="checkbox" name="DiasDisponibles[]" value="Domingo"> Domingo</label>
+                    <label for="Lunes"><input type="checkbox" name="DiasDisponibles[]" value="Lunes" id="Lunes"> Lunes</label>
+                    <label for="Martes"><input type="checkbox" name="DiasDisponibles[]" value="Martes" id="Martes"> Martes</label>
+                    <label for="Miercoles"><input type="checkbox" name="DiasDisponibles[]" value="Miercoles" id="Miercoles"> Miércoles</label>
+                    <label for="Jueves"><input type="checkbox" name="DiasDisponibles[]" value="Jueves" id="Jueves"> Jueves</label>
+                    <label for="Viernes"><input type="checkbox" name="DiasDisponibles[]" value="Viernes" id="Viernes" > Viernes</label>
+                    <label for="Sabado"><input type="checkbox" name="DiasDisponibles[]" value="Sabado" id="Sabado"> Sábado</label>
+                    <label for="Domingo"><input type="checkbox" name="DiasDisponibles[]" value="Domingo" id="Domingo"> Domingo</label>
                 </div>
             </div>
             <label for="FechaDesde">Fecha Desde:</label>
@@ -69,88 +72,68 @@
 </html>
 
 <?php
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $CategoriaUsuario = '';
-        $falta=true;
-            if(isset($_POST['Inicial'])){
-                $CategoriaUsuario = 'Inicial';
-            }
-            elseif(isset($_POST['Medium'])){
-                $CategoriaUsuario = 'Medium';
-            }
-            elseif(isset($_POST['Premium'])){
-                $CategoriaUsuario = 'Premium';
-            }
-            else {
-                $falta = false; 
-            }
-        
-        $susLocales = '';
-        if(isset($_POST['Nike'])){
-            $susLocales = 'Nike';
-        }elseif(isset($_POST['Adidas'])){
-            $susLocales = 'Adidas'; 
-        }elseif(isset($_POST['Puma'])){
-            $susLocales = 'Puma';
-        }else {
-            $falta = false;
-        }
-
-        $diasDisponibles = '';
-        if(isset($_POST['DiasDisponibles']) && is_array($_POST['DiasDisponibles'])){
-            $diasDisponibles = implode(',', $_POST['DiasDisponibles']);
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+        $descricpcion = filter_input(INPUT_POST, 'Descripcion', FILTER_SANITIZE_STRING);
+        $inicial = filter_input(INPUT_POST, 'TipoUsuario', FILTER_SANITIZE_STRING);
+        $medium = filter_input(INPUT_POST, 'TipoUsuario', FILTER_SANITIZE_STRING);
+        $premium = filter_input(INPUT_POST, 'TipoUsuario', FILTER_SANITIZE_STRING);
+        $local = filter_input(INPUT_POST, 'Suslocales', FILTER_SANITIZE_STRING);
+        $categoria = "";
+        if($inicial != null){
+            $categoria = $inicial;
+        } elseif($medium != null){
+            $categoria = $medium;
+        } elseif($premium != null){
+            $categoria = $premium;
         } else {
-            $falta = false;
+            echo '<script>
+            Swal.fire({
+                title: "Error al crear el descuento",
+                text: "Debe seleccionar un tipo de usuario",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            </script>';
         }
-
-        $fechaDesde = '';
-        $fechaHasta = '';
-        if(isset($_POST['FechaDesde']) && isset($_POST['FechaHasta'])){
-            $fechaDesde = $_POST['FechaDesde'];
-            $fechaHasta = $_POST['FechaHasta'];
-        } else {
-            $falta = false;
+        if($local == null){
+            echo '<script>
+            Swal.fire({
+                title: "Error al crear el descuento",
+                text: "Debe seleccionar un local",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            </script>';
         }
-        
-        $descripcion = '';
-        if(isset($_POST['Descripcion'])){
-            $descripcion = $_POST['Descripcion'];
-        } else {
-            $falta = false;
+        $fechaDesde = filter_input(INPUT_POST, 'FechaDesde', FILTER_SANITIZE_STRING);
+        $fechaHasta = filter_input(INPUT_POST, 'FechaHasta', FILTER_SANITIZE_STRING);
+        $estado = "pendiente";
+        $diasDisponibles= $_POST['DiasDisponibles'];
+        $dias = "";    
+        foreach ($diasDisponibles as $dia) {
+            $dias .= $dia . " ";
         }
-        if($falta){
-            $sql = "INSERT INTO promociones (descripcion, categoriaMin, diasValidos, fechaDesde, fechaHasta, localid, estado) VALUES ('$descripcion', '$CategoriaUsuario', '$diasDisponibles', '$fechaDesde', '$fechaHasta', '$susLocales', 'Pendiente')";
-
-                if(mysqli_query($conn, $sql)){
-                echo "
-                    <script>
-                    Swal.fire({
-                    icon: 'success',
-                    title: 'Exito',
-                    text: 'Descuento creado correctamente'
-                        });
-                    </script>";
-                } else {
-                    echo "
-                    <script>
-                    Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Error al crear el descuento'
-                        });
-                    </script>";
-                }
-        } else {
-            echo "
-                <script>
+            $sql = "INSERT INTO promociones (nombre,descripcion, categoriaMin, diasValidos, fechaDesde, fechaHasta, localid ,estado) VALUES ('$nombre','$descricpcion', '$categoria' , '$dias', '$fechaDesde', '$fechaHasta','$local', '$estado')"; 
+            if ($conn->query($sql) === TRUE) {
+                echo '<script>
                 Swal.fire({
-                    icon: 'warning',
-                    title: 'Advertencia', 
-                    text: 'Debe completar todos los campos'
-                    });
-                </script>";
-            } 
-}
-    
+                    title: "Descuento creado",
+                    text: "El descuento se ha creado correctamente",
+                    icon: "success",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            } else {
+                echo '<script>
+                Swal.fire({
+                    title: "Error al crear el descuento",
+                    text: "Ha ocurrido un error al crear el descuento",
+                    icon: "error",
+                    confirmButtonText: "Aceptar"
+                });
+                </script>';
+            }
+        } 
     mysqli_close($conn);
 ?>
