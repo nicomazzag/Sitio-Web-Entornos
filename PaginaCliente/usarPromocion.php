@@ -1,5 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
+    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,10 +53,6 @@
                 $promocion_id = isset($_POST['id']) ? intval($_POST['id']) : 0;
 
                 if ($promocion_id > 0) {
-
-                    //<!-- Abrir base de datos -->
-                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
-
                     $sql= "SELECT nombre FROM promociones WHERE id=$promocion_id";
                     $res = $conn->query($sql);
                     $prom = $res->fetch_assoc();

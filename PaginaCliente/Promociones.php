@@ -1,5 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
+    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,7 +41,7 @@
     ?>
     <div class="conteiner">
         <div class="contenedor1">
-            <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> / Promociones</p>
+            <p id="Home"><a id="linkHome" href="PrincipalCliente.php">Principal</a> / Promociones</p>
             <h1 id="titulo">Nuestras Promociones</h1>
         </div>
         <nav class="navbar bg-body-tertiary">
@@ -66,9 +67,7 @@
         <div class="conteiner numero2"> 
             <div class="row">
                 <!-- Abrir base de datos -->
-                <?php
-                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
-                    
+                <?php                    
                     // Obtener el ID del cliente y la categoría 
                     //$cliente_cod = '3'; // Ejemplo!
                     $cliente_cod = $_SESSION['cod'];

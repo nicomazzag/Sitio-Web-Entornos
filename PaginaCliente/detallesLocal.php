@@ -1,5 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
+    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,9 +40,6 @@
         if (!defined('NO_HEADER')) {
             include "headerClientes.php";
         }
-
-
-        include("../BasesDeDatos/BaseDeDatos_Locales.php");
 
     // Obtener el id del local desde la URL
     $local_id = isset($_GET['id']) ? intval($_GET['id']) : 0;

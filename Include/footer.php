@@ -67,7 +67,7 @@
             </div>
             <div class="container text-center text-white" style="margin-top: 5px;">
                 <hr class="separator" style="border: 1px solid white; width: 95%; margin: 0 auto;">
-                <p>Copyright © 2024 (nombre del shooping). Todos los derechos reservados.</p>
+                <p>Copyright © 2024 Zorzal. Todos los derechos reservados.</p>
             </div>
         </div>
     </div>

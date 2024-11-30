@@ -1,5 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
+    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -111,9 +112,7 @@
             <div class="row">
                 <h2 class="titulo">No te pierdas de lo mejor!!!</h2>
 
-                <?php
-                include("../BasesDeDatos/BaseDeDatos_Locales.php");
-                    
+                <?php                    
                 // Obtener el ID del cliente y la categoría 
                 //$cliente_cod = '3'; // Ejemplo!
                 $cliente_cod = $_SESSION['cod'];
@@ -169,7 +168,6 @@
                 } else { 
                     echo "Error en mostrar las promociones.";
                     } 
-                $conn->close();
                 ?>
             </div>
         </div>
@@ -237,8 +235,6 @@
             <div class="col-md-9 mt-3">
                 <div class="row">
                     <?php
-                    //<!-- Abrir base de datos -->
-                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
                     $sql = "SELECT id,nombre, imagen_url, descripcion FROM locales";
                     $result = $conn->query($sql);
 

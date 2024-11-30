@@ -37,7 +37,7 @@
 </head>
 <body>
     <?php 
-        include("../Include/header.php");
+        include("headerClientes.php");
     ?>
     <div class="contenedor1">
         <p id="Home"><a id="linkHome" href="PrincipalCliente.php">Principal</a> /Novedades</p>
