@@ -98,6 +98,7 @@
                         $iniciar=true;
                         $_SESSION['tipo'] = $fila['tipoUsuario'];
                         $_SESSION['cod'] = $fila['codigo'];
+                        $_SESSION['categoria'] = $fila['tipoCliente'];
                         if($_SESSION['tipo'] == "administrador"){
                             header("Location: ../PaginaAdmin/PrincipalAdmin.php");
                         }

@@ -1,3 +1,7 @@
+<?php
+  include("../Include/Sesion.php");
+  include('../BasesDeDatos/UnicaBaseDeDatos.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -33,70 +37,47 @@
 </head>
 <body>
     <?php 
-        include("headerClientes.php");
+        include("../Include/header.php");
     ?>
     <div class="contenedor1">
-        <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> /Novedades</p>
+        <p id="Home"><a id="linkHome" href="PrincipalCliente.php">Principal</a> /Novedades</p>
         <h1 id="titulo">Novedades</h1>
     </div>
-    <div class="contenedor2">
+    <div class="conteiner contenedor2">
         <div class="row">
+        <?php //El while dentro de el div row para que no se cree 1 columna nueva por cada iteración del while
+            if($_SESSION['categoria'] == 0){
+                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial'";
+            }elseif($_SESSION['categoria'] == 1){
+                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium'";
+            }elseif($_SESSION['categoria'] == 2){
+                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium' OR tipoCliente = 'Premium'";
+            }
+            $resultado = mysqli_query($conn, $consulta);
+
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                $fechaHasta = new DateTime($fila['fechaHasta']);
+                $fechaActual = new DateTime();
+                $intervalo = $fechaHasta->diff($fechaActual);
+                $tiempoRestante = $intervalo->days;
+        ?> 
             <div class="col-12 col-md-6">
                 <div class="tarjeta">
-                    <h3 class="subTitulo">Novedad XXX</h3>
+                    <h3 class="subTitulo"><?php echo htmlspecialchars($fila['texto']); ?></h3>
                     <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha desde:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
+                        <p class="inicioEnunciado">Estreno:&nbsp;</p><p class="valorEnunciado"><?php echo htmlspecialchars($fila['fechaDesde']); ?></p>
                     </div>
                     <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha Hasta:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
+                        <p class="inicioEnunciado">Finalización:&nbsp;</p><p class="valorEnunciado"><?php echo htmlspecialchars($fila['fechaHasta']); ?></p>
                     </div>
                     <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Categoria de cliente:&nbsp;</p><p class="valorEnunciado">Inicial-Medium-Premium</p>
+                        <p class="inicioEnunciado">Duración restante:&nbsp;</p><p class="valorEnunciado"><?php echo htmlspecialchars($tiempoRestante); ?>&nbsp;días</p>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div class="tarjeta">
-                    <h3 class="subTitulo">Novedad XXX</h3>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha desde:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
-                    </div>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha Hasta:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
-                    </div>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Categoria de cliente:&nbsp;</p><p class="valorEnunciado">Inicial-Medium-Premium</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="tarjeta">
-                    <h3 class="subTitulo">Novedad XXX</h3>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha desde:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
-                    </div>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha Hasta:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
-                    </div>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Categoria de cliente:&nbsp;</p><p class="valorEnunciado">Inicial-Medium-Premium</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="tarjeta">
-                    <h3 class="subTitulo">Novedad XXX</h3>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha desde:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
-                    </div>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Fecha Hasta:&nbsp;</p><p class="valorEnunciado">00/00/0000</p>
-                    </div>
-                    <div class="contenedorEnunciado">
-                        <p class="inicioEnunciado">Categoria de cliente:&nbsp;</p><p class="valorEnunciado">Inicial-Medium-Premium</p>
-                    </div>
-                </div>
-            </div>
+        <?php
+            }; //Cerrando while
+        ?>
         </div>
     </div>
     <?php 
@@ -105,4 +86,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-
+<?php mysqli_close($conn);?>
