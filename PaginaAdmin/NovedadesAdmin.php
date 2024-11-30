@@ -1,7 +1,7 @@
 <?php
   include("../Include/Sesion.php");
-  include("../BasesDeDatos/BaseDeDatos_Admin.php");
-?>
+  include('../BasesDeDatos/UnicaBaseDeDatos.php');
+  ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -1,32 +1,32 @@
 <?php 
     include("../Include/Sesion.php");
-    include("../BasesDeDatos/BaseDeDatosPromos.php"); // Conexión con la base de datos del uso de las promociones
+    include("../BasesDeDatos/UnicaBaseDeDatos.php"); 
     // Conectando con la base de datos de Usuarios
-    $db_server = "localhost";  
-    $user = "root";            
-    $password = "";            
-    $database = "logeo";       // Nombre de la base de datos de los Usuarios 
+    // $db_server = "localhost";  
+    // $user = "root";            
+    // $password = "";            
+    // $database = "logeo";       // Nombre de la base de datos de los Usuarios 
 
-    // Conectar a la base de datos
-    $connUsuario = mysqli_connect($db_server, $user, $password, $database);
+    // // Conectar a la base de datos
+    // $connUsuario = mysqli_connect($db_server, $user, $password, $database);
 
-    // Verificar la conexión
-    if (!$connUsuario) {
-        die("Error en la conexión: " . mysqli_connect_error());
-    }
-    // Conectando con la base de datos de Promociones
-    $db_server = "localhost";  
-    $user = "root";            
-    $password = "";            
-    $database = "dueños";       // Nombre de la base de datos de las promociones
+    // // Verificar la conexión
+    // if (!$connUsuario) {
+    //     die("Error en la conexión: " . mysqli_connect_error());
+    // }
+    // // Conectando con la base de datos de Promociones
+    // $db_server = "localhost";  
+    // $user = "root";            
+    // $password = "";            
+    // $database = "dueños";       // Nombre de la base de datos de las promociones
 
-    // Conectar a la base de datos
-    $connPromociones = mysqli_connect($db_server, $user, $password, $database);
+    // // Conectar a la base de datos
+    // $connPromociones = mysqli_connect($db_server, $user, $password, $database);
 
-    // Verificar la conexión
-    if (!$connPromociones) {
-        die("Error en la conexión: " . mysqli_connect_error());
-    }
+    // // Verificar la conexión
+    // if (!$connPromociones) {
+    //     die("Error en la conexión: " . mysqli_connect_error());
+    // }
 ?>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -70,11 +70,11 @@
                     $codPromo = $fila['codPromo'];
                     //Obteniendo el nombre del usuario  
                     $consultaUsuario = "SELECT usuario FROM registracion WHERE codigo = '$codUsuario'";
-                    $resultadoUsuario = mysqli_query($connUsuario, $consultaUsuario);
+                    $resultadoUsuario = mysqli_query($conn, $consultaUsuario);
                     $usuario = mysqli_fetch_assoc($resultadoUsuario);
                     //Obteniendo la descripción de la promoción
                     $consultaPromo = "SELECT descripcion FROM promociones WHERE id = '$codPromo'";
-                    $resultadoPromo = mysqli_query($connPromociones, $consultaPromo);
+                    $resultadoPromo = mysqli_query($conn, $consultaPromo);
                     $promo = mysqli_fetch_assoc($resultadoPromo);
                 ?>
                 <tr style="text-align: center;">
@@ -163,6 +163,6 @@
         </script>";
         }
     }
-    mysqli_close($connUsuario);
-    mysqli_close($connPromociones);
+    // mysqli_close($connUsuario);
+    // mysqli_close($connPromociones);
 ?>

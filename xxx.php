@@ -9,7 +9,7 @@
     <!-- Renombrar esta pagina como index.php en caso de querer que se ejecute desde el servidor de azure -->
     <?php
     // Redirect to another webpage
-    header('Location: PaginaGeneral/home_Page.php');
+    header('Location: Sitio_Web/PaginaGeneral/home_Page.php');
     exit();
     ?>
 </body>
