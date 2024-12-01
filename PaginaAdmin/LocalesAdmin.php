@@ -1,7 +1,6 @@
 <?php 
-    include("../Include/Sesion.php");
-  include("../BasesDeDatos/BaseDeDatos_Admin.php");
-?>
+  include("../Include/Sesion.php");
+  include('../BasesDeDatos/UnicaBaseDeDatos.php');?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -53,30 +52,30 @@
                 <th scope="row" class="text-center">
               <?php 
             if( $fila['estado'] == false){
-              echo "<div style='color: red'>{$fila['codigo']}</div>";
+              echo "<div style='color: red'>{$fila['id']}</div>";
             }else{
-              echo $fila['codigo'];
+              echo $fila['id'];
             }
                 ?></th>
-            <td><?php echo $fila['nombreLocal']?></td>
+            <td><?php echo $fila['nombre']?></td>
             <td><?php echo $fila['ubicacionLocal']?></td>
             <td><?php echo $fila['rubroLocal']?></td>
             <td>
               <form action="EditarLocales.php" method="get">
-                <button id="botonLapiz" class="btn" type="submit" name= "editar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-pencil-alt "></i> Editar</button>
+                <button id="botonLapiz" class="btn" type="submit" name= "editar" value="<?php echo $fila['id'] ?>"> <i class="fas fa-pencil-alt "></i> Editar</button>
               </form>
             </td>
           <?php 
             if($fila['estado'] == 1){?>
           <td>
               <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
-                <button id="botonCesto" class="btn" type="submit" name="eliminar" value="<?php echo $fila['codigo'] ?>"> <i class="fas fa-trash-alt"></i> Eliminar</button>
+                <button id="botonCesto" class="btn" type="submit" name="eliminar" value="<?php echo $fila['id'] ?>"> <i class="fas fa-trash-alt"></i> Eliminar</button>
               </form>              
             </td>
             <?php }else { ?>
             <td> 
               <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
-                <button id="botonReactivar" class="btn" type="submit" name="reactivar" value="<?php echo $fila['codigo'] ?>"> <i class="fa-solid fa-check "></i>  Reactivar</button>
+                <button id="botonReactivar" class="btn" type="submit" name="reactivar" value="<?php echo $fila['id'] ?>"> <i class="fa-solid fa-check "></i>  Reactivar</button>
               </form>
             </td>
             <?php }?>
@@ -95,7 +94,7 @@
   if (isset($_GET['eliminar'])) {
     $eliminar = $_GET['eliminar'];
     $estado = 0;
-    $sql = "UPDATE locales SET estado = '$estado' WHERE codigo = $eliminar";
+    $sql = "UPDATE locales SET estado = '$estado' WHERE id = $eliminar";
     if(mysqli_query($conn, $sql)){
       echo "
       <script>
@@ -125,7 +124,7 @@
   if (isset($_GET['reactivar'])) {
     $reactivar = $_GET['reactivar'];
     $estado = 1;
-    $sql = "UPDATE locales SET estado = '$estado' WHERE codigo = $reactivar";
+    $sql = "UPDATE locales SET estado = '$estado' WHERE id = $reactivar";
     if(mysqli_query($conn, $sql)){
       echo "
       <script>

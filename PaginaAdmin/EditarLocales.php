@@ -1,6 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
-    include('../BasesDeDatos/BaseDeDatos_Admin.php');
+    include('../BasesDeDatos/UnicaBaseDeDatos.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,18 +28,18 @@
         include("headerAdmin.php");
     ?>
     <div class="container">
-    <?php
-            $codigo = $_GET['editar'];
-            $consulta = "SELECT * FROM locales WHERE codigo = $codigo";
+        <?php
+            $id = $_GET['editar'];
+            $consulta = "SELECT * FROM locales WHERE id = $id";
             $resultado = mysqli_query($conn, $consulta);
             $fila = mysqli_fetch_assoc($resultado);
         ?>
-        <h1 class="display-2">Editando Local <?php echo $fila['codigo'] ?></h1>
+        <h1 class="display-2">Editando Local <?php echo $fila['id'] ?></h1>
         <form id="editarLocal" action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
             <div class="row">
                 <div class="form-group col-md-6 mt-2">
                     <label for="nombre">Nombre del local</label>
-                    <input class="form-control" type="text" id="nombre" name="nombreLocal" placeholder="Ingrese el nombre" value="<?php echo $fila['nombreLocal']?>">
+                    <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre" value="<?php echo $fila['nombre']?>">
                 </div>
                 <div class="form-group col-md-6 mt-2">
                     <label for="ubi">Ubicación local</label>
@@ -77,28 +77,28 @@
 
 <?php
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $nombreLocal = filter_input(INPUT_POST, 'nombreLocal', FILTER_SANITIZE_STRING);
+        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
         $ubiLocal = filter_input(INPUT_POST, 'ubiLocal', FILTER_SANITIZE_STRING);
         $rubroLocal = filter_input(INPUT_POST, 'rubroLocal', FILTER_SANITIZE_STRING);
-        $codUsuario = filter_input(INPUT_POST, 'codUsuario', FILTER_SANITIZE_STRING);
+        $codigo = filter_input(INPUT_POST, 'codUsuario', FILTER_SANITIZE_STRING);
         
-        $consultaUsuario = "SELECT * FROM usuarios WHERE codUsuario = $codUsuario AND tipoUsuario = 'dueño de local'";
+        $consultaUsuario = "SELECT * FROM registracion WHERE codigo = $codigo AND tipoUsuario = 'dueño'";
         $resultadoUsuario = mysqli_query($conn, $consultaUsuario);
         
         if(mysqli_num_rows($resultadoUsuario) > 0){  // El código de usuario existe
-                if(!empty($nombreLocal) && $nombreLocal != $fila['nombreLocal'] ){
-                $sql = "UPDATE locales SET nombreLocal = '$nombreLocal' WHERE codigo = $codigo";
+                if(!empty($nombre) && $nombre != $fila['nombre'] ){
+                $sql = "UPDATE locales SET nombre = '$nombre' WHERE id = $id";
                 mysqli_query($conn, $sql);
             }
             if(!empty($ubiLocal) && $ubiLocal != $fila['ubicacionLocal'] ){
-                $sql = "UPDATE locales SET ubicacionLocal = '$ubiLocal' WHERE codigo = $codigo";
+                $sql = "UPDATE locales SET ubicacionLocal = '$ubiLocal' WHERE id = $id";
                 mysqli_query($conn, $sql);
             }
             if(!empty($codUsuario) && $codUsuario != $fila['codUsuario'] ){
-                $sql = "UPDATE locales SET codUsuario = '$codUsuario' WHERE codigo = $codigo";
+                $sql = "UPDATE locales SET codUsuario = '$codUsuario' WHERE id = $id";
                 mysqli_query($conn, $sql);
             }
-            $sql = "UPDATE locales SET rubroLocal = '$rubroLocal' WHERE codigo = $codigo";
+            $sql = "UPDATE locales SET rubroLocal = '$rubroLocal' WHERE id = $id";
                 mysqli_query($conn, $sql);
         
             if(mysqli_query($conn, $sql)){

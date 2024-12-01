@@ -1,5 +1,6 @@
 <?php 
-    include("../Include/Sesion.php");
+  include("../Include/Sesion.php");
+  include('../BasesDeDatos/UnicaBaseDeDatos.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">

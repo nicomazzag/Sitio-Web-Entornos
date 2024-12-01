@@ -129,11 +129,11 @@
         }
         else{
             if(isset($tipoClienteI)){
-                $tipoCliente = "Premium Medium Inicial";
+                $tipoCliente = "inicial";
             }elseif(isset($tipoClienteM)){
-                $tipoCliente = "Premium Medium";
+                $tipoCliente = "medium";
             }elseif(isset($tipoClienteP)){
-                $tipoCliente = "Premium";
+                $tipoCliente = "premium";
             }
             $sql = "INSERT INTO novedades (texto, fechaDesde, fechaHasta, tipoCliente, estado) VALUES ('$textoNovedad', '$fechaDesde', '$fechaHasta', '$tipoCliente', '$estado')";
             if(mysqli_query($conn, $sql)){

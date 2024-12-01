@@ -47,7 +47,7 @@
             </thead>
             <tbody class="table-group-divider">
                 <?php
-                    $consulta = "SELECT * FROM promociones WHERE estado = 'pendiente'";
+                    $consulta = "SELECT * FROM promociones WHERE estadoPromo = 'pendiente'";
                     $resultado = mysqli_query($conn, $consulta);
                     while ($fila = mysqli_fetch_assoc($resultado)) {
                         $consulta2 = "SELECT * FROM registracion WHERE usuario = '".$_SESSION['usuario']."' ";
@@ -65,7 +65,7 @@
                         <td>'. $fila['categoriaMin'] .'</td>
                         <td>                    
                             <form action="'. htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">
-                                <button id="botonTick" type="submit" name="aceptar" value="'.$fila['id'].'"  class="btn"><i class="fa-regular fa-circle-check"></i> Aprobar</button>
+                                <button id="botonTick" type="submit" name="aprobar" value="'.$fila['id'].'"  class="btn"><i class="fa-regular fa-circle-check"></i> Aprobar</button>
                                 <td>
                                     <button id="botonCesto" name="denegada" value="'.$fila['id'].'" type="submit" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button>
                                 </td>
@@ -76,8 +76,8 @@
                 ?>
             </tbody>
                 <?php
-                    if (isset($_POST['aceptar'])) {
-                        $consulta = "UPDATE promociones SET estado = 'aceptada' WHERE id = '".$_POST['aceptar']."'";
+                    if (isset($_POST['aprobar'])) {
+                        $consulta = "UPDATE promociones SET estadoPromo = 'aprobada' WHERE id = '".$_POST['aprobar']."'";
                         $resultado = mysqli_query($conn, $consulta);
                         if ($resultado) {
                             echo '<script>
@@ -103,7 +103,7 @@
                             </script>';
                         }
                     } elseif(isset($_POST['denegada'])) {
-                        $consulta = "UPDATE promociones SET estado = 'denegada' WHERE id = '".$_POST['denegada']."'";
+                        $consulta = "UPDATE promociones SET estadoPromo = 'denegada' WHERE id = '".$_POST['denegada']."'";
                         $resultado = mysqli_query($conn, $consulta);
                         if ($resultado) {
                             echo '<script>

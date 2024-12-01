@@ -1,6 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
-    include('../BasesDeDatos/BaseDeDatos_Admin.php');
+    include('../BasesDeDatos/UnicaBaseDeDatos.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="form-group col-md-6 mt-2">
                     <label for="nombre">Nombre del local</label>
-                    <input class="form-control" type="text" id="nombre" name="nombreLocal" placeholder="Ingrese el nombre del local">
+                    <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre del local">
                 </div>
                 <div class="form-group col-md-6 mt-2">
                     <label for="ubi">Ubicación local</label>
@@ -90,16 +90,14 @@
 </html>
 <?php
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $nombreLocal = filter_input(INPUT_POST, 'nombreLocal', FILTER_SANITIZE_STRING);
+        $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
         $ubicacionLocal = filter_input(INPUT_POST, 'ubicacionLocal', FILTER_SANITIZE_STRING);
         $rubroLocal = filter_input(INPUT_POST, 'rubroLocal', FILTER_SANITIZE_STRING);
         $codUsuario = filter_input(INPUT_POST, 'codUsuario', FILTER_SANITIZE_STRING);
-        $estado = 1;
-        if (isset($_FILES['imagenLocal']) && $_FILES['imagenLocal']['error'] == UPLOAD_ERR_OK) { 
-            $rutaTemporal = $_FILES['imagenLocal']['tmp_name'];
-            $imagenBinaria = addslashes(file_get_contents($rutaTemporal)); // contenido binario de la imagen (BLOB)
-        }
-        if(empty($nombreLocal) || empty($tipoCubicacionLocallienteM) || empty($rubroLocal) || empty($codUsuario) || empty($imagenBinaria)){
+        $imagenLocal = $_FILES['imagenLocal']['name'];
+        $estado = 1; // Estado activo 
+
+        if(empty($nombre) || empty($ubicacionLocal) || empty($rubroLocal) || empty($codUsuario) || empty($imagenLocal)){
             echo "
             <script>
             Swal.fire({
@@ -110,79 +108,56 @@
             </script>";
         }
         else {
-            $consultaUsuario = "SELECT * FROM usuarios WHERE codUsuario = $codUsuario AND tipoUsuario = 'dueño de local'";
-            $resultadoUsuario = mysqli_query($conn, $consultaUsuario);
+
+            $consultaUsuario = "SELECT * FROM registracion WHERE codigo = $codUsuario AND tipoUsuario = 'dueño'";
+            $resultadoUsuario = mysqli_query($conn, $consultaUsuario); // objeto de la consulta
+             // chatgpt imagenes
+
+            $carpetaDestino = "../Imagenes/Locales/";
+
+            // Obtener información de la imagen
+            $rutaTemporal = $_FILES['imagenLocal']['tmp_name'];
+
+            // Generar un nombre único
+            $extension = pathinfo($imagenLocal, PATHINFO_EXTENSION);
+            $nombreUnico = uniqid('img_', true) . '.' . $extension;
+            $rutaDestino = $carpetaDestino . $nombreUnico;
+
+            // Mover la imagen a la carpeta
+            move_uploaded_file($rutaTemporal, $rutaDestino);
+                        
+        
+
+             // fin chatgpt imagenes
+
         
             if(mysqli_num_rows($resultadoUsuario) > 0){  // El código de usuario existe
-                if(empty($nombreLocal)){
+                    $sql = "INSERT INTO locales (nombre, ubicacionLocal, rubroLocal, imagen_url, codUsuario, estado) VALUES ('$nombre', '$ubicacionLocal', '$rubroLocal','$rutaDestino', '$codUsuario', '$estado')";
+                if(mysqli_query($conn, $sql)){
                     echo "
                     <script>
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Debe ingresar un nombre para el local'
-                    });
-                    </script>";
-                }
-                elseif(empty($ubicacionLocal)){
-                    echo "
-                    <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Debe ingresar una ubicación para el local'
-                    });
-                    </script>";
-                }
-                elseif(empty($rubroLocal)){
-                    echo "
-                    <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Debe ingresar un rubro para el local'
-                    });
-                    </script>";
-                }
-                elseif(empty($codUsuario)){
-                    echo "
-                    <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error',
-                        text: 'Debe ingresar un código de usuario para el local'
-                    });
-                    </script>";
-                }
-                else{ 
-                    $sql = "INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, imagen, codUsuario, estado) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal','$imagenBinaria', '$codUsuario', '$estado')";
-                    if(mysqli_query($conn, $sql)){
-                        echo "
-                        <script>
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Exito',
-                            text: 'Local creado correctamente'
-                        }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = 'LocalesAdmin.php';
-                        }
-                        });    
-                        </script>";
-                        mysqli_close($conn);
+                        icon: 'success',
+                        title: 'Exito',
+                        text: 'Local creado correctamente'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'LocalesAdmin.php';
                     }
-                    else{
-                        echo "
-                        <script>
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Advertencia',
-                            text: 'Hubo un problema al crear el local'
-                            });
-                        </script>";
-                    }
+                    });    
+                    </script>";
+                    mysqli_close($conn);
                 }
-                
+                else{
+                    echo "
+                    <script>
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Advertencia',
+                        text: 'Hubo un problema al crear el local'
+                        });
+                    </script>";
+                }
             }
             else {      // El código de usuario no existe
                 echo "

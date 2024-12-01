@@ -62,15 +62,15 @@
                                 <div class="accordion-body">
                                     <form action="home_Page.php" method="post">
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="Premium" name="tipoClienteP" <?php if(strlen($fila['tipoCliente']) == 7) echo 'checked'?>>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="Premium" name="tipoClienteP" <?php if($fila['tipoCliente'] == 'premium') echo 'checked'?>>
                                             <label class="form-check-label reducirCategorias" for="Premium">Cliente Premium</label>
                                         </div>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="Medium"  name="tipoClienteM" <?php if(strlen($fila['tipoCliente']) == 14) echo 'checked'?>>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="Medium"  name="tipoClienteM" <?php if($fila['tipoCliente'] == 'medium') echo 'checked'?>>
                                             <label class="form-check-label reducirCategorias" for="Medium">Cliente Medium</label>
                                         </div>
                                         <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="Inicial" name="tipoClienteI" <?php if(strlen($fila['tipoCliente']) == 22) echo 'checked'?>>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="Inicial" name="tipoClienteI" <?php if($fila['tipoCliente'] == 'inicial') echo 'checked'?>>
                                             <label class="form-check-label reducirCategorias" for="Inicial">Cliente Inicial</label>
                                         </div>
                                     </form>
@@ -116,15 +116,15 @@
             mysqli_query($conn, $sql);
         }
         if(isset($tipoClienteI)){
-            $tipoCliente = "Premium Medium Inicial";
+            $tipoCliente = "inicial";
             $sql = "UPDATE novedades SET tipoCliente = '$tipoCliente' WHERE codigo = $codigo";
             mysqli_query($conn, $sql);
         }elseif(isset($tipoClienteM)){
-            $tipoCliente = "Premium Medium";
+            $tipoCliente = "medium";
             $sql = "UPDATE novedades SET tipoCliente = '$tipoCliente' WHERE codigo = $codigo";
             mysqli_query($conn, $sql);
         }elseif(isset($tipoClienteP)){
-            $tipoCliente = "Premium";
+            $tipoCliente = "premium";
             $sql = "UPDATE novedades SET tipoCliente = '$tipoCliente' WHERE codigo = $codigo";
             mysqli_query($conn, $sql);
         }
