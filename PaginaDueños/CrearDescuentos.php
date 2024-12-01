@@ -36,40 +36,39 @@
                     <th scope="col">Nombre de Promocion</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Tipo de Usuario</th>
-                    <th scope="col">Disponible</th>
+                    <th scope="col">Dias Disponible</th>
                     <th scope="col">&nbsp;</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 <?php
-                    if ($conn) {
-                        $consulta2 = "SELECT * FROM registracion WHERE usuario = '".$_SESSION['usuario']."' ";
-                        $resultado2 = mysqli_query($conn, $consulta2);
-                        $fila2 = mysqli_fetch_assoc($resultado2);
-                        $consulta = "SELECT * FROM promociones WHERE codigoDueño = '".$fila2['codigo']."' ";
-                        $resultado = mysqli_query($conn, $consulta);
-                        $hayPromociones = false;
-                        while ($fila = mysqli_fetch_assoc($resultado)) {
-                            if ($fila['estado'] == "aceptada") {
-                                $hayPromociones = true;
+                    $consulta = "SELECT * FROM registracion WHERE usuario = '".$_SESSION['usuario']."' ";
+                    $resultado = mysqli_query($conn, $consulta);
+                    $fila = mysqli_fetch_assoc($resultado);
+                    $consulta2 = "SELECT * FROM locales WHERE codUsuario = '".$fila['codigo']."' ";
+                    $resultado2 = mysqli_query($conn, $consulta2);
+                    while ($fila2 = mysqli_fetch_assoc($resultado2)) {
+                        $consulta3 = "SELECT * FROM promociones WHERE codLocal = '".$fila2['id']."' ";
+                        $resultado3 = mysqli_query($conn, $consulta3);
+                        $haypromociones = false;
+                        while ($fila3 = mysqli_fetch_assoc($resultado3)) {
+                            if ($fila3['estadoPromo'] == "aprobada") {
+                                $haypromociones = true;
                                 echo '<tr>
-                                <th scope="row" class="text-center">'. $fila['id'].'</th>
-                                <td> '. $fila['localid'] .'</td>
-                                <td> '. $fila['nombre'] .'</td>
-                                <td> '. $fila['descripcion'] .'</td>
-                                <td>'. $fila['categoriaMin'] .'</td>
-                                <td> '. $fila['diasValidos'] .'</td>';
+                                <th scope="row" class="text-center">'. $fila3['id'].'</th>
+                                <td> '. $fila2['nombre'] .'</td>
+                                <td> '. $fila3['nombre'] .'</td>
+                                <td> '. $fila3['descripcion'] .'</td>
+                                <td>'. $fila3['categoriaMin'] .'</td>
+                                <td> '. $fila3['diasValidos'] .'</td>';
                                 echo '<form action="'. htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">
-                                    <td><button id="botonCesto" type="submit" class="btn"  name="id" value="'. $fila['id'].'" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
+                                    <td><button id="botonCesto" type="submit" class="btn"  name="id" value="'. $fila3['id'].'" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
                                 </form>';
                                 echo '</tr>';
                             }
                         }
-                        if (!$hayPromociones) {
-                            echo '<tr><td colspan="7" class="text-center">No hay promociones aceptadas</td></tr>';
-                        }
-                    } else {
-                        echo '<tr><td colspan="7" class="text-center">Error en la conexión a la base de datos</td></tr>';
+                    } if(!$haypromociones) {
+                        echo '<tr><td colspan="7" class="text-center">No hay promociones aceptadas</td></tr>';
                     }
                 ?>
             </tbody>

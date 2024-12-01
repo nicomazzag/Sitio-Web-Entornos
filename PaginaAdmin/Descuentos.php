@@ -50,18 +50,20 @@
                     $consulta = "SELECT * FROM promociones WHERE estadoPromo = 'pendiente'";
                     $resultado = mysqli_query($conn, $consulta);
                     while ($fila = mysqli_fetch_assoc($resultado)) {
-                        $consulta2 = "SELECT * FROM registracion WHERE usuario = '".$_SESSION['usuario']."' ";
+                        if($resultado) {
+                        $consulta2= "SELECT * FROM locales WHERE id = '".$fila['codLocal']."' ";
                         $resultado2 = mysqli_query($conn, $consulta2);
                         $fila2 = mysqli_fetch_assoc($resultado2);
-                        $consulta3 = "SELECT rubroLocal FROM locales";
+
+                        $consulta3 = "SELECT * FROM registracion WHERE codigo = '".$fila2['codUsuario']."' ";
                         $resultado3 = mysqli_query($conn, $consulta3);
                         $fila3 = mysqli_fetch_assoc($resultado3);
                         echo '<tr>
-                        <td>'. $fila2['usuario'] .'</td>
+                        <td>'. $fila3['usuario'] .'</td>
                         <td>'. $fila['descripcion'] .'</td>
                         <td>'. $fila['fechaDesde'] .'</td>
                         <td>'. $fila['fechaHasta'] .'</td>
-                        <td>'. $fila3['rubroLocal'] .'</td>
+                        <td>'. $fila2['rubroLocal'] .'</td>
                         <td>'. $fila['categoriaMin'] .'</td>
                         <td>                    
                             <form action="'. htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">
@@ -72,7 +74,10 @@
                             </form> 
                         </td>
                         </tr>';
+                    } else {
+                        echo 'no hay promociones pendientes';
                     }
+                }
                 ?>
             </tbody>
                 <?php

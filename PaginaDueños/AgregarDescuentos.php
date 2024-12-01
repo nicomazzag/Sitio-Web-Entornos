@@ -1,5 +1,6 @@
 <?php 
     include("../BasesDeDatos/UnicaBaseDeDatos.php");
+    include("../Include/Sesion.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,12 +36,18 @@
             <label for="SusLocales">Sus Locales:</label>
             <select class="form-select" name="Suslocales" aria-label=" Default select example">
                 <?php
-                    
-                    $consulta = "SELECT * FROM locales";
-                    $resultado1 = mysqli_query($conn, $consulta);
-                    while ($fila = mysqli_fetch_assoc($resultado1)) {
-                        echo '<option value="'.$fila['nombre'].'">'.$fila['nombre'].'</option>';
-                    } ?>
+                    $consulta = "SELECT * FROM registracion WHERE tipoUsuario = 'dueño' AND usuario = '".$_SESSION['usuario']."' ";
+                    $resultado = mysqli_query($conn, $consulta);
+                    $fila = mysqli_fetch_assoc($resultado);
+                    $consulta2 = "SELECT * FROM locales WHERE codUsuario = '".$fila['codigo']."' ";
+                    $resultado2 = mysqli_query($conn, $consulta2);
+                    while($fila2 = mysqli_fetch_assoc($resultado2)){
+                        ?>
+                        
+                        <option value="<?php echo $fila2['id'] ?>"><?php echo $fila2['nombre'] ?></option>;
+                        <?php
+                    }
+                    ?>
             </select>
             <div class="select-checkbox">
                 <label for="DiasDisponibles">Días Disponibles:</label>
@@ -110,17 +117,27 @@
         }
         $fechaDesde = filter_input(INPUT_POST, 'FechaDesde', FILTER_SANITIZE_STRING);
         $fechaHasta = filter_input(INPUT_POST, 'FechaHasta', FILTER_SANITIZE_STRING);
+        $fechahoy = date("Y-m-d");
+        if($fechaDesde < $fechahoy){
+            echo '<script>
+            Swal.fire({
+                title: "Error al crear el descuento",
+                text: "La fecha desde no puede ser menor a la fecha de hoy",
+                icon: "error",
+                confirmButtonText: "Aceptar"
+            });
+            </script>';
+        }
         $estado = "pendiente";
         $diasDisponibles= $_POST['DiasDisponibles'];
         $dias = "";    
         foreach ($diasDisponibles as $dia) {
             $dias .= $dia . " ";
         }
-            $sql = "INSERT INTO promociones (nombre,descripcion, categoriaMin, diasValidos, fechaDesde, fechaHasta, localid ,estado) VALUES ('$nombre','$descricpcion', '$categoria' , '$dias', '$fechaDesde', '$fechaHasta','$local', '$estado')"; 
+            $sql = "INSERT INTO promociones (nombre,descripcion, categoriaMin, diasValidos, fechaDesde, fechaHasta,estadoPromo, codLocal) VALUES ('$nombre','$descricpcion', '$categoria' , '$dias', '$fechaDesde', '$fechaHasta', '$estado', '$local')"; 
 
-            $sql2 = "INSERT INTO locales (estadoDescuento) VALUES ('$estado')";
 
-            if (($conn->query($sql) === TRUE) && ($conn->query($sql2) === TRUE)) {
+            if (($conn->query($sql) === TRUE)) {
                 echo '<script>
                 Swal.fire({
                     title: "Descuento creado",
