@@ -1,5 +1,5 @@
 <?php 
-    include('BaseDeDatos_Usuario.php');
+    include('../BasesDeDatos/UnicaBaseDeDatos.php');
 ?> 
 <!DOCTYPE html>
 <html lang="es">

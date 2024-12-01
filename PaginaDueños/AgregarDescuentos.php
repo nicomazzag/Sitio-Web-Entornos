@@ -34,10 +34,11 @@
             </select>
             <label for="SusLocales">Sus Locales:</label>
             <select class="form-select" name="Suslocales" aria-label=" Default select example">
-                <?php 
+                <?php
+                    
                     $consulta = "SELECT * FROM locales";
-                    $resultado = mysqli_query($conn, $consulta);
-                    while ($fila = mysqli_fetch_assoc($resultado)) {
+                    $resultado1 = mysqli_query($conn, $consulta);
+                    while ($fila = mysqli_fetch_assoc($resultado1)) {
                         echo '<option value="'.$fila['nombre'].'">'.$fila['nombre'].'</option>';
                     } ?>
             </select>
@@ -72,6 +73,7 @@
 </html>
 
 <?php
+//nota: me fallta comparar las fechas que no ponga las fechas ya pasadas
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
         $descricpcion = filter_input(INPUT_POST, 'Descripcion', FILTER_SANITIZE_STRING);
@@ -115,7 +117,10 @@
             $dias .= $dia . " ";
         }
             $sql = "INSERT INTO promociones (nombre,descripcion, categoriaMin, diasValidos, fechaDesde, fechaHasta, localid ,estado) VALUES ('$nombre','$descricpcion', '$categoria' , '$dias', '$fechaDesde', '$fechaHasta','$local', '$estado')"; 
-            if ($conn->query($sql) === TRUE) {
+
+            $sql2 = "INSERT INTO locales (estadoDescuento) VALUES ('$estado')";
+
+            if (($conn->query($sql) === TRUE) && ($conn->query($sql2) === TRUE)) {
                 echo '<script>
                 Swal.fire({
                     title: "Descuento creado",

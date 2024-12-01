@@ -94,7 +94,7 @@
 <?php
     $iniciar=false;
         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $usuario= filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL);
+            $usuario= filter_input(INPUT_POST,'usuario',FILTER_SANITIZE_STRING);
             $contra= filter_input(INPUT_POST,'contraseña',FILTER_SANITIZE_STRING);
             
             if(empty($usuario) || empty($contra)){
@@ -108,6 +108,7 @@
                 while($fila = mysqli_fetch_assoc($resultado)){
                     if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña']))){ 
                         $iniciar=true;
+                        $_SESSION['usuario'] = $usuario;
                         $_SESSION['tipo'] = $fila['tipoUsuario'];
                         $_SESSION['cod'] = $fila['codigo'];
                         $_SESSION['categoria'] = $fila['tipoCliente'];
@@ -130,11 +131,4 @@
         } 
     }
     mysqli_close($conn);
-            /* PARA REGISTRAR NUEVO USUARIO if ($iniciar) {
-                $hash = password_hash($contra, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO registracion (usuario, contraseña) VALUES ('$usuario', '$hash')";
-                mysqli_query($conn, $sql);
-                header("Location: ".$_SERVER['PHP_SELF']."?iniciarsesion=exito");
-                exit();
-            } */ 
 ?>
