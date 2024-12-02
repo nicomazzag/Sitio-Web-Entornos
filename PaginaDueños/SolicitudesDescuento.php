@@ -1,32 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
     include("../BasesDeDatos/UnicaBaseDeDatos.php"); 
-    // Conectando con la base de datos de Usuarios
-    // $db_server = "localhost";  
-    // $user = "root";            
-    // $password = "";            
-    // $database = "logeo";       // Nombre de la base de datos de los Usuarios 
-
-    // // Conectar a la base de datos
-    // $connUsuario = mysqli_connect($db_server, $user, $password, $database);
-
-    // // Verificar la conexión
-    // if (!$connUsuario) {
-    //     die("Error en la conexión: " . mysqli_connect_error());
-    // }
-    // // Conectando con la base de datos de Promociones
-    // $db_server = "localhost";  
-    // $user = "root";            
-    // $password = "";            
-    // $database = "dueños";       // Nombre de la base de datos de las promociones
-
-    // // Conectar a la base de datos
-    // $connPromociones = mysqli_connect($db_server, $user, $password, $database);
-
-    // // Verificar la conexión
-    // if (!$connPromociones) {
-    //     die("Error en la conexión: " . mysqli_connect_error());
-    // }
 ?>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -72,6 +46,9 @@
                     $consultaUsuario = "SELECT usuario FROM registracion WHERE codigo = '$codUsuario'";
                     $resultadoUsuario = mysqli_query($conn, $consultaUsuario);
                     $usuario = mysqli_fetch_assoc($resultadoUsuario);
+                    $consultaCategoria = "SELECT tipoCliente FROM registracion WHERE codigo = '$codUsuario'";
+                    $resultadoUsuario = mysqli_query($conn, $consultaCategoria);
+                    $categoriaCli = mysqli_fetch_assoc($resultadoUsuario);
                     //Obteniendo la descripción de la promoción
                     $consultaPromo = "SELECT descripcion FROM promociones WHERE id = '$codPromo'";
                     $resultadoPromo = mysqli_query($conn, $consultaPromo);
@@ -80,13 +57,14 @@
                 <tr style="text-align: center;">
                     <td><?php echo $usuario['usuario']?> quiere adquirir <?php echo $promo['descripcion']?></td>
                     <td>
+                    <!-- . '-' . $usuario['tipoCliente'] -->
                         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
-                            <button id="botonTick" class="btn" type="submit" name="aceptar" value="<?php echo $fila['codCliente'] . '-' . $fila['codPromo'];?>"><i class="fa-regular fa-circle-check"></i> Aceptar</button>
+                            <button id="botonTick" class="btn" type="submit" name="aceptar" value="<?php echo $fila['codCliente'].'-'.$fila['codPromo'].'-'.$categoriaCli['tipoCliente'];?>" ><i class="fa-regular fa-circle-check"></i> Aceptar</button>
                         </form>
                     </td>
                     <td>
                         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="get">
-                            <button id="botonCesto" class="btn" type="submit" name="rechazar" value="<?php echo $fila['codCliente'] . '-' . $fila['codPromo'];?>"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button>
+                            <button id="botonCesto" class="btn" type="submit" name="rechazar" value="<?php echo $fila['codCliente'].'-'.$fila['codPromo'];?>"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button>
                         </form>
                     </td>
                 </tr>
@@ -100,26 +78,26 @@
     if (isset($_GET['aceptar'])) {
         $valorConcatenado = $_GET['aceptar'];
     
-        list($usuarioEsp, $promoEsp) = explode('-', $valorConcatenado); 
+        list($usuarioEsp, $promoEsp, $categoriaCliEsp) = explode('-', $valorConcatenado); 
 
         $estado = "aceptada";
         $sql = "UPDATE usoPromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
+        
         if(mysqli_query($conn, $sql)){
             echo "
             <script>
-              Swal.fire({
-                  icon: 'success',
-                  title: 'Exito',
-                  text: 'Promoción usada correctamente'
-              }).then((result) => {
-                  if (result.isConfirmed) {
-                      window.location.href = 'SolicitudesDescuento.php';
-                  }
-              });
+            Swal.fire({
+                icon: 'success',
+                title: 'Exito',
+                text: 'Promoción otorgada correctamente'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'SolicitudesDescuento.php';
+                        }
+                        });
             </script>";
-            mysqli_close($conn);
-          }
-          else{
+        }
+        else{
             echo "
             <script>
             Swal.fire({
@@ -128,7 +106,22 @@
                 text: 'Hubo un problema al aceptar la promoción'
             });
             </script>";
-          }
+        }
+        //verificando de actualizar tipo de cliente (a Medium o Premium)
+        if ($categoriaCliEsp != 'Premium') {
+            $verifTipoCliente = "SELECT * FROM usoPromociones WHERE estado = 'aceptada' AND codCliente = $usuarioEsp";
+            $resultado = mysqli_query($conn, $verifTipoCliente);
+            $numFilas = mysqli_num_rows($resultado);
+            if ($numFilas == 2 || $numFilas == 3) {
+                $sql = "UPDATE registracion SET tipoCliente = 'Medium' WHERE codigo = $usuarioEsp";
+                mysqli_query($conn, $sql);
+            }
+            elseif ($numFilas >= 4) {
+                $sql = "UPDATE registracion SET tipoCliente = 'Premium' WHERE codigo = $usuarioEsp";
+                mysqli_query($conn, $sql);
+            }
+        }
+        mysqli_close($conn);
     }
     if (isset($_GET['rechazar'])) {
         $valorConcatenado = $_GET['rechazar'];
@@ -163,6 +156,4 @@
         </script>";
         }
     }
-    // mysqli_close($connUsuario);
-    // mysqli_close($connPromociones);
 ?>
