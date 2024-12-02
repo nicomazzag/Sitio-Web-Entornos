@@ -1,14 +1,22 @@
-<?php 
-    include("../BasesDeDatos/UnicaBaseDeDatos.php");
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include_once("../Include/librerias.php");?>
+    <!-- Conexion con bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Conexion con font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Conexion con hoja de estilo -->
     <link rel="stylesheet" href="home_Page.css">
+    <!-- Conexion con el icono de la pagina -->
+    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
+    <!-- Conexion con el google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    
     <title>Principal</title>
 </head>
 <body>
@@ -100,30 +108,25 @@
             <div class="row">
                 <h2 class="titulo">No te pierdas de lo mejor!!!</h2>
                 <?php
+                    date_default_timezone_set('America/Argentina/Buenos_Aires');
+                    $dia_actual = date('w');
+
+                    include("../BasesDeDatos/UnicaBaseDeDatos.php");
                     $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
-                    JOIN locales ON promociones.localid = locales.id
+                    JOIN locales ON promociones.codLocal = locales.id WHERE
+                     SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
+                    fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada'
                     ORDER BY promociones.id DESC LIMIT 4";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            switch ($row['categoriaMin']) {
-                                case '0':
-                                    $cat = 'Inicial';
-                                    break;
-                                case '1':
-                                    $cat = 'Medium';
-                                    break;
-                                case '2':
-                                    $cat = 'Premium';
-                                    break;                        
-                            }
                             echo '
                         <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
                             <div class="card h-100">
                                 <div class="card-body">
                                 <h5 class="card-title">' . $row["nombre"] . '</h5>
-                                <strong><i>'. $cat . '</i></strong>
+                                <strong><i>'. $row['categoriaMin'] . '</i></strong>
                                 <p class="card-text">' . $row["descripcion"] . '</p>
 
                                 </div>
@@ -142,25 +145,51 @@
                     } else { 
                         echo "No hay promociones disponibles.";
                         } 
+                    //$conn->close();
                 ?>
             </div>
         </div>
     </div>
     <!-- Nuestros locales -->
+    <?php
+        //include("../BasesDeDatos/UnicaBaseDeDatos.php");
+
+        // Procesar el formulario de filtro
+        $buscarLocal = isset($_POST['buscarLocal']) ? $_POST['buscarLocal'] : '';
+        $filtros = isset($_POST['categorias']) ? $_POST['categorias'] : [];
+
+        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE 1=1";
+
+        // Agregar condición de búsqueda si se ha ingresado un nombre de local
+        if (!empty($buscarLocal)) {
+            $buscarLocal = $conn->real_escape_string($buscarLocal);
+            $sql .= " AND nombre LIKE '%$buscarLocal%'";
+        }
+
+        
+        // Agregar condición de filtro si hay categorías seleccionadas
+        if (!empty($filtros) && !in_array('Todos', $filtros)) {
+            $filtro_sql = implode("','", $filtros);
+            $sql .= " AND rubroLocal IN ('$filtro_sql')";
+        }
+
+        $result = $conn->query($sql);
+
+    ?>
     <div id="locales" class="conteiner numero3"> 
         <div class="row">
             <div class="col-12">
                 <div class="inputContainer">
-                    <form action="home_Page.php" class="buscarNombre">
-                        <button class="botonLupa" aria-label="Buscar local por nombre" 
-                        for="buscarLocal"><i class="fas fa-search iconoLupa"></i></button> 
+                    <form action="home_Page.php #locales" method="post" class="buscarNombre">
+                        <button class="botonLupa" aria-label="Buscar local por nombre" type="submit">
+                            <i class="fas fa-search iconoLupa"></i>
+                        </button>
                         <input class="inputGrande" type="text" placeholder="Ingrese nombre del local" 
-                        aria-placeholder="Ingrese nombre del local" 
-                        name="buscarLocal" id="buscarLocal" required>
+                            name="buscarLocal" id="buscarLocal">
                     </form>
                 </div>
             </div>
-            <div class="col-12 col-md-3" style="padding-top: 1em;">
+            <div class="col-12 col-md-3">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -173,26 +202,27 @@
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <form action="home_Page.php" method="post">
+                                            <form action="home_Page.php #locales" method="post">
+                                                    
                                                 <div class="form-check form-switch">
-                                                  <input class="form-check-input" type="checkbox" role="switch" id="Categorias" checked>
-                                                  <label class="form-check-label reducirCategorias" for="Categorias">Todos</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categorias" name="categorias[]" value="Todos">
+                                                    <label class="form-check-label reducirCategorias" for="Categorias">Todos</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria1">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria1" name="categorias[]" value="Indumentaria">
                                                     <label class="form-check-label reducirCategorias" for="Categoria1">Indumentaria</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria2">
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria2" name="categorias[]" value="Comida">
                                                     <label class="form-check-label reducirCategorias" for="Categoria2">Gastronomía</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria3">
-                                                    <label class="form-check-label reducirCategorias" for="Categoria3">Deportivo</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria3" name="categorias[]" value="Perfumeria">
+                                                    <label class="form-check-label reducirCategorias" for="Categoria3">Perfumeria</label>
                                                 </div>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria4">
-                                                    <label class="form-check-label reducirCategorias" for="Categoria4">Otros</label>
+                                                    <input class="form-check-input" type="checkbox" role="switch" id="Categoria4" name="categorias[]" value="Óptica">
+                                                    <label class="form-check-label reducirCategorias" for="Categoria4">Óptica</label>
                                                 </div>
                                                 <div class="text-center mt-3">
                                                     <button class="btn btn-dark text-white w-100 w-md-50" type="submit" value="Filtro" name="Filtro" aria-label="Aplicar Filtro">Filtrar</button>
@@ -209,19 +239,23 @@
             <div class="col-md-9 mt-3">
                 <div class="row">
                     <?php
+                    /*<!-- Abrir base de datos -->
+                    include("../BasesDeDatos/BaseDeDatos_Locales.php");
                     $sql = "SELECT id,nombre, imagen_url, descripcion FROM locales";
                     $result = $conn->query($sql);
-
+                    */
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo '
                             <div class="col-6 col-md-4 mb-3"> 
                                 <div class="card mb-3 presentacionLocal  h-100"> 
-                                    <img src="' . $row["imagen_url"] . '" class="card-img-top" alt="' . $row["nombre"] . '">
+                                    <div class="img-container">
+                                        <img src="' . $row["imagen_url"] . '" class="card-img-top" alt="' . $row["nombre"] . '">
+                                    </div>
                                     <div class="card-body d-flex flex-column"> 
                                         <h5 class="card-title text-center">' . $row["nombre"] . '</h5> 
                                         <div class="flex-grow-1">
-                                            <p class="text-center">' . $row["descripcion"] . '</p> 
+                                            <p class="text-center">' . truncar_cadena($row["descripcion"]) . '</p> 
                                         </div>
                                         <form action="detallesLocal.php" method="get">
                                         <div class="text-center mt-3"> 
@@ -243,6 +277,19 @@
         </div>
     </div>
     <?php 
+        function truncar_cadena($cadena, $limite = 50) {
+            if (strlen($cadena) <= $limite) {
+                return $cadena;
+            }
+        
+            $corte = strrpos(substr($cadena, 0, $limite), ' ');
+        
+            if ($corte !== false) {
+                return substr($cadena, 0, $corte) . '...';
+            }
+            return substr($cadena, 0, $limite) . '...';
+        }
+        
         include("../Include/footer.php");
     ?>
 </body>
