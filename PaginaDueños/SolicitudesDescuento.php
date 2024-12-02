@@ -108,16 +108,16 @@
             </script>";
         }
         //verificando de actualizar tipo de cliente (a Medium o Premium)
-        if ($categoriaCliEsp != 'Premium') {
+        if ($categoriaCliEsp != 'premium') {
             $verifTipoCliente = "SELECT * FROM usoPromociones WHERE estado = 'aceptada' AND codCliente = $usuarioEsp";
             $resultado = mysqli_query($conn, $verifTipoCliente);
             $numFilas = mysqli_num_rows($resultado);
             if ($numFilas == 2 || $numFilas == 3) {
-                $sql = "UPDATE registracion SET tipoCliente = 'Medium' WHERE codigo = $usuarioEsp";
+                $sql = "UPDATE registracion SET tipoCliente = 'medium' WHERE codigo = $usuarioEsp";
                 mysqli_query($conn, $sql);
             }
             elseif ($numFilas >= 4) {
-                $sql = "UPDATE registracion SET tipoCliente = 'Premium' WHERE codigo = $usuarioEsp";
+                $sql = "UPDATE registracion SET tipoCliente = 'premium' WHERE codigo = $usuarioEsp";
                 mysqli_query($conn, $sql);
             }
         }
