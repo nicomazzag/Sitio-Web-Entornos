@@ -106,16 +106,24 @@
             
             if(mysqli_num_rows($resultado) > 0){
                 while($fila = mysqli_fetch_assoc($resultado)){
-                    if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña']))){ 
+                    if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña'])) ){ 
                         $iniciar=true;
+                        if($fila['estadoDueño'] == 'rechazado'){
+                            header("Location: Alertas/alerta_dueño_rechazado.html");
+                            exit();
+                        } 
                         $_SESSION['usuario'] = $usuario;
                         $_SESSION['tipo'] = $fila['tipoUsuario'];
                         $_SESSION['cod'] = $fila['codigo'];
                         $_SESSION['categoria'] = $fila['tipoCliente'];
+                        $fila['estadoDueño'] = 'pendiente';
+                        $_SESSION['estado']=$fila['estadoDueño'];
                         if($_SESSION['tipo'] == "administrador"){
                             header("Location: ../PaginaAdmin/PrincipalAdmin.php");
                         }
-                        elseif($_SESSION['tipo'] == "dueño"){
+                        elseif($_SESSION['tipo'] == "dueño" && $_SESSION['estado'] == "pendiente"){
+                            header("Location: Alertas/alerta_dueño_pendiente.html");
+                        } elseif($_SESSION['tipo'] == "dueño" && $_SESSION['estado'] == "aceptado"){
                             header("Location: ../PaginaDueños/PrincipalDueños.php");
                         }
                         else{

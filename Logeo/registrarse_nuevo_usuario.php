@@ -34,6 +34,11 @@
                 echo '<script>
                 document.getElementById("linkExito").click();
                 </script>';
+            } elseif (isset($_GET['registro']) && $_GET['registro'] == 'pendiente') {
+                echo '<a href="Alertas/alerta_dueño.html" id="linkExito" style="display:none;"></a>';
+                echo '<script>
+                document.getElementById("linkExito").click();
+                </script>';
             }
 ?>
 
@@ -122,16 +127,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (!$registro_exitoso) {
         if ($tipo == 'dueño') {
-            $tipoCliente = -1;
+            $tipoCliente = null;
         } else {
             //Asignando cliente del tipo inicial
             $tipoCliente = 0;
         }
-        $hash = password_hash($contra, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO registracion (usuario, contraseña, tipoUsuario, tipoCliente) VALUES ('$usuario', '$hash', '$tipo', '$tipoCliente')";
-        mysqli_query($conn, $sql);
-        header("Location: ".$_SERVER['PHP_SELF']."?registro=exito"); 
-        exit();  
+        if($tipo == 'dueño') {
+            $estado = 'pendiente';
+            $hash = password_hash($contra, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO registracion (usuario, contraseña, tipoUsuario, tipoCliente,estadoDueño) VALUES ('$usuario', '$hash', '$tipo', '$tipoCliente','$estado')";
+            mysqli_query($conn, $sql);
+            header("Location: ".$_SERVER['PHP_SELF']."?registro=pendiente"); 
+            exit();  
+        } else {
+            $hash = password_hash($contra, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO registracion (usuario, contraseña, tipoUsuario, tipoCliente) VALUES ('$usuario', '$hash', '$tipo', '$tipoCliente')";
+            mysqli_query($conn, $sql);
+            header("Location: ".$_SERVER['PHP_SELF']."?registro=exito");
+            exit();
+        }
     }
 }
 mysqli_close($conn);
