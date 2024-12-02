@@ -1,6 +1,5 @@
 <?php 
     include("../Include/Sesion.php");
-    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,6 +39,9 @@
         if (!defined('NO_HEADER')) {
             include "headerClientes.php";
         }
+
+
+        include("../BasesDeDatos/UnicaBaseDeDatos.php");
 
     // Obtener el id del local desde la URL
     $local_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -84,32 +86,20 @@
 
                     $dia_actual = date('w');
                     $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
-                    JOIN locales ON promociones.localid = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
+                    JOIN locales ON promociones.codLocal = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                     fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND locales.id = $local_id";
 
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-
-                            switch ($row['categoriaMin']) {
-                                case '0':
-                                    $cat = 'Inicial';
-                                    break;
-                                case '1':
-                                    $cat = 'Medium';
-                                    break;
-                                case '2':
-                                    $cat = 'Premium';
-                                    break;                        
-                            }
+                        while ($row = $result->fetch_assoc()) { 
 
                             echo '
                         <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
                             <div class="card h-100">
                                 <div class="card-body">
                                 <h5 class="card-title">' . $row["nombre"] . '</h5>
-                                <strong><i>'. $cat . '</i></strong>
+                                <strong><i>'. $row['categoriaMin'] . '</i></strong>
                                 <p class="card-text">' . $row["descripcion"] . '</p>
                                 </div>
                                 <div class="card-footer">

@@ -1,6 +1,5 @@
 <?php 
     include("../Include/Sesion.php");
-    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
-    <title>Promociones</title>
+    <title>Usar Promoción</title>
     <style>
         /*Hoja de estilo del footer(En caso de usar el footer en otras paginas (agregar los estilos en la hoja de estilos correspondiente)*/
         .text-white a {
@@ -53,6 +52,10 @@
                 $promocion_id = isset($_POST['id']) ? intval($_POST['id']) : 0;
 
                 if ($promocion_id > 0) {
+
+                    //<!-- Abrir base de datos -->
+                    include("../BasesDeDatos/UnicaBaseDeDatos.php");
+
                     $sql= "SELECT nombre FROM promociones WHERE id=$promocion_id";
                     $res = $conn->query($sql);
                     $prom = $res->fetch_assoc();

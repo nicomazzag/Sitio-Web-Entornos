@@ -1,5 +1,6 @@
 <?php 
     include("../Include/Sesion.php");
+    include('../BasesDeDatos/UnicaBaseDeDatos.php');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,43 +25,87 @@
         include("headerAdmin.php");
     ?>
     <div class="contenedor1">
-      <p id="Home"><a id="linkHome" href="PrincipalAdmin.php">Principal</a> /Descuentos</p>
-      <h1 id="titulo">Descuentos</h1>
+        <p id="Home"><a id="linkHome" href="PrincipalAdmin.php">Principal</a> /Dueños</p>
+        <h1 id="titulo">Dueños</h1>
     </div>
     <div class="conteiner">
         <table id="sinMargen" class="table">
             <thead>
                 <tr>
+                    <th scope="col">Codigo de Dueño</th>
                     <th scope="col">Nombre de Dueño</th>
-                    <th scope="col">Ubicación</th>
-                    <th scope="col">Rubro local</th>
                     <th scope="col">&nbsp;</th>
                     <th scope="col">&nbsp;</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 <tr>
-                    <td>Franco</td>
-                    <td>2do piso</td>
-                    <td>Indumentaria</td>
-                    <td><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></td>
-                    <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></td>
-                </tr>
-                <tr>
-                    <td>Nico</td>
-                    <td>2do piso</td>
-                    <td>Indumentaria</td>
-                    <td><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></td>
-                    <td><button id="botonCesto" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></td>
-                </tr>
-                <tr>
-                    <td>Pedro</td>
-                    <td>5to piso</td>
-                    <td>comida</td>
-                    <td><button id="botonTick" class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button></td>
-                    <td><button id="botonCesto" class="btn botonCesto"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button></td>
-                </tr>
+                    <?php 
+                        $consulta = "SELECT * FROM registracion WHERE estadoDueño = 'pendiente'";
+                        $resultado = mysqli_query($conn, $consulta);
+                        $haydueños = false;
+                        if($resultado) {
+                            while ($fila = mysqli_fetch_assoc($resultado)) {
+                                $haydueños = true;
+                                echo "<tr>";
+                                echo "<td>".$fila['codigo']."</td>";
+                                echo "<td>".$fila['usuario']."</td>";
+                                echo '<td>
+                                    <form action="'. htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">
+                                        <button id="botonTick" type="submit" name="aceptado" value="'.$fila['codigo'].'"  class="btn"><i class="fa-regular fa-circle-check"></i> Aceptar</button>
+                                        </td>
+                                        <td>
+                                            <button id="botonCesto" name="rechazado" value="'.$fila['codigo'].'" type="submit" class="btn"><i class="fas fa-trash-alt icono-rojo"></i> Rechazar</button>
+                                        </td>
+                                    </form>'; 
+                                echo "</tr>";
+                            }
+                        } 
+                        if(!$haydueños) {
+                            echo '<tr>
+                            <td colspan="4" class="text-center">No hay dueños pendientes</td>
+                            </tr>';
+                        }
+                        ?>
             </tbody>
+            <?php
+                if(isset($_POST['aceptado'])) {
+                    $id = $_POST['aceptado'];
+                    $consulta = "UPDATE registracion SET estadoDueño = 'aceptado' WHERE codigo = '$id'";
+                    $resultado = mysqli_query($conn, $consulta);
+                    if($resultado) {
+                        echo '<script>Swal.fire({
+                            icon: "success",
+                            title: "Dueño aceptado",
+                            showConfirmButton: false,
+                        })</script>';
+                    } else {
+                        echo '<script>Swal.fire({
+                            icon: "error",
+                            title: "Error al aceptar",
+                            showConfirmButton: false,
+                        })</script>';
+                    }
+                }
+                if(isset($_POST['rechazado'])) {
+                    $id = $_POST['rechazado'];
+                    $consulta = "UPDATE registracion SET estadoDueño = 'rechazado' WHERE codigo = '$id'";
+                    $resultado = mysqli_query($conn, $consulta);
+                    if($resultado) {
+                        echo '<script>Swal.fire({
+                            icon: "success",
+                            title: "Dueño rechazado",
+                            showConfirmButton: false,
+                        })</script>';
+                    } else {
+                        echo '<script>Swal.fire({
+                            icon: "error",
+                            title: "Error al rechazar",
+                            showConfirmButton: false,
+                        })</script>';
+                    }
+                }
+            ?>
         </table>
     </div>
 </body>

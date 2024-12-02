@@ -68,7 +68,12 @@
                         </form>
                     </td>
                 </tr>
-                <?php }?>
+                <?php }
+                if (mysqli_num_rows($resultado) == 0) {
+                    echo "<div  style='text-align: center; font-size: 1.5em; border-top: 1px solid black; width:100%; '> No hay solicitudes de descuento </div>";
+                }
+
+                 ?>
             </tbody>
         </table>
     </div>

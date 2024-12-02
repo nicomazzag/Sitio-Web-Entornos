@@ -1,6 +1,5 @@
 <?php 
     include("../Include/Sesion.php");
-    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -41,7 +40,7 @@
     ?>
     <div class="conteiner">
         <div class="contenedor1">
-            <p id="Home"><a id="linkHome" href="PrincipalCliente.php">Principal</a> / Promociones</p>
+            <p id="Home"><a id="linkHome" href="home_Page.php">Principal</a> / Promociones</p>
             <h1 id="titulo">Nuestras Promociones</h1>
         </div>
         <nav class="navbar bg-body-tertiary">
@@ -67,7 +66,9 @@
         <div class="conteiner numero2"> 
             <div class="row">
                 <!-- Abrir base de datos -->
-                <?php                    
+                <?php
+                    include("../BasesDeDatos/UnicaBaseDeDatos.php");
+                    
                     // Obtener el ID del cliente y la categoría 
                     //$cliente_cod = '3'; // Ejemplo!
                     $cliente_cod = $_SESSION['cod'];
@@ -75,36 +76,27 @@
                     $sql = "SELECT tipoCliente FROM registracion WHERE codigo = $cliente_cod"; //tendremos q conectar a la otra base de datos
                     $res = $conn->query($sql);
                     $arr = $res->fetch_assoc();
-                    $categoria_cliente = $arr['tipoCliente'];
+                    $categoria_cliente = $arr['tipoCliente'];                    
 
                     $dia_actual = date('w');
                     $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
-                    JOIN locales ON promociones.localid = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
-                    fechaDesde <= CURDATE() AND fechaHasta >= CURDATE()";
+                    JOIN locales ON promociones.codLocal = locales.id WHERE SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
+                    fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada' AND
+                    (promociones.categoriaMin = '$categoria_cliente' OR promociones.categoriaMin = 'inicial'
+                    OR (promociones.categoriaMin = 'medium' AND '$categoria_cliente' != 'inicial')
+                    OR (promociones.categoriaMin = 'premium' AND '$categoria_cliente' = 'premium'))";
 
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
 
-                            switch ($row['categoriaMin']) {
-                                case '0':
-                                    $cat = 'Inicial';
-                                    break;
-                                case '1':
-                                    $cat = 'Medium';
-                                    break;
-                                case '2':
-                                    $cat = 'Premium';
-                                    break;                        
-                            }
-
                             echo '
                         <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
                             <div class="card h-100">
                                 <div class="card-body">
                                 <h5 class="card-title">' . $row["nombre"] . '</h5>
-                                <strong><i>'. $cat . '</i></strong>
+                                <strong><i>'. $row['categoriaMin'] . '</i></strong>
                                 <p class="card-text">' . $row["descripcion"] . '</p>
                                 </div>
                                 <div class="card-footer">
