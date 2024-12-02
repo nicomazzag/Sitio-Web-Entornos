@@ -76,12 +76,12 @@
                             JOIN locales ON promociones.codLocal = locales.id WHERE
                             SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                             fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada'
-                            ORDER BY promociones.id";
+                            ";
                     
                     // Agregar condición de búsqueda si se ha ingresado un término
                     if (!empty($buscarTermino)) {
                         $buscarTermino = $conn->real_escape_string($buscarTermino);
-                        $sql .= " AND (locales.nombre LIKE '%$buscarTermino%' OR promociones.nombre LIKE '%$buscarTermino%' OR promociones.id LIKE '%$buscarTermino%')";
+                        $sql .= " AND (locales.nombre LIKE '%$buscarTermino%' OR promociones.nombre LIKE '%$buscarTermino%')";
                     }
                     if(!empty($categoria)){
                         $sql .= " AND promociones.categoriaMin = '$categoria'";
