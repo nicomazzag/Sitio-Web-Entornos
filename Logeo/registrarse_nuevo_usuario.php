@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $tipoCliente = null;
         } else {
             //Asignando cliente del tipo inicial
-            $tipoCliente = 0;
+            $tipoCliente = 'inicial';
         }
         if($tipo == 'dueño') {
             $estado = 'pendiente';
