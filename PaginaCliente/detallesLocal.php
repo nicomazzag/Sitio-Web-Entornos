@@ -65,7 +65,7 @@
                                 Ubicacion: ' . $local['ubicacionLocal'] . '</i><br><br>
                             <p>' . $local['descripcion'] .'</p>                            
                             <div class = "ms-2">
-                                <form action="PrincipalCliente.php #locales" method="get">
+                                <form action="PrincipalCliente.php#locales" method="get">
                                     <button class="btn btn-primary">
                                         Volver
                                     </button>

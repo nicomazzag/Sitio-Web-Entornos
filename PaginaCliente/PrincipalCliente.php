@@ -25,7 +25,7 @@
 <body>
     <?php
         if (!defined('NO_HEADER')) {
-            include "headerClientes.php";
+            include_once("headerClientes.php");
         }
     ?>
     <!-- Introduccion -->
@@ -132,6 +132,7 @@
                         OR (categoriaMin = 'premium' AND '$categoria_cliente' = 'premium'))
                 AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                 fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada'
+                AND locales.estado = 1
                 ORDER BY promociones.id DESC LIMIT 4";
 
                 $result = $conn->query($sql);
@@ -176,7 +177,7 @@
         $buscarLocal = isset($_POST['buscarLocal']) ? $_POST['buscarLocal'] : '';
         $filtros = isset($_POST['categorias']) ? $_POST['categorias'] : [];
 
-        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE 1=1";
+        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE estado=1";
 
         // Agregar condición de búsqueda si se ha ingresado un nombre de local
         if (!empty($buscarLocal)) {
@@ -196,11 +197,11 @@
     ?>
 
 
-    <div id="locales" class="conteiner numero3"> 
+    <div id="locales" class="conteiner numero3 mb-3"> 
         <div class="row">
             <div class="col-12">
                 <div class="inputContainer">
-                    <form action="PrincipalCliente.php #locales" method="post" class="buscarNombre">
+                    <form action="PrincipalCliente.php#locales" method="post" class="buscarNombre">
                         <button class="botonLupa" aria-label="Buscar local por nombre" type="submit">
                             <i class="fas fa-search iconoLupa"></i>
                         </button>
@@ -222,7 +223,7 @@
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <form action="PrincipalCliente.php #locales" method="post">
+                                            <form action="PrincipalCliente.php#locales" method="post">
                                                     
                                             <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" role="switch" id="Categorias" name="categorias[]" value="Todos">
@@ -307,7 +308,7 @@
             }
             return substr($cadena, 0, $limite) . '...';
         }
-        include("../Include/footer.php");
+        include_once("../Include/footer.php");
     ?>
 </body>
 </html>

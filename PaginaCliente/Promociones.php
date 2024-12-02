@@ -78,13 +78,15 @@
                     $arr = $res->fetch_assoc();
                     $categoria_cliente = $arr['tipoCliente'];                    
 
+                    date_default_timezone_set('America/Argentina/Buenos_Aires');
                     $dia_actual = date('w');
                     $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
                     JOIN locales ON promociones.codLocal = locales.id WHERE SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                     fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada' AND
                     (promociones.categoriaMin = '$categoria_cliente' OR promociones.categoriaMin = 'inicial'
                     OR (promociones.categoriaMin = 'medium' AND '$categoria_cliente' != 'inicial')
-                    OR (promociones.categoriaMin = 'premium' AND '$categoria_cliente' = 'premium'))";
+                    OR (promociones.categoriaMin = 'premium' AND '$categoria_cliente' = 'premium'))
+                    AND locales.estado = 1";
 
                     $result = $conn->query($sql);
 
