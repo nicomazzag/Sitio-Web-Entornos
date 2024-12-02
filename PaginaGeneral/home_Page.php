@@ -22,7 +22,7 @@
 <body>
     <?php
         if (!defined('NO_HEADER')) {
-            include "../Include/header.php";
+            include_once "../Include/header.php";
         }
     ?>
     <!-- Introduccion -->
@@ -116,6 +116,7 @@
                     JOIN locales ON promociones.codLocal = locales.id WHERE
                      SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                     fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada'
+                    AND locales.estado = 1
                     ORDER BY promociones.id DESC LIMIT 4";
                     $result = $conn->query($sql);
 
@@ -158,7 +159,7 @@
         $buscarLocal = isset($_POST['buscarLocal']) ? $_POST['buscarLocal'] : '';
         $filtros = isset($_POST['categorias']) ? $_POST['categorias'] : [];
 
-        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE 1=1";
+        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE estado=1";
 
         // Agregar condición de búsqueda si se ha ingresado un nombre de local
         if (!empty($buscarLocal)) {
@@ -176,7 +177,7 @@
         $result = $conn->query($sql);
 
     ?>
-    <div id="locales" class="conteiner numero3"> 
+    <div id="locales" class="conteiner numero3 mb-3"> 
         <div class="row">
             <div class="col-12">
                 <div class="inputContainer">
@@ -290,7 +291,7 @@
             return substr($cadena, 0, $limite) . '...';
         }
         
-        include("../Include/footer.php");
+        include_once("../Include/footer.php");
     ?>
 </body>
 </html>
