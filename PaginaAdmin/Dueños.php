@@ -74,17 +74,23 @@
                     $consulta = "UPDATE registracion SET estadoDueño = 'aceptado' WHERE codigo = '$id'";
                     $resultado = mysqli_query($conn, $consulta);
                     if($resultado) {
-                        echo '<script>Swal.fire({
-                            icon: "success",
-                            title: "Dueño aceptado",
-                            showConfirmButton: false,
-                        })</script>';
+                        echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Dueño aceptado',
+                            text: 'El dueño ha sido aceptado',
+                            });
+                        </script>";
                     } else {
-                        echo '<script>Swal.fire({
-                            icon: "error",
-                            title: "Error al aceptar",
-                            showConfirmButton: false,
-                        })</script>';
+                        echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Advertencia',
+                            text: 'Error al aceptar dueño',
+                            });
+                        </script>";
                     }
                 }
                 if(isset($_POST['rechazado'])) {
@@ -92,17 +98,23 @@
                     $consulta = "UPDATE registracion SET estadoDueño = 'rechazado' WHERE codigo = '$id'";
                     $resultado = mysqli_query($conn, $consulta);
                     if($resultado) {
-                        echo '<script>Swal.fire({
-                            icon: "success",
-                            title: "Dueño rechazado",
-                            showConfirmButton: false,
-                        })</script>';
+                        echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Dueño rechazado',
+                            text: 'El dueño ha sido rechazado',
+                            });
+                        </script>";
                     } else {
-                        echo '<script>Swal.fire({
-                            icon: "error",
-                            title: "Error al rechazar",
-                            showConfirmButton: false,
-                        })</script>';
+                        echo "
+                        <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Advertencia',
+                            text: 'Error al rechazar dueño',
+                            });
+                        </script>";
                     }
                 }
             ?>

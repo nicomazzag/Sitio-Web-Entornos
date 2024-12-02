@@ -47,20 +47,27 @@
                     $fila = mysqli_fetch_assoc($resultado);
                     $consulta2 = "SELECT * FROM locales WHERE codUsuario = '".$fila['codigo']."' ";
                     $resultado2 = mysqli_query($conn, $consulta2);
+                    $haypromociones = false;
                     while ($fila2 = mysqli_fetch_assoc($resultado2)) {
                         $consulta3 = "SELECT * FROM promociones WHERE codLocal = '".$fila2['id']."' ";
                         $resultado3 = mysqli_query($conn, $consulta3);
-                        $haypromociones = false;
                         while ($fila3 = mysqli_fetch_assoc($resultado3)) {
                             if ($fila3['estadoPromo'] == "aprobada") {
                                 $haypromociones = true;
+                                $diasBinario = $fila3['diasValidos'];
+                                $diasTexto = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
+                                $diasResultado = [];
+                                for ($i = 0; $i < 7; $i++) {
+                                    if ($diasBinario[$i] === "1") {
+                                        $diasResultado[] = $diasTexto[$i];
+                                    }  }
                                 echo '<tr>
                                 <th scope="row" class="text-center">'. $fila3['id'].'</th>
                                 <td> '. $fila2['nombre'] .'</td>
                                 <td> '. $fila3['nombre'] .'</td>
                                 <td> '. $fila3['descripcion'] .'</td>
                                 <td>'. $fila3['categoriaMin'] .'</td>
-                                <td> '. $fila3['diasValidos'] .'</td>';
+                                <td> '. implode(" - ", $diasResultado) .'</td>';
                                 echo '<form action="'. htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">
                                     <td><button id="botonCesto" type="submit" class="btn"  name="id" value="'. $fila3['id'].'" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
                                 </form>';

@@ -79,7 +79,7 @@
               <td><?php echo $fila['descripcion']; ?></td>         
               <?php // Convertir los unos de $diasBinario en los días correspondientes
                 $diasBinario = $fila['diasValidos'];
-                $diasTexto = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"];
+                $diasTexto = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
                 $diasResultado = [];
                 for ($i = 0; $i < 7; $i++) {
                     if ($diasBinario[$i] === "1") {

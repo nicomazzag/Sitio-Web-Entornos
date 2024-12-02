@@ -130,10 +130,32 @@
         }
         $estado = "pendiente";
         $diasDisponibles= $_POST['DiasDisponibles'];
-        $dias = "";    
+        $dias = "0000000";
         foreach ($diasDisponibles as $dia) {
-            $dias .= $dia . " ";
-        }
+            switch ($dia){
+                case 'Lunes':
+                    $dias[1]='1';
+                    break;
+                case 'Martes':
+                    $dias[2]='1';
+                    break;
+                case 'Miercoles':
+                    $dias[3]='1';
+                    break;
+                case 'Jueves':
+                    $dias[4]='1';
+                    break;
+                case 'Viernes':
+                    $dias[5]='1';
+                    break;
+                case 'Sabado':
+                    $dias[6]='1';
+                    break;
+                case 'Domingo':
+                    $dias[0]='1';
+                    break;
+                }
+            }
             $sql = "INSERT INTO promociones (nombre,descripcion, categoriaMin, diasValidos, fechaDesde, fechaHasta,estadoPromo, codLocal) VALUES ('$nombre','$descricpcion', '$categoria' , '$dias', '$fechaDesde', '$fechaHasta', '$estado', '$local')"; 
 
 
