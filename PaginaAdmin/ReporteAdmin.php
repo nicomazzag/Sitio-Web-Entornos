@@ -73,9 +73,9 @@
               <?php
                 $sql = "SELECT * FROM usopromociones WHERE codPromo = " . $fila['id'] . " AND estado = 'aceptada'";
                 $result = mysqli_query($conn, $sql);
-                $diasUsados = (mysqli_num_rows($result))   
+                $cantUsos = (mysqli_num_rows($result))  //cantidad de usos 
               ?>
-              <td> <?php echo $diasUsados ?></td> 
+              <td> <?php echo $cantUsos ?></td> 
               <td><?php echo $fila['descripcion']; ?></td>         
               <?php // Convertir los unos de $diasBinario en los días correspondientes
                 $diasBinario = $fila['diasValidos'];
@@ -147,6 +147,5 @@
           <?php endif; ?>
         </ul>
     </nav>
-    
 </body>
 </html>
