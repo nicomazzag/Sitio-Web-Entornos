@@ -88,13 +88,23 @@
                                 <th scope="row" class="text-center"><?php echo $filaL['id']; ?></th>
                                 <td><?php echo $filaL['nombre']; ?></td>
                                 <td><?php echo $filaP['descripcion']; ?></td>   
-                                <td><?php echo $filaP['descripcion']; // esperas a sussi ?></td> 
+                                    <?php // Convertir los unos de $diasBinario en los días correspondientes
+                                        $diasBinario = $filaP['diasValidos'];
+                                        $diasTexto = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
+                                        $diasResultado = [];
+                                        for ($i = 0; $i < 7; $i++) {
+                                            if ($diasBinario[$i] === "1") {
+                                                $diasResultado[] = $diasTexto[$i];
+                                            }  
+                                        }  
+                                    ?>
+                                <td class="text-left"><?php echo implode(" - ", $diasResultado); ?></td>                                  
                                     <?php
                                         $sql = "SELECT * FROM usopromociones WHERE codPromo = " . $filaP['id'] . " AND estado = 'aceptada'";
                                         $result = mysqli_query($conn, $sql);
                                         $cantUsos = (mysqli_num_rows($result)) // cantidad de usos
                                     ?>
-                                <td> <?php echo $cantUsos ?></td> 
+                                <td class="text-center"> <?php echo $cantUsos ?></td> 
                             </tr>
                         <?php endwhile; ?>
                     <?php endwhile; ?>
