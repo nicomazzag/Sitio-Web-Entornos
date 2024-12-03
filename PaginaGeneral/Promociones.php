@@ -31,6 +31,7 @@
         }
     </style>
 </head>
+
 <body>
     <?php 
         include("../Include/header.php");
@@ -44,9 +45,10 @@
             <div class="container-fluid posicionar  mt-3 mb-3">
                 <form id="agrandar" class="d-flex" role="search" method="get" action="Promociones.php">
                     <input class="form-control me-2" type="search" placeholder="Buscar por nombre o código del local" aria-label="Buscar" name="buscarTermino">
-                    <button id="espaciar" class="btn btn-outline-primary" type="submit">Buscar</button>
+                    <button id="espaciar" class="btn btn-outline-primary" type="submit" style="opacity: 1; color: #0248B1;">Buscar</button>
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        style="opacity: 1; color: #0248B1;">
                             Filtrar por categoría
                         </button>
                         <ul class="dropdown-menu">
@@ -76,7 +78,6 @@
                             JOIN locales ON promociones.codLocal = locales.id WHERE
                             SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                             fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada'
-                            AND locales.estado = 1
                             ";
                     
                     // Agregar condición de búsqueda si se ha ingresado un término
@@ -96,17 +97,17 @@
                         <div class="col-12 col-sm-6 col-md-3 mt-2 mb-3">
                             <div class="card h-100">
                                 <div class="card-body">
-                                <h5 class="card-title">' . $row["nombre"] . '</h5>
+                                <h2 class="h5 card-title">' . $row["nombre"] . '</h2>
                                 <strong><i>'. $row['categoriaMin'] . '</i></strong>
                                 <p class="card-text">' . $row["descripcion"] . '</p>
                                 </div>
                                 <div class="card-footer">
-                                    <small class="text-body-secondary">
+                                    <div class="text-body-secondary small">
                                         <b> De: ' . $row["local_nombre"] .'</b>
                                         <form action="../Logeo/Iniciar_sesion.php" method="get">
                                             <button class="botonPromo" aria-label="Inspeccionar promoción"><i class="fas fa-arrow-right iconoPromo"></i></button>
                                         </form>
-                                    </small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
