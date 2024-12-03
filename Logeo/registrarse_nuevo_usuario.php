@@ -15,6 +15,11 @@
         button{
             cursor: pointer;
         }
+        legend {
+        font-size: 20px; 
+        font-weight: normal; 
+        margin-bottom: 10px; 
+    }
     </style>
 </head>
 <body>
@@ -61,7 +66,7 @@
                 <input type="password"  name="contraseña" id="contraseña" class="form_input" placeholder=" ">
                 <label for="contraseña" class="form_label">Contraseña:</label>
                 <span class="form_line"></span>
-                <img src="../Imagenes/Ocultar.png" class="logitoOjo" id="togglePassword" alt="Mostrar contraseña" title="Mostrar contraseña">
+                <img src="../Imagenes/Ocultar.png" class="logitoOjo" id="togglePassword" alt="Mostrar contraseña" title="Ver contraseña">
                 </svg>  
                     <!-- Efecto de mostrar y ocultar contraseña -->
                 <script>
@@ -77,7 +82,8 @@
                     });
                 </script> 
             </div>
-                <div class="conteiner">
+                <fieldset>
+                    <legend>Seleccione su rol:</legend>
                     <div class="box">
                         <input  class="form-check-input" type="radio" id="Dueño" name="rol" value="dueño" required> 
                         <label class="form-check-label" for="Dueño">Dueño</label>
@@ -86,7 +92,8 @@
                         <input class="form-check-input" type="radio" id="Usuario" name="rol" value="usuario" required > 
                         <label class="form-check-label" for="Usuario">Usuario</label>
                     </div>
-                </div>
+                </fieldset>
+                
                 <button type="submit">
                     Confirmar
                 </button>

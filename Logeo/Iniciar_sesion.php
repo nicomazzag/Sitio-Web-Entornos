@@ -39,7 +39,7 @@
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="form" method="post">
             <h2 class="form_titulo">Iniciar Sesion</h2>
                 <a href="../PaginaGeneral/home_Page.php">
-                    <img src="../Imagenes/Logo_shopping.png" style="height: 50px;" alt="Logo" title="Logo" >
+                    <img src="../Imagenes/Logo_shopping.png" style="height: 50px;" alt="Logo del shopping" title="Logo" >
                 </a> 
                 <div class="form_contenedor">
                     <div class="form_grupo">
@@ -51,7 +51,7 @@
                         <span class="form_line"></span>
                     </div>    
                     <div class="form_grupo">
-                    <img src="../Imagenes/Ocultar.png" class="logitoOjo" id="togglePassword" alt="Mostrar contraseña" title="Mostrar contraseña">
+                    <img src="../Imagenes/Ocultar.png" class="logitoOjo" id="togglePassword" alt="Mostrar contraseña" title="Ver contraseña">
                 </svg>  
                     <!-- Efecto de mostrar y ocultar contraseña -->
                 <script>
@@ -67,7 +67,7 @@
                     });
                 </script> 
                         <input type="password"  name="contraseña" id="contraseña" class="form_input" placeholder=" " class="form_input">
-                        <label for="contra" class="form_label">Contraseña:</label>
+                        <label for="contratraseña" class="form_label">Contraseña:</label>
                         <span class="form_line"></span>
                     </div>
                     <button class="iniciar" name="Iniciar_Sesion" type="submit">

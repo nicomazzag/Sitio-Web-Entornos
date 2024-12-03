@@ -7,9 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Contraseña</title>
     <link rel="stylesheet" href="iniciarSession.css">
     <link rel="icon" href="../Iconos/Logo_shopping_blanco.ico" type="image/x-icon">
+    <title>Recuperar Contraseña</title>
     <style>
         button{
             cursor: pointer;
@@ -51,9 +51,9 @@
                 </div>
             <div class="form_grupo">
                 <input type="password" class="form_input" placeholder=" " name="contraseña1" id="contraseña" required>
-                <label for="password" class="form_label" >Contraseña: </label>
+                <label for="contraseña" class="form_label" >Contraseña: </label>
                 <span class="form_line"></span>
-                <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Mostrar contraseña" id="togglePassword1">
+                <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Ver contraseña" id="togglePassword1">
                 <script>
                             document.getElementById('togglePassword1').addEventListener('click', function () {
                                 const passwordField = document.getElementById('contraseña');
@@ -68,10 +68,10 @@
                         </script> 
             </div>
             <div class="form_grupo">
-                    <input type="password" class="form_input" placeholder=" " name="contraseña2" id="confirmarPassword" required>
-                    <label for="confirmarPassword" class="form_label">Confirmar Contraseña:</label>
+                    <input type="password" class="form_input" placeholder=" " name="contraseña2" id="confirmarcontraseña" required>
+                    <label for="confirmarcontraseña" class="form_label">Confirmar Contraseña:</label>
                     <span class="form_line"></span>
-                    <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Mostrar contraseña" id="togglePassword2">
+                    <img src="../Imagenes/Ocultar.png" class="logitoOjo" alt="Mostrar contraseña" title="Ver contraseña" id="togglePassword2">
                         <script>
                             document.getElementById('togglePassword2').addEventListener('click', function () {
                                 const passwordField = document.getElementById('confirmarPassword');
