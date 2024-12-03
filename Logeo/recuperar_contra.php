@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="iniciarSession.css">
-    <link rel="icon" href="../Iconos/Logo_shopping_blanco.ico" type="image/x-icon">
+    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <title>Recuperar Contraseña</title>
     <style>
         button{
@@ -23,13 +23,13 @@
                     echo '<script>
                     document.getElementById("linkExito").click();
                     </script>';
-                } elseif(isset($_GET['recuperar']) && $_GET['recuperar'] == 'faltante'){
+                } elseif($_GET['recuperar'] == 'faltante'){
                     echo '<a href="Alertas/alerta_de_faltante.html" id="linkExito" style="display:none;"></a>';
                     echo '<script>
                     document.getElementById("linkExito").click();
                     </script>';
-                } elseif(isset($_GET['recuperar']) && $_GET['recuperar'] == 'exito'){
-                    echo '<a href="Alertas/alerta_contraseña_cambiada.html" id="linkExito" style="display:none;"></a>';
+                } elseif($_GET['recuperar'] == 'exito'){
+                    echo '<a href="Alertas/alerta_cambio_de_contraseña_enviada.html" id="linkExito" style="display:none;"></a>';
                     echo '<script>
                     document.getElementById("linkExito").click();
                     </script>';
@@ -104,11 +104,8 @@
         }
         $sql = "SELECT * FROM registracion WHERE usuario = '$usuario'";
         $resultado = mysqli_query($conn, $sql);
-        echo "hola";
         if(mysqli_num_rows($resultado) == 1){
             $usuarioEmail = $usuario; // Email del usuario
-            echo "hola";
-            
             $hashedEmail = base64_encode($usuarioEmail);
         
             $link = "https://zorzal.online/Sitio_Web/Logeo/reestablecer.php?email=" . urlencode($hashedEmail);
@@ -127,10 +124,17 @@
             $cabeceras .= "From: admin@zorzal.online";
         
             if (mail($usuarioEmail, $asunto, $mensaje, $cabeceras)) {
-                echo "Se te ha enviado un correo para que restablezcas tu contraseña."; //Cambiar sussi
+                 echo "
+                    <script>
+                        alert('Se le ha enviado un email para cambiar la contraseña.');
+                        window.location.href = 'https://mail.google.com/mail/u/0/#inbox/FMfcgzQXKWhVxhfQPVrkrhqjkTtNcfdB';
+                    </script>"; 
             } else {
-                echo "Error al enviar el correo."; //Cambiar sussi
-            }
+                    echo "
+                        <script>
+                            alert('Hubo un error al cambiar la contraseña.');
+                        </script>";
+                    }
         }
     } 
     //     $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_EMAIL);

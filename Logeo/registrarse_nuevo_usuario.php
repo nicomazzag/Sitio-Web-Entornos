@@ -9,7 +9,7 @@
     <!-- Conexión con Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="iniciarSession.css">
-    <link rel="icon" href="../Iconos/Logo_shopping_blanco.ico" type="image/x-icon">
+    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <title>Registrarse</title>
     <style>
         button{
