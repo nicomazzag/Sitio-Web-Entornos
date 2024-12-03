@@ -48,28 +48,28 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">Martes</div>
-                                            <div class="col">8:00 AM-18:00 PM</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">Miércoles</div>
-                                            <div class="col">8:00 AM-18:00 PM</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">Jueves</div>
-                                            <div class="col">8:00 AM-18:00 PM</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">Viernes</div>
-                                            <div class="col">8:00 AM-18:00 PM</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">Sábado</div>
-                                            <div class="col">9:00 AM-17:00 PM</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">Domingo</div>
-                                            <div class="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerrado</div>
-                                        </div>
+                                    <div class="col">8:00 AM-18:00 PM</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Miércoles</div>
+                                    <div class="col">8:00 AM-18:00 PM</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Jueves</div>
+                                    <div class="col">8:00 AM-18:00 PM</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Viernes</div>
+                                    <div class="col">8:00 AM-18:00 PM</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Sábado</div>
+                                    <div class="col">9:00 AM-17:00 PM</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Domingo</div>
+                                    <div class="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerrado</div>
+                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="inputContainer">
-                    <form action="home_Page.php #locales" method="post" class="buscarNombre">
+                    <form action="home_Page.php#locales" method="post" class="buscarNombre">
                         <button class="botonLupa" aria-label="Buscar local por nombre" type="submit">
                             <i class="fas fa-search iconoLupa"></i>
                         </button>
@@ -203,7 +203,7 @@
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <form action="home_Page.php #locales" method="post">
+                                            <form action="home_Page.php#locales" method="post">
                                                     
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input" type="checkbox" role="switch" id="Categorias" name="categorias[]" value="Todos">
