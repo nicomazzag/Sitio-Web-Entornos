@@ -61,7 +61,7 @@
                         <a class="nav-link text-white" href="#contactanos">Contáctanos</a>
                     </li>
                 </ul>
-                <a class="nav-link" href="/Logeo/Iniciar_sesion.php">
+                <a class="nav-link" href="../Logeo/Iniciar_sesion.php">
                     <button class="btn" id="botonCerraSesion" type="button" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
