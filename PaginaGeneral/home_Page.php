@@ -147,7 +147,7 @@
         $buscarLocal = isset($_POST['buscarLocal']) ? $_POST['buscarLocal'] : '';
         $filtros = isset($_POST['categorias']) ? $_POST['categorias'] : [];
 
-        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE 1=1";
+        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE estado=1";
 
         // Agregar condición de búsqueda si se ha ingresado un nombre de local
         if (!empty($buscarLocal)) {
