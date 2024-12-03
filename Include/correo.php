@@ -9,6 +9,7 @@
 <?php 
     if(isset($_POST['enviar'])){
         if(!empty($_POST['mail']) && !empty($_POST['descripcion'])){
+            date_default_timezone_set('America/Argentina/Buenos_Aires');
             $fecha=date("d-m-Y");
             $hora= date("H :i:s");
             $mail = $_POST['mail'];
