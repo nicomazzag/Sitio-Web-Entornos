@@ -2,30 +2,20 @@
     include("../Include/Sesion.php");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include_once("../Include/librerias.php");?>
     <!-- Conexion con hoja de estilo -->
-    <link rel="stylesheet" href="../PaginaGeneral/home_Page.css">
-    <!-- Conexion con bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Conexion con font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <!-- Conexion con el icono de la pagina -->
-    <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
-    <!-- Conexion con el google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Protest+Guerrilla&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="../PaginaGeneral/home_Page.css">    
     <title>Principal</title>
 </head>
 <body>
-    <?php 
-        include_once("headerAdmin.php");
+    <?php
+        if (!defined('NO_HEADER')) {
+            include 'headerAdmin.php';
+        }
     ?>
     <!-- Introduccion -->
     <div class="conteiner numero1">
@@ -81,13 +71,13 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Vista exterior del centro comercial Zorzal" id="imagenesShopping" class="img-fluid">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page.jpg" alt="Imagen del shopping" id="imagenesShopping" class="img-fluid">
                         </div>
                         <div class="carousel-item">
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Interior del centro comercial mostrando tiendas" class="img-fluid imagen2">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_2.jpg" alt="Imagen del shopping" class="img-fluid imagen2">
                         </div>
                         <div class="carousel-item">
-                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_3.jpg" alt="Zona de descanso en el centro comercial" class="img-fluid">
+                            <img src="../Imagenes/Zorzal_Imagen_Home_Page_3.jpg" alt="Imagen del shopping" class="img-fluid">
                         </div>
                     </div>
                     <button class="carousel-control-prev background-color-white" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -107,7 +97,7 @@
     <div class="contenedorEspecial">
         <div class="conteiner numero2"> 
             <div class="row">
-                <h1 class="titulo">Promociones destacadas</h1>
+                <h2 class="titulo">No te pierdas de lo mejor!!!</h2>
                 <?php
                     date_default_timezone_set('America/Argentina/Buenos_Aires');
                     $dia_actual = date('w');
@@ -182,11 +172,9 @@
             <div class="col-12">
                 <div class="inputContainer">
                     <form action="PrincipalAdmin.php#locales" method="post" class="buscarNombre">
-                        <div role="alert" class="visually-hidden">Si no encuentra resultados, intente con otro nombre</div>
                         <button class="botonLupa" aria-label="Buscar local por nombre" type="submit">
                             <i class="fas fa-search iconoLupa"></i>
                         </button>
-                        <label for="buscarLocal" class="visually-hidden">Buscar local por nombre</label>
                         <input class="inputGrande" type="text" placeholder="Ingrese nombre del local" 
                             name="buscarLocal" id="buscarLocal" aria-label="Ingrese nombre del local">
                     </form>
@@ -266,7 +254,7 @@
                                         <form action="detallesLocal.php" method="get">
                                         <div class="text-center mt-3"> 
                                                 <input type="hidden" name="id" value="' . $row["id"] . '">
-                                                <button class="btn btn-primary botonLocales" type="submit" aria-label="Conocer más detalles del local seleccionado">Conocer más</button> 
+                                                <button class="btn btn-primary botonLocales" type="submit" aria-label="Inspeccionar local">Conocer más</button> 
                                         </div> 
                                         </form>
                                     </div> 
