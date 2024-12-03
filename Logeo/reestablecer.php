@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "
         <script>
             alert('Contraseña cambiada con éxito.');
-            window.location.href = '/ruta/a/inicio-de-sesion.php';
+            window.location.href = 'Iniciar_sesion.php';
         </script>";
     } else {
         echo "
