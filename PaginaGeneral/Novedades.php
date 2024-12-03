@@ -36,7 +36,7 @@
     <div class="conteiner contenedor2">
         <div class="row">
         <?php //El while dentro de el div row para que no se cree 1 columna nueva por cada iteración del while
-            $consulta = "SELECT * FROM novedades";
+            $consulta = "SELECT * FROM novedades WHERE estado = true";
             $resultado = mysqli_query($conn, $consulta);
 
             while ($fila = mysqli_fetch_assoc($resultado)) {
@@ -61,6 +61,9 @@
             </div>
         <?php
             }; //Cerrando while
+            if (mysqli_num_rows($resultado) == 0) {
+                echo "<div  style='text-align: center; font-size: 1.5em; border-top: 1px solid black; width:100%; '> No hay nuevas novedades </div>";
+            }
         ?>
         </div>
     </div>

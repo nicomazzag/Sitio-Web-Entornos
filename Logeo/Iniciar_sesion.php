@@ -116,13 +116,13 @@
                         $_SESSION['tipo'] = $fila['tipoUsuario'];
                         $_SESSION['cod'] = $fila['codigo'];
                         $_SESSION['categoria'] = $fila['tipoCliente'];
-                        if($_SESSION['tipo'] == "administrador"){
+                        if($fila['tipoUsuario'] == "administrador"){
                             header("Location: ../PaginaAdmin/PrincipalAdmin.php");
                         }
-                        elseif($_SESSION['tipo'] == "dueño" && $fila['estadoDueño'] == "pendiente"){
+                        elseif($fila['tipoUsuario'] == "dueño" && $fila['estadoDueño'] == "pendiente"){
                             header("Location: Alertas/alerta_dueño_pendiente.html");
                             exit();
-                        } elseif($_SESSION['tipo'] == "dueño" && $fila['estadoDueño'] == "aceptado"){
+                        } elseif($fila['tipoUsuario'] == "dueño" && $fila['estadoDueño'] == "aceptado"){
                             header("Location: ../PaginaDueños/PrincipalDueños.php");
                         }
                         else{

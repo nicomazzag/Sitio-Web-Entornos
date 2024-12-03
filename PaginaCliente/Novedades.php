@@ -47,11 +47,11 @@
         <div class="row">
         <?php //El while dentro de el div row para que no se cree 1 columna nueva por cada iteración del while
             if($_SESSION['categoria'] == 'inicial'){
-                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial'";
+                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial' AND estado = true";
             }elseif($_SESSION['categoria'] == 'medium'){
-                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium'";
+                $consulta = "SELECT * FROM novedades WHERE estado = true AND (tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium')";
             }elseif($_SESSION['categoria'] == 'premium'){
-                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium' OR tipoCliente = 'Premium'";
+                $consulta = "SELECT * FROM novedades WHERE estado = true AND (tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium' OR tipoCliente = 'Premium')";
             }
             $resultado = mysqli_query($conn, $consulta);
 

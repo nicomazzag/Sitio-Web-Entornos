@@ -49,7 +49,13 @@
             <?php
               $consulta = "SELECT * FROM novedades";
               $resultado = mysqli_query($conn, $consulta);
-              while ($fila = mysqli_fetch_assoc($resultado)) {?>
+              while ($fila = mysqli_fetch_assoc($resultado)) {
+                if($fila['fechaHasta'] < date("Y-m-d")){
+                  $estado = 0;
+                  $sql = "UPDATE novedades SET estado = '$estado' WHERE codigo = {$fila['codigo']}";
+                  mysqli_query($conn, $sql);
+                }
+                ?>
             <tr>
               <th scope="row" class="text-center">
               <?php 
@@ -83,7 +89,7 @@
               </td>
               <?php }?>
             </tr>
-            <?php } ?>
+            <?php  } ?>
           </tbody>
         </table>
         <div class="contenedorBoton">
