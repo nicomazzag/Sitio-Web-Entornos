@@ -107,6 +107,7 @@
                     JOIN locales ON promociones.codLocal = locales.id WHERE
                      SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                     fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada'
+                    AND locales.estado = 1
                     ORDER BY promociones.id DESC LIMIT 4";
                     $result = $conn->query($sql);
 
@@ -149,7 +150,7 @@
         $buscarLocal = isset($_POST['buscarLocal']) ? $_POST['buscarLocal'] : '';
         $filtros = isset($_POST['categorias']) ? $_POST['categorias'] : [];
 
-        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE 1=1";
+        $sql = "SELECT id, nombre, imagen_url, descripcion FROM locales WHERE estado=1";
 
         // Agregar condición de búsqueda si se ha ingresado un nombre de local
         if (!empty($buscarLocal)) {
