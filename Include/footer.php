@@ -9,10 +9,13 @@
                 <div class="m-auto" style="width: 100%;">
                     <h4 id="mapa">Donde estamos</h4>
                     <p>Junín 501, S2000 Rosario, Santa Fe.</p>
-                    <iframe aria-labelledby="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26788.706247067246!2d-60.68548326545409!3d-32.93547449898199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b654abc3ab1d5f%3A0x2f90ce97db2c5a6!2sAlto%20Rosario%20Shopping.!5e0!3m2!1ses-419!2sar!4v1726094911163!5m2!1ses-419!2sar"
-                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <div class="text-center" style="margin-top: 5px;">
-                        <button class="btn btn-dark text-white" style="border: 1px solid white;"><a aria-label="Link hacia mapa completo" style="text-decoration: none;" href="https://maps.app.goo.gl/29xJiUwYj7yvUFw38">Ampliar mapa</a></button>
+                    <iframe class="w-100" aria-labelledby="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26788.706247067246!2d-60.68548326545409!3d-32.93547449898199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b654abc3ab1d5f%3A0x2f90ce97db2c5a6!2sAlto%20Rosario%20Shopping.!5e0!3m2!1ses-419!2sar!4v1726094911163!5m2!1ses-419!2sar"
+                     height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div id="LinkGoogle"class="text-center" style="margin-top: 5px;">
+                        <a aria-label="Link hacia mapa completo" style="text-decoration: none; border: 1px solid white; 
+                        background-color: #111; color: white; padding: 0.2em 1em; border-radius: 0.5em;" 
+                        href="https://maps.app.goo.gl/29xJiUwYj7yvUFw38">Ampliar Mapa</a>
+                        <!-- <button class="btn btn-dark text-white" style="border: 1px solid white;">Ampliar mapa</button> -->
                     </div>
                 </div>
             </div>
@@ -44,17 +47,15 @@
             </div>
             <div class="col-12 col-md-3 sacar_borde_superior">
                 <h4 id="contactanos" style="color: white;">Contáctanos</h4>
-                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
                     <label aria-labelledby="contactanos" for="mail" style="color: white;">Ingrese su mail:</label> 
                     <br>
-                    <input class="w-100" type="email" placeholder="Ingrese su mail" 
-                    aria-placeholder="Ingrese su mail" 
+                    <input class="w-100" type="email" placeholder="Ingrese su mail"  
                     name="mail" id="mail" required style="border: 2px solid gray;">
                     <label for="descripcion" style="color: white; width: 100%;">De una descripción de su problema/asunto:</label>
                     <br>
-                    <textarea aria-labelledby="contactanos" class="w-100" type="text" name="descripcion" id="descripcion" 
-                    placeholder="Ingrese una breve descripción" aria-placeholder="Ingrese una breve descripción" 
-                    required style="height: 4em; border: 2px solid gray;"></textarea>
+                    <textarea aria-labelledby="contactanos" class="w-100" name="descripcion" id="descripcion" 
+                    placeholder="Ingrese una breve descripción" required style="height: 4em; border: 2px solid gray;"></textarea>
                     <br>
                     <br>
                     <div class="text-center">

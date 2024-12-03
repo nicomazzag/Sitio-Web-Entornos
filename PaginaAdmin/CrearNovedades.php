@@ -27,7 +27,7 @@
     ?>
     <div class="container">
         <h1 class="display-2">Creando Nueva Novedad</h1>
-        <form id="crearNovedad" action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+        <form id="crearNovedad" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
             <div class="row">
                 <div class="form-group col-md-4 mt-2">
                     <label for="textoNov">Descripcion de la novedad</label>

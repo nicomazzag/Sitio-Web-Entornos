@@ -37,7 +37,7 @@
         <table id="sinMargen" class="table">
             <tbody class="table-group-divider">
                 <?php
-                $consulta = "SELECT * FROM usoPromociones WHERE estado = 'enviada'";
+                $consulta = "SELECT * FROM usopromociones WHERE estado = 'enviada'";
                 $resultado = mysqli_query($conn, $consulta);
                 while ($fila = mysqli_fetch_assoc($resultado)) {
                     $codUsuario = $fila['codCliente'];
@@ -86,7 +86,7 @@
         list($usuarioEsp, $promoEsp, $categoriaCliEsp) = explode('-', $valorConcatenado); 
 
         $estado = "aceptada";
-        $sql = "UPDATE usoPromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
+        $sql = "UPDATE usopromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
         
         if(mysqli_query($conn, $sql)){
             echo "
@@ -134,7 +134,7 @@
         list($usuarioEsp, $promoEsp) = explode('-', $valorConcatenado); 
 
         $estado = "rechazada";
-        $sql = "UPDATE usoPromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
+        $sql = "UPDATE usopromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
         if(mysqli_query($conn, $sql)){
             echo "
             <script>
