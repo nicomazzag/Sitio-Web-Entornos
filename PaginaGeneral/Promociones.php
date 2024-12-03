@@ -68,7 +68,8 @@
                     $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
                             JOIN locales ON promociones.codLocal = locales.id WHERE
                             SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
-                            fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada'
+                            fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada' 
+                            AND locales.estado = 1
                             ";
                     
                     // Agregar condición de búsqueda si se ha ingresado un término
