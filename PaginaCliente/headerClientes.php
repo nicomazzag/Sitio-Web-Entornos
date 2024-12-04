@@ -1,3 +1,11 @@
+<?php
+if(isset($_POST['cerrarSession'])){
+    session_unset();
+    session_destroy();
+    header("Location: ../Logeo/Iniciar_sesion.php");
+    exit();
+}
+?>
 <head>
     <style>
             #botonCerraSesion {
@@ -49,7 +57,7 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="PrincipalCliente.php #locales">Nuestros Locales</a>
+                        <a class="nav-link text-white" href="PrincipalCliente.php#locales">Nuestros Locales</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="Promociones.php">Promociones</a>
@@ -61,11 +69,11 @@
                         <a class="nav-link text-white" href="#contactanos">Contáctanos</a>
                     </li>
                 </ul>
-                <a class="nav-link" href="../Logeo/Iniciar_sesion.php">
-                    <button class="btn" id="botonCerraSesion" type="button" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="sinMargen" method="post">
+                    <button class="btn" id="botonCerraSesion" name="cerrarSession" type="submit" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
                     <i class="fas fa-sign-out-alt"></i>
-                </button>
-                </a>
+                    </button>
+                </form>
             </div>
         </div>
     </nav>

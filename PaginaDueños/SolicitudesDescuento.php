@@ -37,7 +37,8 @@
         <table id="sinMargen" class="table">
             <tbody class="table-group-divider">
                 <?php
-                $consulta = "SELECT * FROM usopromociones WHERE estado = 'enviada'";
+                $codigoDueño = $_SESSION['cod'];
+                $consulta = "SELECT usopromociones.* FROM usopromociones JOIN promociones ON usopromociones.codPromo = promociones.id JOIN locales ON promociones.codLocal = locales.id WHERE locales.codUsuario = $codigoDue AND usopromociones.estado = 'enviada'";
                 $resultado = mysqli_query($conn, $consulta);
                 while ($fila = mysqli_fetch_assoc($resultado)) {
                     $codUsuario = $fila['codCliente'];
@@ -87,6 +88,20 @@
 
         $estado = "aceptada";
         $sql = "UPDATE usopromociones SET estado = '$estado' WHERE codCliente = $usuarioEsp AND codPromo = $promoEsp";
+        //verificando de actualizar tipo de cliente (a Medium o Premium)
+        if ($categoriaCliEsp != 'premium') {
+            $verifTipoCliente = "SELECT * FROM usopromociones WHERE estado = 'aceptada' AND codCliente = $usuarioEsp";
+            $resultado = mysqli_query($conn, $verifTipoCliente);
+            $numFilas = mysqli_num_rows($resultado);
+            if ($numFilas == 2 || $numFilas == 3) {
+                $sql = "UPDATE registracion SET tipoCliente = 'medium' WHERE codigo = $usuarioEsp";
+                mysqli_query($conn, $sql);
+            }
+            elseif ($numFilas >= 4) {
+                $sql = "UPDATE registracion SET tipoCliente = 'premium' WHERE codigo = $usuarioEsp";
+                mysqli_query($conn, $sql);
+            }
+        }
         
         if(mysqli_query($conn, $sql)){
             echo "
@@ -111,20 +126,6 @@
                 text: 'Hubo un problema al aceptar la promoción'
             });
             </script>";
-        }
-        //verificando de actualizar tipo de cliente (a Medium o Premium)
-        if ($categoriaCliEsp != 'premium') {
-            $verifTipoCliente = "SELECT * FROM usoPromociones WHERE estado = 'aceptada' AND codCliente = $usuarioEsp";
-            $resultado = mysqli_query($conn, $verifTipoCliente);
-            $numFilas = mysqli_num_rows($resultado);
-            if ($numFilas == 2 || $numFilas == 3) {
-                $sql = "UPDATE registracion SET tipoCliente = 'medium' WHERE codigo = $usuarioEsp";
-                mysqli_query($conn, $sql);
-            }
-            elseif ($numFilas >= 4) {
-                $sql = "UPDATE registracion SET tipoCliente = 'premium' WHERE codigo = $usuarioEsp";
-                mysqli_query($conn, $sql);
-            }
         }
         mysqli_close($conn);
     }

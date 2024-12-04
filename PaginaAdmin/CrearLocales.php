@@ -57,9 +57,16 @@
             </div>
             <div class="row">
                 <div class="col-12 cargaImagenes">
+
                     <img src="../Imagenes/Logo_shopping.png" alt="Imagen del local" id="imagenLocal">
                     <label for="inputArchivo" id="labelArchivo">Subir imagen del local</label>
-                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputArchivo" name="imagenLocal">
+                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputArchivo" name="imagenLocal" >
+                        
+
+                    <!-- <img src="../Imagenes/Logo_shopping.png" alt="Imagen del local" id="imagenLocal">
+                    <label for="inputArchivo" id="labelArchivo">Subir imagen del local</label>
+                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputArchivo" name="imagenLocal"> -->
+                    
                 </div>
             </div>
             <div class="mt-3 espaciarBotones">
@@ -106,31 +113,68 @@
                 text: 'Debe rellenar todos los campos'
             });
             </script>";
+            exit();
         }
-        else {
-
-            $consultaUsuario = "SELECT * FROM registracion WHERE codigo = $codUsuario AND tipoUsuario = 'dueño'";
-            $resultadoUsuario = mysqli_query($conn, $consultaUsuario); // objeto de la consulta
-             // chatgpt imagenes
-
-            $carpetaDestino = "../Imagenes/Locales/";
-
+        if($_FILES['imagenLocal']['error'] === UPLOAD_ERR_OK){
+            
             // Obtener información de la imagen
             $rutaTemporal = $_FILES['imagenLocal']['tmp_name'];
 
-            // Generar un nombre único
-            $extension = pathinfo($imagenLocal, PATHINFO_EXTENSION);
-            $nombreUnico = uniqid('img_', true) . '.' . $extension;
-            $rutaDestino = $carpetaDestino . $nombreUnico;
+            list($ancho, $alto) = getimagesize($rutaTemporal);
 
-            // Mover la imagen a la carpeta
-            move_uploaded_file($rutaTemporal, $rutaDestino);
-                        
+            //Convirtiendo la imagen al tamaño adecuado
+            $nuevo_ancho = 256;
+            $nuevo_alto = 256;
+
+            // Creando la imagen
+            $imagen_base = imagecreatetruecolor($nuevo_ancho, $nuevo_alto);
+
+            // Detectar el formato de la imagen original
+            $tipo_imagen = $_FILES['imagenLocal']['type'];
+            if ($tipo_imagen === 'image/jpeg') {
+                $imagen_original = imagecreatefromjpeg($rutaTemporal);
+            } elseif ($tipo_imagen === 'image/png') {
+                $imagen_original = imagecreatefrompng($rutaTemporal);
+            } else {
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de la imagen',
+                    text: 'Solo se permiten imágenes JPEG o PNG'
+                });
+                </script>";
+                exit();
+            }
         
+            // Redimensionar la imagen original
+            imagecopyresampled(
+                $imagen_base, $imagen_original,
+                0, 0, 0, 0,
+                $nuevo_ancho, $nuevo_alto,
+                $ancho, $alto
+            );
 
-             // fin chatgpt imagenes
+            //Subida de imagen
+            $carpetaDestino = "../Imagenes/Locales/";
+            
+            
+            $extensionesPermitidas = ['jpg', 'jpeg', 'png'];
+            $extensionImg = strtolower(pathinfo($imagenLocal, PATHINFO_EXTENSION));
 
-        
+            if (in_array($extensionImg, $extensionesPermitidas)){
+                // Creando nombre único de la imagen
+                $nombreUnico = uniqid('imgLocal_', true) . '.' . $extensionImg;
+                // Ruta completa de la imagen
+                $rutaDestino = $carpetaDestino . $nombreUnico;
+                
+                // Moviendo el archivo a la carpeta correcta
+                move_uploaded_file($rutaTemporal, $rutaDestino);
+            }
+            
+            $consultaUsuario = "SELECT * FROM registracion WHERE codigo = $codUsuario AND tipoUsuario = 'dueño'";
+            $resultadoUsuario = mysqli_query($conn, $consultaUsuario); // objeto de la consulta
+
             if(mysqli_num_rows($resultadoUsuario) > 0){  // El código de usuario existe
                     $sql = "INSERT INTO locales (nombre, ubicacionLocal, rubroLocal, imagen_url, codUsuario, estado) VALUES ('$nombre', '$ubicacionLocal', '$rubroLocal','$rutaDestino', '$codUsuario', '$estado')";
                 if(mysqli_query($conn, $sql)){
@@ -174,6 +218,19 @@
                     </script>";
                     mysqli_close($conn);
             }
+
+        }
+        else {
+            
+            echo "
+            <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Imagen invalida'
+            });
+            </script>";
+            
         }
 
     }
