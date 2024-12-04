@@ -1,29 +1,32 @@
 <?php 
   include("../Include/Sesion.php");
   include('../BasesDeDatos/UnicaBaseDeDatos.php');
-  // paginacion :
-  $filasPorPagina = 5; //  filas por página
-  $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1; 
-  $inicio = ($paginaActual - 1) * $filasPorPagina; 
+// Paginación:
+$filasPorPagina = 3; // filas por página
+$paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1; 
+$inicio = ($paginaActual - 1) * $filasPorPagina; 
 
-  $totalRegistros = 0;
- 
-  $codUsuario = $_SESSION['cod']; // cod del usuario dueño    
-  $sqlL = "SELECT * FROM locales WHERE codUsuario = $codUsuario";
-  $resultL = mysqli_query($conn, $sqlL); // locales del dueño
-  
-  while ($filaL = mysqli_fetch_assoc($resultL)): // recorrer locales
+$totalRegistros = 0;
 
-      $sqlP = "SELECT * FROM promociones WHERE codLocal = " . (int)$filaL['id'] . " AND estadoPromo = 'aprobada'";
-      $resultP = mysqli_query($conn, $sqlP); // promociones aceptadas del local
-      $totalRegistros = $totalRegistros + mysqli_num_rows($resultP); // numero total de promoinciones por local
- endwhile; 
+$codUsuario = $_SESSION['cod']; // cod del usuario dueño    
+$sqlL = "SELECT * FROM locales WHERE codUsuario = $codUsuario LIMIT $inicio, $filasPorPagina";
+$resultL = mysqli_query($conn, $sqlL); // locales del dueño
 
-  $totalPaginas = ceil($totalRegistros / $filasPorPagina); // número  de paginas
+while ($filaL = mysqli_fetch_assoc($resultL)): // recorrer locales
 
-  // Obtener los registros de la página actual
-  $sql = "SELECT * FROM promociones LIMIT $inicio, $filasPorPagina";
-  $resultado = mysqli_query($conn, $sql);
+    $sqlP = "SELECT * FROM promociones WHERE codLocal = " . (int)$filaL['id'] . " AND estadoPromo = 'aprobada'";
+    $resultP = mysqli_query($conn, $sqlP); // promociones aceptadas del local
+
+    while ($filaP = mysqli_fetch_assoc($resultP)): // recorrer las promociones de cada local
+        $totalRegistros = $totalRegistros + 1;
+    endwhile;
+endwhile;
+
+// Calcular el total de páginas
+$sqlTotal = "SELECT COUNT(*) as total FROM locales WHERE codUsuario = $codUsuario";
+$resultTotal = mysqli_query($conn, $sqlTotal);
+$rowTotal = mysqli_fetch_assoc($resultTotal);
+$totalPaginas = ceil($rowTotal['total'] / $filasPorPagina);
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +83,7 @@
                     
                     while ($filaL = mysqli_fetch_assoc($resultL)): // recorrer locales
 
-                        $sqlP = "SELECT * FROM promociones WHERE codLocal = " . (int)$filaL['id'] . " AND estadoPromo = 'aprobada'";
+                        $sqlP = "SELECT * FROM promociones WHERE codLocal = " . (int)$filaL['id'] . " AND estadoPromo = 'aprobada' LIMIT $inicio, $filasPorPagina";
                         $resultP = mysqli_query($conn, $sqlP); // promociones aceptadas del local
 
                         while ($filaP = mysqli_fetch_assoc($resultP)): // recorrer las promociones ?>
@@ -111,28 +114,14 @@
             </tbody>
         </table>
     </div>
-
-
-    <!-- Paginación -->
-    <nav aria-label="Page navigation example" id="paginacion">
-        <ul class="pagination" id="enlaces">
-
-                       <!-- Botón de retroceso -->
-          <?php if ($paginaActual > 1): ?>
-            <li class="page-item "><a class="page-link" id="item" href="?pagina=<?php echo $paginaActual - 1; ?>">Anterior</a></li>
-          <?php else: ?>
-            <li class="page-item "><a class="page-link" id="item" href="#">Anterior</a></li>
-            <?php endif; ?>
-                      <!-- Numero de pagina -->
-          <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
-            <li class="page-item" ><a class="page-link" id="item" href="?pagina=<?php echo $i; ?>" class="<?php echo ($i == $paginaActual) ? 'active' : ''; ?>"><?php echo $i; ?></a></li>
-          <?php endfor; ?>
-                      <!-- Botón de avance -->
-          <?php if ($paginaActual < $totalPaginas): ?>
-            <li class="page-item "><a class="page-link" id="item" href="?pagina=<?php echo $paginaActual + 1; ?>">Siguiente</a></li>
-          <?php else: ?>
-            <li class="page-item "><a class="page-link" id="item" href="#">Siguiente</a></li>
-          <?php endif; ?>
+<!-- Paginación -->
+    <nav>
+        <ul class="pagination justify-content-center">
+            <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                <li class="page-item <?php if ($i == $paginaActual) echo 'active'; ?>">
+                    <a class="page-link" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+                </li>
+            <?php endfor; ?>
         </ul>
     </nav>
 </body>

@@ -85,7 +85,7 @@
         $consultaUsuario = "SELECT * FROM registracion WHERE codigo = $codigo AND tipoUsuario = 'dueño'";
         $resultadoUsuario = mysqli_query($conn, $consultaUsuario);
         
-        if(mysqli_num_rows($resultadoUsuario) > 0){  // El código de usuario existe
+        if(mysqli_num_rows($resultadoUsuario) > 0){  // El código de dueño existe
                 if(!empty($nombre) && $nombre != $fila['nombre'] ){
                 $sql = "UPDATE locales SET nombre = '$nombre' WHERE id = $id";
                 mysqli_query($conn, $sql);
@@ -98,8 +98,14 @@
                 $sql = "UPDATE locales SET codUsuario = '$codUsuario' WHERE id = $id";
                 mysqli_query($conn, $sql);
             }
+            if(!empty($codigo) && $codigo != $fila['codUsuario'] ){
+                $sql = "UPDATE locales SET codUsuario = '$codigo' WHERE id = $id";
+                mysqli_query($conn, $sql);
+            }
             $sql = "UPDATE locales SET rubroLocal = '$rubroLocal' WHERE id = $id";
                 mysqli_query($conn, $sql);
+            
+            
         
             if(mysqli_query($conn, $sql)){
                 echo "
@@ -129,13 +135,13 @@
         }
             
         else {
-            // El código de usuario no existe
+            // El código de dueño no existe
             echo "
                 <script>
                 Swal.fire({
                     icon: 'warning',
                     title: 'Advertencia',
-                    text: 'El codigo de usuario no existe'
+                    text: 'El codigo de dueño no existe'
                 }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = 'LocalesAdmin.php';
