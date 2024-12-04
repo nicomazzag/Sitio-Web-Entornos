@@ -75,7 +75,9 @@
                 
                 //include("../BasesDeDatos/UnicaBaseDeDatos.php");
                 $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
-                JOIN locales ON promociones.codLocal = locales.id WHERE locales.id = $local_id";
+                JOIN locales ON promociones.codLocal = locales.id WHERE locales.id = $local_id AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
+                            fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND promociones.estadoPromo = 'aprobada' 
+                            AND locales.estado = 1";
 
                 $result = $conn->query($sql);
                     if ($result->num_rows > 0) {

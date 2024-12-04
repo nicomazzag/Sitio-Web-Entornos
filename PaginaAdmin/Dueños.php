@@ -66,6 +66,19 @@
                             <td colspan="4" class="text-center">No hay dueños pendientes</td>
                             </tr>';
                         }
+                        $consulta = "SELECT * FROM registracion WHERE estadoDueño != 'pendiente'";
+                        $resultado = mysqli_query($conn, $consulta);
+                        $haydueños = false;
+                        if($resultado) {
+                            while ($fila = mysqli_fetch_assoc($resultado)) {
+                                $haydueños = true;
+                                echo "<tr>";
+                                echo "<td>".$fila['codigo']."</td>";
+                                echo "<td>".$fila['usuario']."</td>";
+                                echo "<td>".$fila['estadoDueño']."</td>";
+                                echo "</tr>";
+                            }
+                        } 
                         ?>
             </tbody>
             <?php
