@@ -11,7 +11,7 @@
                     <p>Junín 501, S2000 Rosario, Santa Fe.</p>
                     <iframe class="w-100" aria-labelledby="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26788.706247067246!2d-60.68548326545409!3d-32.93547449898199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b654abc3ab1d5f%3A0x2f90ce97db2c5a6!2sAlto%20Rosario%20Shopping.!5e0!3m2!1ses-419!2sar!4v1726094911163!5m2!1ses-419!2sar"
                      height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <div id="LinkGoogle"class="text-center" style="margin-top: 5px;">
+                    <div id="LinkGoogle" class="text-center" style="margin-top: 5px;">
                         <a aria-label="Link hacia mapa completo" style="text-decoration: none; border: 1px solid white; 
                         background-color: #111; color: white; padding: 0.2em 1em; border-radius: 0.5em;" 
                         href="https://maps.app.goo.gl/29xJiUwYj7yvUFw38">Ampliar Mapa</a>

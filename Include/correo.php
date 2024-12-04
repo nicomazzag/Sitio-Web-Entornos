@@ -1,11 +1,3 @@
-<head> 
-    <!-- En caso de no funcionar eliminar este head -->
-    <!-- Para modificar las alertas y no usar el estilo predeterminado -->
-    <!-- SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <!-- SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
 <?php 
     if(isset($_POST['enviar'])){
         if(!empty($_POST['mail']) && !empty($_POST['descripcion'])){
