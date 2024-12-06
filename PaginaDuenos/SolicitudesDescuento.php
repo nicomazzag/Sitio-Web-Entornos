@@ -14,7 +14,7 @@
     <!-- Conexion con font awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Conexion con hoja de estilo -->
-    <link rel="stylesheet" href="EstilosDeDueño.css">
+    <link rel="stylesheet" href="EstilosDeDueno.css">
     <!-- Conexion con el icono de la pagina -->
     <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con el google font -->
@@ -30,14 +30,14 @@
 </head>
 <body>
     <?php
-        include ('headerDueños.php');
+        include ('headerDuenos.php');
     ?>
     <h1 class="text-center" id="Titulos">Solicitudes de Descuentos</h1>  
     <div class="conteiner">
         <table id="sinMargen" class="table">
             <tbody class="table-group-divider">
                 <?php
-                $codigoDueño = $_SESSION['cod'];
+                $codigoDue = $_SESSION['cod'];
                 $consulta = "SELECT usopromociones.* FROM usopromociones JOIN promociones ON usopromociones.codPromo = promociones.id JOIN locales ON promociones.codLocal = locales.id WHERE locales.codUsuario = $codigoDue AND usopromociones.estado = 'enviada'";
                 $resultado = mysqli_query($conn, $consulta);
                 while ($fila = mysqli_fetch_assoc($resultado)) {

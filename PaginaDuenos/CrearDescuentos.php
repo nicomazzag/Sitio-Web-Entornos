@@ -10,7 +10,7 @@
     <!-- Conexion con el icono de la pagina -->
     <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con hoja de estilo -->
-    <link rel="stylesheet" href="EstilosDeDueño.css">
+    <link rel="stylesheet" href="EstilosDeDueno.css">
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- SweetAlert2 JS -->
@@ -24,7 +24,7 @@
 </head>
 <body>
     <?php 
-        include("headerDueños.php");
+        include("headerDuenos.php");
     ?>
     <h1 class="text-center" id="Titulos">Crear Descuentos</h1>
     <div class="conteiner">

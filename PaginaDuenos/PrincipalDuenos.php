@@ -14,7 +14,7 @@
 <body>
     <?php
         if (!defined('NO_HEADER')) {
-            include 'headerDueños.php';
+            include 'headerDuenos.php';
         }
     ?>
     <!-- Introduccion -->
@@ -172,7 +172,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="inputContainer">
-                    <form action="PrincipalDueños.php#locales" method="post" class="buscarNombre">
+                    <form action="PrincipalDuenos.php#locales" method="post" class="buscarNombre">
                         <button class="botonLupa" aria-label="Buscar local por nombre" type="submit">
                             <i class="fas fa-search iconoLupa"></i>
                         </button>
@@ -194,7 +194,7 @@
                                     </h2>
                                     <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <form action="PrincipalDueños.php#locales" method="post">
+                                            <form action="PrincipalDuenos.php#locales" method="post">
                                                 
                                                 <fieldset> 
                                                     <legend>Rubro del Local</legend>

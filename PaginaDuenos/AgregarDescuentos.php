@@ -1,6 +1,6 @@
 <?php 
-    include("../BasesDeDatos/UnicaBaseDeDatos.php");
     include("../Include/Sesion.php");
+    include("../BasesDeDatos/UnicaBaseDeDatos.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
     <!-- Conexion con el icono de la pagina -->
     <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con hoja de estilo -->
-    <link rel="stylesheet" href="EstilosDeDueño.css">
+    <link rel="stylesheet" href="EstilosDeDueno.css">
     <!-- Conexion con font awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- SweetAlert2 CSS -->

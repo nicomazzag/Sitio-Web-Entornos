@@ -40,7 +40,7 @@
                 document.getElementById("linkExito").click();
                 </script>';
             } elseif (isset($_GET['registro']) && $_GET['registro'] == 'pendiente') {
-                echo '<a href="Alertas/alerta_dueño.html" id="linkExito" style="display:none;"></a>';
+                echo '<a href="Alertas/alerta_dueno.html" id="linkExito" style="display:none;"></a>';
                 echo '<script>
                 document.getElementById("linkExito").click();
                 </script>';

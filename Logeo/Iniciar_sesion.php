@@ -1,6 +1,6 @@
 <?php 
-    include('../BasesDeDatos/UnicaBaseDeDatos.php');
     session_start();
+    include('../BasesDeDatos/UnicaBaseDeDatos.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +109,7 @@
                     if(($fila['usuario'] == $usuario) && (password_verify($contra, $fila['contraseña'])) ){ 
                         $iniciar=true;
                         if($fila['estadoDueño'] == 'rechazado'){
-                            header("Location: Alertas/alerta_dueño_rechazado.html");
+                            header("Location: Alertas/alerta_dueno_rechazado.html");
                             exit();
                         } 
                         $_SESSION['usuario'] = $usuario;
@@ -120,10 +120,10 @@
                             header("Location: ../PaginaAdmin/PrincipalAdmin.php");
                         }
                         elseif($fila['tipoUsuario'] == "dueño" && $fila['estadoDueño'] == "pendiente"){
-                            header("Location: Alertas/alerta_dueño_pendiente.html");
+                            header("Location: Alertas/alerta_dueno_pendiente.html");
                             exit();
                         } elseif($fila['tipoUsuario'] == "dueño" && $fila['estadoDueño'] == "aceptado"){
-                            header("Location: ../PaginaDueños/PrincipalDueños.php");
+                            header("Location: ../PaginaDuenos/PrincipalDuenos.php");
                         }
                         else{
                             header("Location: ../PaginaCliente/PrincipalCliente.php");

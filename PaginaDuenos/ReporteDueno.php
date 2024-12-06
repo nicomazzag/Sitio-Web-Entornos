@@ -45,7 +45,7 @@ $totalPaginas = ceil($rowTotal['total'] / $filasPorPagina);
     <!-- Conexion con font awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Conexion con hoja de estilo -->
-    <link rel="stylesheet" href="EstilosDeDueño.css">
+    <link rel="stylesheet" href="EstilosDeDueno.css">
     <!-- Conexion con el icono de la pagina -->
     <link rel="icon" href="../Iconos/Logo_Shopping_Blanco.ico" type="image/x-icon">
     <!-- Conexion con el google font -->
@@ -61,7 +61,7 @@ $totalPaginas = ceil($rowTotal['total'] / $filasPorPagina);
 </head>
 <body>
     <?php
-        include ('headerDueños.php');
+        include ('headerDuenos.php');
     ?>
     <h1 class="text-center" id="Titulos" >Reporte de Descuentos</h1>
     <div class="conteiner">

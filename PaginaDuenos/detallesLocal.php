@@ -27,7 +27,7 @@
 </head>
     <body>
         <?php 
-            include("headerDueños.php");
+            include("headerDuenos.php");
 
             include("../BasesDeDatos/UnicaBaseDeDatos.php");
 
@@ -53,7 +53,7 @@
                                     Ubicacion: ' . $local['ubicacionLocal'] . '</i><br><br>
                                 <p>' . $local['descripcion'] .'</p>
                                 <div class = "ms-2">
-                                    <form action="PrincipalDueños.php#locales" method="get">
+                                    <form action="PrincipalDuenos.php#locales" method="get">
                                         <button class="btn btn-primary">
                                             Volver
                                         </button>
