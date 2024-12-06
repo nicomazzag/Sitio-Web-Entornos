@@ -36,14 +36,18 @@
     </div>
     <div class="conteiner contenedor2">
         <div class="row">
-        <?php //El while dentro de el div row para que no se cree 1 columna nueva por cada iteración del while
-            if($_SESSION['categoria'] == 'inicial'){
-                $consulta = "SELECT * FROM novedades WHERE tipoCliente = 'Premium Medium Inicial' AND estado = true";
-            }elseif($_SESSION['categoria'] == 'medium'){
-                $consulta = "SELECT * FROM novedades WHERE estado = true AND (tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium')";
-            }elseif($_SESSION['categoria'] == 'premium'){
-                $consulta = "SELECT * FROM novedades WHERE estado = true AND (tipoCliente = 'Premium Medium Inicial' OR tipoCliente = 'Premium Medium' OR tipoCliente = 'Premium')";
+        <?php //El while dentro del div row para que no se cree 1 columna nueva por cada iteración del mismo
+            $tipoCliente = "";
+            $consultaBase = "SELECT * FROM novedades WHERE estado = true";
+            if ($_SESSION['categoria'] == 'inicial') {
+                $tipoCliente = "tipoCliente = 'inicial'";
+            } elseif ($_SESSION['categoria'] == 'medium') {
+                $tipoCliente = "(tipoCliente = 'inicial' OR tipoCliente = 'medium')";
+            } elseif ($_SESSION['categoria'] == 'premium') {
+                $tipoCliente = "(tipoCliente = 'inicial' OR tipoCliente = 'medium' OR tipoCliente = 'premium')";
             }
+
+            $consulta = $consultaBase . " AND " . $tipoCliente;
             $resultado = mysqli_query($conn, $consulta);
 
             while ($fila = mysqli_fetch_assoc($resultado)) {

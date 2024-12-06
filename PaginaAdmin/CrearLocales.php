@@ -122,6 +122,18 @@
 
             list($ancho, $alto) = getimagesize($rutaTemporal);
 
+            if($ancho < 240 || $alto < 240){
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de la imagen',
+                    text: 'La imagen debe ser de 256x256 px o superior'
+                });
+                </script>";
+                exit();
+            }
+
             //Convirtiendo la imagen al tamaño adecuado
             $nuevo_ancho = 256;
             $nuevo_alto = 256;
@@ -141,7 +153,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Error de la imagen',
-                    text: 'Solo se permiten imágenes JPEG o PNG'
+                    text: 'Solo se permiten imágenes JPEG/JPG o PNG'
                 });
                 </script>";
                 exit();
@@ -172,11 +184,12 @@
                 move_uploaded_file($rutaTemporal, $rutaDestino);
             }
             
+            $rutaImagen = "https://zorzal.online/Sitio_Web/Imagenes/Locales/".$nombreUnico;
             $consultaUsuario = "SELECT * FROM registracion WHERE codigo = $codUsuario AND tipoUsuario = 'dueño'";
             $resultadoUsuario = mysqli_query($conn, $consultaUsuario); // objeto de la consulta
 
             if(mysqli_num_rows($resultadoUsuario) > 0){  // El código de usuario existe
-                    $sql = "INSERT INTO locales (nombre, ubicacionLocal, rubroLocal, imagen_url, codUsuario, estado) VALUES ('$nombre', '$ubicacionLocal', '$rubroLocal','$rutaDestino', '$codUsuario', '$estado')";
+                    $sql = "INSERT INTO locales (nombre, ubicacionLocal, rubroLocal, imagen_url, codUsuario, estado) VALUES ('$nombre', '$ubicacionLocal', '$rubroLocal','$rutaImagen', '$codUsuario', '$estado')";
                 if(mysqli_query($conn, $sql)){
                     echo "
                     <script>
