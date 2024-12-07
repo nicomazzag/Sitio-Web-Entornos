@@ -51,8 +51,18 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6 mt-2">
-                    <label for="codUsuario">Código de Usuario del dueño</label> <!--validar con php que el mismo exista en la base de datos -->
-                    <input class="form-control" type="text" id="codUsuario" name="codUsuario" placeholder="Ingrese el código">
+                    <label for="codUsuario">Código de Usuario del dueño</label>
+                    <select class="form-control" name="codUsuario" id="codUsuario">
+                        <?php 
+                            $consultaDuenos = "SELECT * FROM registracion WHERE tipoUsuario = 'dueño' AND estadoDueño = 'aceptado'";
+                            $resultadoDuenos = mysqli_query($conn, $consultaDuenos);
+                            $aux = "";
+                            while($fila = mysqli_fetch_assoc($resultadoDuenos)){
+                                $aux = $fila['codigo'] . " - " . $fila['usuario'];
+                        ?>
+                        <option value="<?php echo $fila['codigo']?>"><?php echo $aux ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
             <div class="row">
@@ -61,12 +71,7 @@
                     <img src="../Imagenes/Logo_shopping.png" alt="Imagen del local" id="imagenLocal">
                     <label for="inputArchivo" id="labelArchivo">Subir imagen del local</label>
                     <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputArchivo" name="imagenLocal" >
-                        
-
-                    <!-- <img src="../Imagenes/Logo_shopping.png" alt="Imagen del local" id="imagenLocal">
-                    <label for="inputArchivo" id="labelArchivo">Subir imagen del local</label>
-                    <input type="file" accept="image/jpeg, image/png, image/jpg" id="inputArchivo" name="imagenLocal"> -->
-                    
+                                        
                 </div>
             </div>
             <div class="mt-3 espaciarBotones">
