@@ -53,6 +53,7 @@
                     while ($fila = mysqli_fetch_assoc($resultado)) {
                         if($resultado) {
                             $haydescuento = true;
+                        $haydescuentos = true;
                         $consulta2= "SELECT * FROM locales WHERE id = '".$fila['codLocal']."' ";
                         $resultado2 = mysqli_query($conn, $consulta2);
                         $fila2 = mysqli_fetch_assoc($resultado2);
@@ -78,9 +79,9 @@
                         </tr>';
                     } 
                 }
-                if(!$haydescuento) {
+                if(!$haydescuentos){
                     echo '<tr>
-                    <td colspan="4" >No hay dueños pendientes</td>
+                    <td colspan="8" style="text-align: center;">No hay descuentos pendientes</td>
                     </tr>';
                 }
                 ?>
