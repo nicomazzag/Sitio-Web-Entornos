@@ -47,12 +47,11 @@
             </thead>
             <tbody class="table-group-divider text-center">
                 <?php
-                    $haydescuento = false;
+                    $haydescuentos = false;
                     $consulta = "SELECT * FROM promociones WHERE estadoPromo = 'pendiente'";
                     $resultado = mysqli_query($conn, $consulta);
                     while ($fila = mysqli_fetch_assoc($resultado)) {
                         if($resultado) {
-                            $haydescuento = true;
                         $haydescuentos = true;
                         $consulta2= "SELECT * FROM locales WHERE id = '".$fila['codLocal']."' ";
                         $resultado2 = mysqli_query($conn, $consulta2);
@@ -81,7 +80,7 @@
                 }
                 if(!$haydescuentos){
                     echo '<tr>
-                    <td colspan="8" style="text-align: center;">No hay descuentos pendientes</td>
+                    <td colspan="12" style="text-align: center;">No hay descuentos pendientes</td>
                     </tr>';
                 }
                 ?>

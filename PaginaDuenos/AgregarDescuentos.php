@@ -70,8 +70,8 @@
         </fieldset>
 
             <div class="conteiner-espaciar">
-                <a href="CrearDescuentos.php">
-                    <button class="btn" id="BotonVolver" type="button" aria-label="Volver">Volver</button>
+                <a href="CrearDescuentos.php"
+                    class="btn" id="BotonVolver" type="button" aria-label="Volver">Volver
                 </a>
                 <button class="btn"  id="BotonCrearDescuentos" type="submit" aria-label="Crear Descuento">Crear Descuento</button>
             </div>

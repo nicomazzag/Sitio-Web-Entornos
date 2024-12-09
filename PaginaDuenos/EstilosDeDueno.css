@@ -219,19 +219,26 @@ input[type="text"], input[type="date"],input[list="TipoUsuario"], select{
     transform: scale(1.1);
 }
 
-#BotonVolver{
+
+#BotonVolver {
+    display: inline-block; 
+    text-align: center; 
+    text-decoration: none; 
     border-radius: 5px;
     padding: 10px;
-    border:#cb5353 solid 1px;
+    border: #cb5353 solid 1px;
     transition: transform 0.5s ease-in, background-color 0.5s ease-in;
+    visibility: visible;
     color: black;
+    background-color: #dcdcdc; 
 }
 
-#BotonVolver:hover{
+#BotonVolver:hover {
     background-color: #ea5858;
     color: black;
     transform: scale(1.1);
 }
+
 
 textarea{
     width: 100%;
