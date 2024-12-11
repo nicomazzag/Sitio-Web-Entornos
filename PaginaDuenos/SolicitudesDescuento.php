@@ -70,11 +70,11 @@
                     </td>
                 </tr>
                 <?php }
-                if (mysqli_num_rows($resultado) == 0) {
-                    echo "<div  style='text-align: center; font-size: 1.5em; border-top: 1px solid black; width:100%; '> No hay solicitudes de descuento </div>";
-                }
+                    if (mysqli_num_rows($resultado) == 0) {
+                        echo "<div  style='text-align: center; font-size: 1.5em; border-top: 1px solid black; width:100%; '> No hay solicitudes de descuento </div>";
+                    }
 
-                 ?>
+                ?>
             </tbody>
         </table>
     </div>
@@ -94,12 +94,12 @@
             $resultado = mysqli_query($conn, $verifTipoCliente);
             $numFilas = mysqli_num_rows($resultado);
             if ($numFilas == 2 || $numFilas == 3) {
-                $sql = "UPDATE registracion SET tipoCliente = 'medium' WHERE codigo = $usuarioEsp";
-                mysqli_query($conn, $sql);
+                $sqlAux = "UPDATE registracion SET tipoCliente = 'medium' WHERE codigo = $usuarioEsp";
+                mysqli_query($conn, $sqlAux);
             }
             elseif ($numFilas >= 4) {
-                $sql = "UPDATE registracion SET tipoCliente = 'premium' WHERE codigo = $usuarioEsp";
-                mysqli_query($conn, $sql);
+                $sqlAux = "UPDATE registracion SET tipoCliente = 'premium' WHERE codigo = $usuarioEsp";
+                mysqli_query($conn, $sqlAux);
             }
         }
         

@@ -1,6 +1,7 @@
 <?php 
     include("../Include/Sesion.php");
     include('../BasesDeDatos/UnicaBaseDeDatos.php');
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +36,11 @@
                 </div>
                 <div class="form-group col-md-4 mt-2">
                     <label for="fechaDesde">Ingrese la fecha de inicio</label>
-                    <input class="form-control" type="date" id="fechaDesde" name="fechaDesdeNov">
+                    <input class="form-control" type="date" min="<?php echo date('Y-m-d');?>" id="fechaDesde" name="fechaDesdeNov">
                 </div>
                 <div class="form-group col-md-4 mt-2">
                     <label for="fechaHastaNov">Ingrese la fecha de fin</label>
-                    <input class="form-control" type="date" id="fechaHastaNov" name="fechaHastaNov">
+                    <input class="form-control" type="date" min="<?php echo date('Y-m-d');?>" id="fechaHastaNov" name="fechaHastaNov">
                 </div>
             </div>
             <div class="row">

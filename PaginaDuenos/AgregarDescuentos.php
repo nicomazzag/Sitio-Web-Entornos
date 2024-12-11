@@ -1,6 +1,7 @@
 <?php 
     include("../Include/Sesion.php");
     include("../BasesDeDatos/UnicaBaseDeDatos.php");
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,9 +63,9 @@
                 </div>
             </div>
             <label for="FechaDesde">Fecha Desde:</label>
-            <input type="date" id="FechaDesde" name="FechaDesde" required>
+            <input type="date" min="<?php echo date('Y-m-d');?>" id="FechaDesde" name="FechaDesde" required>
             <label for="FehaHasta">Fecha Hasta:</label>
-            <input type="date" id="FechaHasta" name="FechaHasta" required>
+            <input type="date" min="<?php echo date('Y-m-d');?>" id="FechaHasta" name="FechaHasta" required>
             <label for="Descripcion" >Descripción:</label>
             <textarea rows="3" name="Descripcion" id="Descripcion"></textarea>
         </fieldset>

@@ -33,9 +33,7 @@
             <thead>
                 <tr>
                     <th scope="col">Codigo de Dueño</th>
-                    <th scope="col">Nombre de Dueño</th>
-                    <th scope="col">&nbsp;</th>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col">Nombre de Dueño </th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -43,10 +41,10 @@
                     <?php 
                         $consulta = "SELECT * FROM registracion WHERE estadoDueño = 'pendiente'";
                         $resultado = mysqli_query($conn, $consulta);
-                        $haydueños = false;
+                        $haydueñosPendientes = false;
                         if($resultado) {
                             while ($fila = mysqli_fetch_assoc($resultado)) {
-                                $haydueños = true;
+                                $haydueñosPendientes = true;
                                 echo "<tr>";
                                 echo "<td>".$fila['codigo']."</td>";
                                 echo "<td>".$fila['usuario']."</td>";
@@ -61,11 +59,6 @@
                                 echo "</tr>";
                             }
                         } 
-                        if(!$haydueños) {
-                            echo '<tr>
-                            <td colspan="4" class="text-center">No hay dueños pendientes</td>
-                            </tr>';
-                        }
                         $consulta = "SELECT * FROM registracion WHERE estadoDueño != 'pendiente'";
                         $resultado = mysqli_query($conn, $consulta);
                         $haydueños = false;
@@ -75,11 +68,19 @@
                                 echo "<tr>";
                                 echo "<td>".$fila['codigo']."</td>";
                                 echo "<td>".$fila['usuario']."</td>";
-                                echo "<td>".$fila['estadoDueño']."</td>";
+                                echo "<td colspan='2'>".$fila['estadoDueño']."</td>"; 
                                 echo "</tr>";
                             }
                         } 
                         ?>
+                </tr>
+                <?php 
+                    if(!$haydueñosPendientes) {
+                                echo '<tr>
+                                <td colspan="4" class="text-center">No hay dueños pendientes</td>
+                                </tr>';
+                            }
+                ?>
             </tbody>
             <?php
                 if(isset($_POST['aceptado'])) {
