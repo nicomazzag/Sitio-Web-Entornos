@@ -82,7 +82,7 @@
                         <?php  
                     if (isset($_POST['id'])) {
                         $id = $_POST['id'];
-                        $consulta = "DELETE FROM promociones WHERE id = '$id'";
+                        $consulta = "DELETE FROM promociones WHERE id = '$id' LIMIT 1";
                         $resultado = mysqli_query($conn, $consulta);
                         if ($resultado) {
                             echo '<script>
