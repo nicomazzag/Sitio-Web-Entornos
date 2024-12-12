@@ -64,6 +64,10 @@
                     // Obtener el ID del cliente y la categoría 
 
                     $cliente_cod = $_SESSION['cod'];
+                    $buscarTermino = isset($_GET['buscarTermino']) ? $_GET['buscarTermino'] : '';
+                    $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : '';
+                    
+
 
                     $sql = "SELECT tipoCliente FROM registracion WHERE codigo = $cliente_cod";
                     $res = $conn->query($sql);
