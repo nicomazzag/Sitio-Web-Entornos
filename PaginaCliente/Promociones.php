@@ -36,18 +36,19 @@
         </div>
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid posicionar  mt-3 mb-3">
-                <form id="agrandar" class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar por nombre o código del local" aria-label="Buscar">
-                    <button id="espaciar" class="btn btn-outline-primary" type="submit">Search</button>
+            <form id="agrandar" class="d-flex" role="search" method="get" action="Promociones.php">
+                    <input class="form-control me-2" type="search" placeholder="Buscar por nombre o código del local" aria-label="Buscar" name="buscarTermino">
+                    <button id="espaciar" class="btn btn-outline-primary" type="submit" style="opacity: 1; color: #0248B1;">Buscar</button>
                     <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filtrar por
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        style="opacity: 1; color: #0248B1;">
+                            Filtrar por categoría
                         </button>
-                      <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Premium</a></li>
-                            <li><a class="dropdown-item" href="#">Medium</a></li>
-                            <li><a class="dropdown-item" href="#">Inicial</a></li>
-                      </ul>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="?categoria=premium">Premium</a></li>
+                            <li><a class="dropdown-item" href="?categoria=medium">Medium</a></li>
+                            <li><a class="dropdown-item" href="?categoria=inicial">Inicial</a></li>
+                        </ul>
                     </div>
                 </form>
             </div>
@@ -61,10 +62,10 @@
                     include("../BasesDeDatos/UnicaBaseDeDatos.php");
                     
                     // Obtener el ID del cliente y la categoría 
-                    //$cliente_cod = '3'; // Ejemplo!
+
                     $cliente_cod = $_SESSION['cod'];
 
-                    $sql = "SELECT tipoCliente FROM registracion WHERE codigo = $cliente_cod"; //tendremos q conectar a la otra base de datos
+                    $sql = "SELECT tipoCliente FROM registracion WHERE codigo = $cliente_cod";
                     $res = $conn->query($sql);
                     $arr = $res->fetch_assoc();
                     $categoria_cliente = $arr['tipoCliente'];                    
@@ -78,6 +79,16 @@
                     OR (promociones.categoriaMin = 'medium' AND '$categoria_cliente' != 'inicial')
                     OR (promociones.categoriaMin = 'premium' AND '$categoria_cliente' = 'premium'))
                     AND locales.estado = 1";
+
+                    // Agregar condición de búsqueda si se ha ingresado un término
+                    if (!empty($buscarTermino)) {
+                        $buscarTermino = $conn->real_escape_string($buscarTermino);
+                        $sql .= " AND (locales.nombre LIKE '%$buscarTermino%' OR promociones.nombre LIKE '%$buscarTermino%')";
+                    }
+                    if(!empty($categoria)){
+                        $sql .= " AND promociones.categoriaMin = '$categoria'";
+                    }
+
 
                     $result = $conn->query($sql);
 
