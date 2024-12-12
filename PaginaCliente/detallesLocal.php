@@ -77,7 +77,10 @@
 
                     $dia_actual = date('w');
                     $sql = "SELECT promociones.id, promociones.nombre, promociones.descripcion, promociones.categoriaMin, locales.nombre AS local_nombre FROM promociones 
-                    JOIN locales ON promociones.codLocal = locales.id WHERE categoriaMin <= '$categoria_cliente' AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
+                    JOIN locales ON promociones.codLocal = locales.id WHERE (promociones.categoriaMin = '$categoria_cliente' OR promociones.categoriaMin = 'inicial'
+                    OR (promociones.categoriaMin = 'medium' AND '$categoria_cliente' != 'inicial')
+                    OR (promociones.categoriaMin = 'premium' AND '$categoria_cliente' = 'premium')) 
+                    AND SUBSTRING(diasValidos, $dia_actual + 1, 1) = '1' AND
                     fechaDesde <= CURDATE() AND fechaHasta >= CURDATE() AND locales.id = $local_id";
 
                     $result = $conn->query($sql);
