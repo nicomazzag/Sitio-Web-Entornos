@@ -10,13 +10,14 @@ if(isset($_POST['cerrarSession'])){
     <style>
             #botonCerraSesion {
                 margin-left: 5px;
+                margin-right: 4px;
                 background-color: #0d6efd; 
                 color: #ffffff; 
                 border: none; 
                 border-radius: 5px; 
                 cursor: pointer; 
                 transition: transform 0.5s ease-in, background-color 0.5s ease-in;
-                align-items: center; 
+                align-items: center;
                 }
 
                 #botonCerraSesion .text {
@@ -42,18 +43,45 @@ if(isset($_POST['cerrarSession'])){
                     margin-right: 0;
                     margin-left: 0;
                 }
+                .profile-picture img{
+                    display: none;
+                }
             }
+            
             .profile-picture {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
+                cursor: pointer;
+                display: flex;
+                align-items: right;
             }
             .profile-picture img {
                 height: 50px;
                 width: 50px;
                 border-radius: 50%;
+                margin-left: 5px; 
             }
+            .profile-picture span {
+                color: #ffffff;
+                font-size: 16px;
+                font-weight: bold;
+                margin-right: 5px;
+            }
+            .profile-picture button {
+                background: none;
+                border: none;
+                color: inherit;
+                font: inherit;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+            }
+            .navbar-collapse {
+                justify-content: space-between;
+            }
+            .navbar-nav{
+                flex-grow:1;
+            }
+            
+
     </style>
 </head>
 <header>
@@ -66,29 +94,31 @@ if(isset($_POST['cerrarSession'])){
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="menu">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="PrincipalCliente.php#locales">Nuestros Locales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="Promociones.php">Promociones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="Novedades.php">Novedades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#contactanos">Contáctanos</a>
-                    </li>
-                </ul>
-                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="sinMargen" method="post">
-                    <button class="btn" id="botonCerraSesion" name="cerrarSession" type="submit" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
-                    <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </form>
-                <form action="perfil.php" method="post" class="profile-picture"> 
-                    <input type="hidden" name="perfil"> 
-                    <img src="../Imagenes/perfil.png" alt="Perfil" title="Perfil de Usuario" onclick="this.parentElement.submit();"> 
-            </form>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="PrincipalCliente.php#locales">Nuestros Locales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="Promociones.php">Promociones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="Novedades.php">Novedades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#contactanos">Contáctanos</a>
+                        </li>
+                    </ul>
+                    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" class="sinMargen" method="post">
+                        <button class="btn" id="botonCerraSesion" name="cerrarSession" type="submit" aria-label="Cerrar Sesión"><span class="text">Cerrar Sesión</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </form>
+                    <form action="perfil.php" method="post" class="profile-picture"> 
+                        <button type="submit">
+                            <span>Ver perfil</span>
+                            <img src="../Imagenes/perfil.png" alt="Perfil" title="Perfil de Usuario">
+                        </button>
+                    </form>
             </div>
         </div>
     </nav>
