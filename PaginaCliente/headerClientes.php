@@ -43,6 +43,17 @@ if(isset($_POST['cerrarSession'])){
                     margin-left: 0;
                 }
             }
+            .profile-picture {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            }
+            .profile-picture img {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+            }
     </style>
 </head>
 <header>
@@ -74,6 +85,10 @@ if(isset($_POST['cerrarSession'])){
                     <i class="fas fa-sign-out-alt"></i>
                     </button>
                 </form>
+                <form action="perfil.php" method="post" class="profile-picture"> 
+                    <input type="hidden" name="perfil"> 
+                    <img src="../Imagenes/perfil.png" alt="Perfil" title="Perfil de Usuario" onclick="this.parentElement.submit();"> 
+            </form>
             </div>
         </div>
     </nav>
