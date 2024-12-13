@@ -1,6 +1,39 @@
 <?php 
     include("../Include/Sesion.php");
     include("../BasesDeDatos/UnicaBaseDeDatos.php");
+    
+    // paginacion
+    $resultados_por_pagina = 3;
+    $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
+    $inicio = ($pagina_actual - 1) * $resultados_por_pagina;
+
+        //cod dueño
+    $cod_dueño = $_SESSION['cod'];
+    $sql_locales = "SELECT id FROM locales WHERE codUsuario = '$cod_dueño'";
+    $resultado_locales = mysqli_query($conn, $sql_locales);
+
+    // Construir una lista de IDs de locales
+    $ids_locales = [];
+    while ($fila = mysqli_fetch_assoc($resultado_locales)) {
+        $ids_locales [] = $fila['id'];
+    }
+    
+    // Convertir los IDs de locales en una cadena para la consulta
+    $ids_locales_str = implode(",", $ids_locales);
+
+    if (empty($ids_locales)) {
+        $total_registros = 0;
+    } else {
+        // Contar las promociones aprobadas de los locales
+        $sql_total = "SELECT COUNT(*) as total FROM promociones
+                    WHERE codLocal IN ($ids_locales_str) AND estadoPromo = 'aprobada'";
+        $resultado_total = mysqli_query($conn, $sql_total);
+        $fila_total = mysqli_fetch_assoc($resultado_total);
+        $total_registros = $fila_total['total'];
+    }
+
+        //total de paginas
+    $total_paginas = ceil($total_registros / $resultados_por_pagina);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -42,39 +75,42 @@
             </thead>
             <tbody class="table-group-divider">
                 <?php
-                    $consulta = "SELECT * FROM registracion WHERE usuario = '".$_SESSION['usuario']."' ";
-                    $resultado = mysqli_query($conn, $consulta);
-                    $fila = mysqli_fetch_assoc($resultado);
-                    $consulta2 = "SELECT * FROM locales WHERE codUsuario = '".$fila['codigo']."' ";
-                    $resultado2 = mysqli_query($conn, $consulta2);
-                    $haypromociones = false;
-                    while ($fila2 = mysqli_fetch_assoc($resultado2)) {
-                        $consulta3 = "SELECT * FROM promociones WHERE codLocal = '".$fila2['id']."' ";
-                        $resultado3 = mysqli_query($conn, $consulta3);
-                        while ($fila3 = mysqli_fetch_assoc($resultado3)) {
-                            if ($fila3['estadoPromo'] == "aprobada") {
-                                $haypromociones = true;
-                                $diasBinario = $fila3['diasValidos'];
-                                $diasTexto = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
-                                $diasResultado = [];
-                                for ($i = 0; $i < 7; $i++) {
-                                    if ($diasBinario[$i] === "1") {
-                                        $diasResultado[] = $diasTexto[$i];
-                                    }  }
-                                echo '<tr>
-                                <th scope="row" class="text-center">'. $fila3['id'].'</th>
-                                <td> '. $fila2['nombre'] .'</td>
-                                <td> '. $fila3['nombre'] .'</td>
-                                <td> '. $fila3['descripcion'] .'</td>
-                                <td>'. $fila3['categoriaMin'] .'</td>
-                                <td> '. implode(" - ", $diasResultado) .'</td>';
+                    if (!empty($ids_locales)) {
+                        $sql_promociones = "SELECT * 
+                                            FROM promociones 
+                                            WHERE codLocal IN ($ids_locales_str) AND estadoPromo = 'aprobada' 
+                                            LIMIT $inicio, $resultados_por_pagina";
+                        $resultado_promociones = mysqli_query($conn, $sql_promociones);
+
+                        while ($filaP = mysqli_fetch_assoc($resultado_promociones)) {
+                            $sql_local = "SELECT * FROM locales WHERE id = '" . $filaP['codLocal'] . "'";
+                            $resultado_local = mysqli_query($conn, $sql_local);
+                            $filaL = mysqli_fetch_assoc($resultado_local);
+                            ?>
+                                    <tr>
+                                        <th scope="row" class="text-center"><?php echo $filaL['id']; ?></th>
+                                        <td><?php echo $filaL['nombre'] ; ?></td>
+                                        <td><?php echo $filaP['descripcion']; ?></td>   
+                                        <td><?php echo $filaP['categoriaMin']; ?></td>   
+                                            <?php // Convertir los unos de $diasBinario en los días correspondientes
+                                                $diasBinario = $filaP['diasValidos'];
+                                                $diasTexto = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
+                                                $diasResultado = [];
+                                                for ($i = 0; $i < 7; $i++) {
+                                                    if ($diasBinario[$i] === "1") {
+                                                        $diasResultado[] = $diasTexto[$i];
+                                                    }  
+                                                }  
+                                            ?>
+                                        <td class="text-left"><?php echo implode(" - ", $diasResultado); ?></td>
+                                 <?php
                                 echo '<form action="'. htmlspecialchars($_SERVER['PHP_SELF']).'" method="post">
-                                    <td><button id="botonCesto" type="submit" class="btn"  name="id" value="'. $fila3['id'].'" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
-                                </form>';
+                                        <td><button id="botonCesto" type="submit" class="btn"  name="id" value="'. $filaP['id'].'" data-bs-toggle="modal"><i class="fas fa-trash-alt icono-rojo"></i> Eliminar</button></td>
+                                     </form>';
                                 echo '</tr>';
-                            }
+                   
                         }
-                    } if(!$haypromociones) {
+                    } else {
                         echo '<tr><td colspan="7" class="text-center">No hay promociones aceptadas</td></tr>';
                     }
                 ?>
@@ -114,5 +150,26 @@
                         <a href="AgregarDescuentos.php" class="links"><button id="botonPlus" class="btn" ><i class="fas fa-plus iconoVerde"></i> Agregar</button></a>  
                     </div>
                 </div>
+             <!-- Paginación -->
+    <nav aria-label="Page navigation example" id="paginacion">
+        <ul class="pagination justify-content-center" id="enlaces">
+                       <!-- Botón de retroceso -->
+            <?php if ($pagina_actual > 1): ?>
+                <li class="page-item "><a class="page-link" id="item" href="?pagina=<?php echo $pagina_actual - 1; ?>">Anterior</a></li>
+            <?php else: ?>
+                <li class="page-item "><a class="page-link" id="item" href="#">Anterior</a></li>
+            <?php endif; ?>
+                        <!-- Numero de pagina -->
+            <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+                <li class="page-item" ><a class="page-link" id="item" href="?pagina=<?php echo $i; ?>" class="<?php echo ($i == $papagina_actualginaActual) ? 'active' : ''; ?>"><?php echo $i; ?></a></li>
+            <?php endfor; ?>
+                        <!-- Botón de avance -->
+            <?php if ($pagina_actual < $total_paginas): ?>
+                <li class="page-item "><a class="page-link" id="item" href="?pagina=<?php echo $pagina_actual + 1; ?>">Siguiente</a></li>
+            <?php else: ?>
+                <li class="page-item "><a class="page-link" id="item" href="#">Siguiente</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
 </body>
 </html>

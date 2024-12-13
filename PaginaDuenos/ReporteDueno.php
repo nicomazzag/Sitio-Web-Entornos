@@ -3,7 +3,7 @@
     include('../BasesDeDatos/UnicaBaseDeDatos.php');
 
     // paginacion
-    $resultados_por_pagina = 3;
+    $resultados_por_pagina = 5;
     $pagina_actual = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
     $inicio = ($pagina_actual - 1) * $resultados_por_pagina;
 
@@ -22,15 +22,15 @@
     $ids_locales_str = implode(",", $ids_locales);
 
     if (empty($ids_locales)) {
-        die("No se encontraron locales para este usuario.");
-    } 
-
-    // Contar las promociones aprobadas de los locales
-    $sql_total = "SELECT COUNT(*) as total FROM promociones
-                WHERE codLocal IN ($ids_locales_str) AND estadoPromo = 'aprobada'";
-    $resultado_total = mysqli_query($conn, $sql_total);
-    $fila_total = mysqli_fetch_assoc($resultado_total);
-    $total_registros = $fila_total['total'];
+        $total_registros = 0;
+    } else {
+        // Contar las promociones aprobadas de los locales
+        $sql_total = "SELECT COUNT(*) as total FROM promociones
+                    WHERE codLocal IN ($ids_locales_str) AND estadoPromo = 'aprobada'";
+        $resultado_total = mysqli_query($conn, $sql_total);
+        $fila_total = mysqli_fetch_assoc($resultado_total);
+        $total_registros = $fila_total['total'];
+    }
 
         //total de paginas
     $total_paginas = ceil($total_registros / $resultados_por_pagina);
@@ -72,47 +72,52 @@
                     <th scope="col">Dias disponibles</th>
                     <th scope="col">Cantidad de usos</th>
                 </tr>
-            </thead>
-                <?php            // Obtener las promociones de la página actual
-                    $sql_promociones = "SELECT * 
-                                        FROM promociones 
-                                        WHERE codLocal IN ($ids_locales_str) AND estadoPromo = 'aprobada' 
-                                        LIMIT $inicio, $resultados_por_pagina";
-                    $resultado_promociones = mysqli_query($conn, $sql_promociones);
+            </thead> 
+            <tbody class="table-group-divider">
+                <?php            
+                    if (!empty($ids_locales)) {
+                       // Obtener las promociones de la página actual
+                        $sql_promociones = "SELECT * 
+                                            FROM promociones 
+                                            WHERE codLocal IN ($ids_locales_str) AND estadoPromo = 'aprobada' 
+                                            LIMIT $inicio, $resultados_por_pagina";
+                        $resultado_promociones = mysqli_query($conn, $sql_promociones);
 
-                    while ($filaP = mysqli_fetch_assoc($resultado_promociones)) {
-                        $sql_local = "SELECT * FROM locales WHERE id = '" . $filaP['codLocal'] . "'";
-                        $resultado_local = mysqli_query($conn, $sql_local);
-                        $filaL = mysqli_fetch_assoc($resultado_local);
-                        ?>
-                            <tbody class="table-group-divider">
-                                <tr>
-                                    <th scope="row" class="text-center"><?php echo $filaL['id']; ?></th>
-                                    <td><?php echo $filaL['nombre'] ; ?></td>
-                                    <td><?php echo $filaP['descripcion']; ?></td>   
-                                        <?php // Convertir los unos de $diasBinario en los días correspondientes
-                                            $diasBinario = $filaP['diasValidos'];
-                                            $diasTexto = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
-                                            $diasResultado = [];
-                                            for ($i = 0; $i < 7; $i++) {
-                                                if ($diasBinario[$i] === "1") {
-                                                    $diasResultado[] = $diasTexto[$i];
+                        while ($filaP = mysqli_fetch_assoc($resultado_promociones)) {
+                            $sql_local = "SELECT * FROM locales WHERE id = '" . $filaP['codLocal'] . "'";
+                            $resultado_local = mysqli_query($conn, $sql_local);
+                            $filaL = mysqli_fetch_assoc($resultado_local);
+                            ?>
+                                    <tr>
+                                        <th scope="row" class="text-center"><?php echo $filaL['id']; ?></th>
+                                        <td><?php echo $filaL['nombre'] ; ?></td>
+                                        <td><?php echo $filaP['descripcion']; ?></td>   
+                                            <?php // Convertir los unos de $diasBinario en los días correspondientes
+                                                $diasBinario = $filaP['diasValidos'];
+                                                $diasTexto = ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
+                                                $diasResultado = [];
+                                                for ($i = 0; $i < 7; $i++) {
+                                                    if ($diasBinario[$i] === "1") {
+                                                        $diasResultado[] = $diasTexto[$i];
+                                                    }  
                                                 }  
-                                            }  
-                                        ?>
-                                    <td class="text-left"><?php echo implode(" - ", $diasResultado); ?></td>
-                                        <?php //cantidad de usos
-                                                $sql = "SELECT * FROM usopromociones WHERE codPromo = " . $filaP['id'] . " AND estado = 'aceptada'";
-                                                $result = mysqli_query($conn, $sql);
-                                                $cantUsos = (mysqli_num_rows($result)) // cantidad de usos
                                             ?>
-                                    <td class="text-center"> <?php echo $cantUsos ?></td>                              
-                                  </tr>
-                            </tbody>    
-                        <?php
+                                        <td class="text-left"><?php echo implode(" - ", $diasResultado); ?></td>
+                                            <?php //cantidad de usos
+                                                    $sql = "SELECT * FROM usopromociones WHERE codPromo = " . $filaP['id'] . " AND estado = 'aceptada'";
+                                                    $result = mysqli_query($conn, $sql);
+                                                    $cantUsos = (mysqli_num_rows($result)) // cantidad de usos
+                                                ?>
+                                        <td class="text-center"> <?php echo $cantUsos ?></td>                              
+                                    </tr>
+                            <?php
+                        }
                     }
-                    
+                    else {
+                        echo '<tr><td colspan="7" class="text-center">No hay promociones aceptadas</td></tr>';
+                    }
                 ?>
+            </tbody>    
 
         </table>
     </div>
@@ -137,5 +142,6 @@
                 <li class="page-item "><a class="page-link" id="item" href="#">Siguiente</a></li>
             <?php endif; ?>
         </ul>
-    </nav></body>
+    </nav>
+</body>
 </html>
