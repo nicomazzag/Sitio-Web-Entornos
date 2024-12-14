@@ -8,6 +8,9 @@ if(isset($_POST['cerrarSession'])){
 ?>
 <head>
     <style>
+            .sinMargen {
+                margin: 0;
+            }
             #botonCerraSesion {
                 margin-left: 5px;
                 margin-right: 4px;
@@ -34,21 +37,7 @@ if(isset($_POST['cerrarSession'])){
             #botonCerraSesion i {
                 margin-right: 8px;
                 }
-            
-            @media(max-width:767px){
-                #botonCerraSesion .text {
-                    display: none;
-                }
-                #botonCerraSesion  {
-                    margin-right: 0;
-                    margin-left: 0;
-                }
-                .profile-picture img{
-                    display: none;
-                }
-            }
-            
-            .profile-picture {
+                .profile-picture {
                 cursor: pointer;
                 display: flex;
                 align-items: right;
@@ -79,6 +68,18 @@ if(isset($_POST['cerrarSession'])){
             }
             .navbar-nav{
                 flex-grow:1;
+            }
+            @media(max-width:767px){
+                #botonCerraSesion .text {
+                    display: none;
+                }
+                #botonCerraSesion  {
+                    margin-right: 0;
+                    margin-left: 0;
+                }
+                .profile-picture img{
+                    display: none;
+                }
             }
             
 
@@ -116,7 +117,7 @@ if(isset($_POST['cerrarSession'])){
                     <form action="perfil.php" method="post" class="profile-picture"> 
                         <button type="submit">
                             <span>Ver perfil</span>
-                            <img src="../Imagenes/perfil.png" alt="Perfil" title="Perfil de Usuario">
+                            <img src="../Imagenes/perfil.png" alt="ver perfil" title="Perfil de Usuario">
                         </button>
                     </form>
             </div>
