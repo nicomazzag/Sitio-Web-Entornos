@@ -45,7 +45,7 @@
                 <div class="container mt-3 mb-3">
                     <div class="row">
                         <div class="col-md-4 mb-3 justify-content-center">
-                            <img src="../Imagenes/perfil.png" alt="Imagen de perfil" class="img-fluid">
+                            <img src="../Imagenes/perfil2.png" alt="Imagen de perfil" class="img-fluid">
                         </div>
                         <div class="col-md-8 mb-3">
                             <h1>' . $cli['usuario'] .'</h1>
