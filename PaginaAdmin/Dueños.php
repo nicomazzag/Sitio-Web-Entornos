@@ -18,11 +18,67 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Conexion con font awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Para modificar las alertas y no usar el estilo predeterminado -->
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Dueños</title>
 </head>
 <body>
     <?php 
         include("headerAdmin.php");
+    ?>
+    <?php
+        if(isset($_POST['aceptado'])) {
+            $id = $_POST['aceptado'];
+            $consulta = "UPDATE registracion SET estadoDueño = 'aceptado' WHERE codigo = '$id'";
+            //$resultado = mysqli_query($conn, $consulta);
+            if(mysqli_query($conn, $consulta)) {
+                
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Dueño aceptado',
+                    text: 'El dueño ha sido aceptado',
+                    });
+                </script>";
+            } else {
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Advertencia',
+                    text: 'Error al aceptar dueño',
+                    });
+                </script>";
+            }
+        }
+        if(isset($_POST['rechazado'])) {
+            $id = $_POST['rechazado'];
+            $consulta = "UPDATE registracion SET estadoDueño = 'rechazado' WHERE codigo = '$id'";
+            //$resultado = mysqli_query($conn, $consulta);
+            if(mysqli_query($conn, $consulta)) {
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Dueño rechazado',
+                    text: 'El dueño ha sido rechazado',
+                    });
+                </script>";
+            } else {
+                echo "
+                <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Advertencia',
+                    text: 'Error al rechazar dueño',
+                    });
+                </script>";
+            }
+        }
     ?>
     <div class="contenedor1">
         <p id="Home"><a id="linkHome" href="PrincipalAdmin.php">Principal</a> /Dueños</p>
@@ -82,56 +138,7 @@
                             }
                 ?>
             </tbody>
-            <?php
-                if(isset($_POST['aceptado'])) {
-                    $id = $_POST['aceptado'];
-                    $consulta = "UPDATE registracion SET estadoDueño = 'aceptado' WHERE codigo = '$id'";
-                    $resultado = mysqli_query($conn, $consulta);
-                    if($resultado) {
-                        echo "
-                        <script>
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Dueño aceptado',
-                            text: 'El dueño ha sido aceptado',
-                            });
-                        </script>";
-                    } else {
-                        echo "
-                        <script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Advertencia',
-                            text: 'Error al aceptar dueño',
-                            });
-                        </script>";
-                    }
-                }
-                if(isset($_POST['rechazado'])) {
-                    $id = $_POST['rechazado'];
-                    $consulta = "UPDATE registracion SET estadoDueño = 'rechazado' WHERE codigo = '$id'";
-                    $resultado = mysqli_query($conn, $consulta);
-                    if($resultado) {
-                        echo "
-                        <script>
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Dueño rechazado',
-                            text: 'El dueño ha sido rechazado',
-                            });
-                        </script>";
-                    } else {
-                        echo "
-                        <script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Advertencia',
-                            text: 'Error al rechazar dueño',
-                            });
-                        </script>";
-                    }
-                }
-            ?>
+            
         </table>
     </div>
 </body>
